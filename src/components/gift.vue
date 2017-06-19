@@ -10,6 +10,8 @@
             <li class="clearfix" v-for="gift in game.gift" :class="{'gift-block':index == giftIndex}">
               <div>
                 <h3>{{ gift.name }}
+
+
                   <a href="javascript:;" v-show="gift.getstatus == 0" class="gift-link gift-link-will"
                      @click="getGift(gift.id)" :gameid="gift.gid" :giftid="gift.id" :idiscommon="gift.idiscommon">领取礼包</a>
 
