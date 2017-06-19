@@ -1,0 +1,168 @@
+<template>
+  <div class="header">
+    <!--<div class="img-border clearfix ">-->
+      <img :src="user.avatar" alt="">
+    <!--</div>-->
+    <p v-html="user.user_nicename" class="user-name"></p>
+    <a href="javascript:void(0);" class="follow" @click="follow()">关注</a>
+    <!--<a href="" class="agreement">用户协议</a>-->
+    <div class="follow-alert" :class="style" @click="close">
+      <div class="follow-window">
+        <div class="follow-heading"></div>
+        <h2 class="follow-tit">关注"游戏酱紫"</h2>
+        <img class="follow-erwei" src="../../assets/erwei.jpg" alt="">
+        <p class="follow-tips">长按识别二维码</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  created(){
+    this.$http.get('http://h5.wan855.cn/api/index.php?m=User&a=getUserinfo').then(function(res) {
+      //平台登录信息
+
+        this.user = res.body.user
+
+    },function (err) {
+      console.log(err)
+    })
+  },
+  data () {
+    return {
+      user:{},
+      style:{
+          'follow-style':false
+      },
+
+    }
+  },
+  methods:{
+      follow(){
+          this.style['follow-style'] = true
+      },
+      close(){
+          this.style['follow-style'] = false
+      }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.header{
+  height:4rem;
+  width: 100%;
+  background-color: #f1f0f6;
+}
+/*.header .img-border{*/
+  /*border-radius: 50%;*/
+  /*height: 4rem;*/
+  /*width: 4rem;*/
+  /*margin: 1rem 1.5rem;*/
+  /*box-shadow: 0 0.3rem 0.5rem 0.1rem #333;*/
+  /*float: left;*/
+/*}*/
+.header > img{
+  float: left;
+  display: block;
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 50%;
+  box-shadow: 0 0.2rem  0.3rem 0.1rem rgba(27,27,27,0.6);
+  margin: 0.5rem 1rem;
+
+}
+  .header > p{
+    float: left;
+    color: #4a4a4a;
+    font-size: 1.6rem;
+    line-height: 4rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width:12rem;
+  }
+  .header .agreement{
+    float: right;
+    line-height: 4rem;
+    text-decoration: underline;
+    font-size: 1.4rem;
+    color: #ff7800;
+    display: block;
+    margin-right: 2rem;
+  }
+  .header .follow{
+    float: right;
+    width: 6rem;
+    line-height: 4rem;
+    background-color: #ff7800;
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+  }
+.follow-alert{
+  position: absolute;
+  top: 0;
+  left:0;
+  width: 100%;
+  height:200%;
+  z-index: 999;
+  background-color: rgba(0,0,0,.6);
+  display: none;
+}
+  .follow-style{
+    display: block;
+  }
+  .follow-window{
+    width:25rem;
+    height: 25rem;
+    position: absolute;
+    top: 10%;
+    left:50%;
+    margin-left: -12.5rem;
+    z-index:999;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: #f0f0f6;
+    animation: focus .5s ;
+    opacity: 1;
+  }
+  .follow-heading{
+    height:4rem;
+    background: #0aa2ff url('../../assets/logo.png') no-repeat center center;
+    background-size:contain;
+    /*background-color: #0aa2ff;*/
+  }
+  .follow-tit{
+    text-align: center;
+    height: 4rem;
+    line-height: 4rem;
+  }
+  .follow-erwei{
+    width: 55%;
+    height:55%;
+    display: block;
+    margin: 0 auto;
+  }
+  .follow-tips{
+    text-align: center;
+    line-height: 3rem;
+  }
+@keyframes focus
+{
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 10%;
+    opacity: 1;
+  }
+}
+.user-name span{
+  float: right;
+  transform: translateY(1rem);
+}
+</style>
