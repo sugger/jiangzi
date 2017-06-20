@@ -28,6 +28,19 @@
         <!--<a href="">退出登录</a>-->
       <!--</div>-->
     <!--</div>-->
+
+
+
+    <div class="follow-alert" :class="style" @click="close">
+      <div class="follow-window">
+        <div class="follow-heading"></div>
+        <p class="follow-text">防止账号丢失</p>
+        <p class="follow-text">设置后可用手机号登录</p>
+        <router-link :to="{path:'/person/addtel'}">
+          <a href="javascript:;" class="follow-bind">立即绑定</a>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -35,13 +48,35 @@
   import Vue from 'vue'
   import personHeader from './base/person/person-header'
 export default {
+  created(){
+    this.$http.get('http://h5.wan855.cn/api/index.php?m=User&a=getUserinfo').then(function (res) {
+      //平台登录信息
+      this.user = res.body.user
+      if (this.user.mobile === ""){
+          this.style['follow-style'] = true
+      }
+    }, function (err) {
+      console.log(err)
+    })
+  },
   data () {
     return {
-
+      style:{
+        'follow-style':false
+      },
+      user:''
     }
   },
   components:{
       personHeader
+  },
+  methods:{
+    follow(){
+      this.style['follow-style'] = true
+    },
+    close(){
+      this.style['follow-style'] = false
+    }
   }
 }
 </script>
@@ -230,4 +265,71 @@ export default {
     text-align: center;
     font-size: 2.2rem;
   }
+  .follow-alert{
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height:200%;
+    z-index: 999;
+    background-color: rgba(0,0,0,.6);
+    display: none;
+  }
+  .follow-style{
+    display: block;
+  }
+  .follow-window{
+    width:25rem;
+    height: 25rem;
+    position: absolute;
+    top: 10%;
+    left:50%;
+    margin-left: -12.5rem;
+    z-index:999;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: #f0f0f6;
+    animation: focus .5s ;
+    opacity: 1;
+  }
+  .follow-heading{
+    height:50%;
+    /*background: #0aa2ff url('../../assets/logo.png') no-repeat center center;*/
+    background-size:contain;
+    /*background-color: #0aa2ff;*/
+  }
+  .follow-text{
+    text-align: center;
+    line-height: 2rem;
+    height: 2rem;
+    padding: 0.5rem 0 ;
+  }
+  .follow-bind{
+    display: block;
+    height: 3rem;
+    line-height: 3rem;
+    width: 14rem;
+    text-align: center;
+    margin: 2rem auto;
+    border-radius: 3rem;
+    background-color: #FD482C;
+    color: #fff;
+    font-size: 1.4rem;
+  }
+  @keyframes focus
+  {
+    from {
+      top: 0;
+      opacity: 0;
+    }
+    to {
+      top: 10%;
+      opacity: 1;
+    }
+  }
+  .user-name span{
+    float: right;
+    transform: translateY(1rem);
+  }
+
 </style>

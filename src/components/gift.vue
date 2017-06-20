@@ -17,7 +17,7 @@
 
                   <!--<a href="http://h5.wan855.cn/api/h5/game/getcard?id='+gift.id" v-show="gift.getstatus == 0" class="gift-link gift-link-will">领取礼包</a>-->
 
-                  <a :href="gift.url" v-show="gift.getstatus == 1" class="gift-link gift-link-ed" disabled="disabled">已领取</a>
+                   <a :href="gift.url" v-show="gift.getstatus == 1" class="gift-link gift-link-ed" disabled="disabled">已领取</a>
                   <!--<a href="#" v-show="gift.idiscommon == 1" class="gift-link gift-link-ed">通用码</a>-->
                 </h3>
                 <p class="gift-content">{{ gift.content }}</p>
@@ -88,7 +88,11 @@ export default {
               position: 'middle',
               duration: 1000
             })
-            history.go(0)
+            this.$http.get('http://h5.wan855.cn/api/h5/game/cardlist').then(function (res) {
+              this.games = res.body
+            },function (err) {
+              console.log(err)
+            })
           }
         },function (err) {
           console.log(err)
