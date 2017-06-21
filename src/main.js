@@ -15,7 +15,8 @@ import Addtel from './components/base/person/addtel.vue'
 import Realname from './components/base/person/realname.vue'
 import Updatepsd from './components/base/person/updatepsd.vue'
 import Gradeinfo from './components/base/person/gradeinfo.vue'
-import Register from './components/register'
+import Register from './components/register.vue'
+import Gamedetial from './components/gamedetial.vue'
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.http.options.emulateJSON = true
@@ -69,6 +70,10 @@ let router = new VueRouter({
     {
       path:'/register',
       component: Register
+    },
+    {
+      path:'/gamedetial/:gid',
+      component: Gamedetial
     }
   ]
 })

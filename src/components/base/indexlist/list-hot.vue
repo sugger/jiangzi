@@ -1,19 +1,23 @@
 <template>
   <div class="list-hot">
     <ul class="clearfix">
-      <li v-for="game in hotgames">
-        <img :src="game.img" alt="">
-        <div class="game-box clearfix">
-          <p class="game-name">
-            <span class="game-the-name">{{ game.name }}</span>
-            <span v-if="game.hot">热门</span>
-            <span v-if="game.new">最新</span>
-            <span v-if="game.gift">礼包</span>
-          </p>
-          <p class="game-content">{{ game.content }}</p>
-        </div>
-        <a :href="game.url" class="start-game">开始游戏</a>
-      </li>
+
+        <li v-for="game in hotgames">
+          <router-link :to="{path:'/gamedetial/'+ game.id}">
+            <img :src="game.img" alt="">
+            <div class="game-box clearfix">
+              <p class="game-name">
+                <span class="game-the-name">{{ game.name }}</span>
+                <span v-if="game.ishot == 1" class="is-hot">热门</span>
+                <span v-if="game.isnew == 1" class="is-new">最新</span>
+                <span v-if="game.gift !== null" class="is-gift">礼包</span>
+              </p>
+              <p class="game-content">{{ game.content }}</p>
+            </div>
+          </router-link>
+          <a :href="game.url" class="start-game">开始游戏</a>
+        </li>
+
     </ul>
   </div>
 </template>
@@ -80,4 +84,22 @@ p.game-content{
     margin-top: 2.4rem;
     cursor: pointer;
   }
+.is-hot,.is-new,.is-gift{
+  display: inline-block;
+  color: #fff;
+  font-size: 1rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  padding: 0 0.2rem;
+  transform: translateY(-0.2rem);
+}
+.is-hot{
+  background-color: #ff9c00;
+}
+.is-new{
+  background-color: #02ca7a;
+}
+.is-gift{
+  background-color: #0088d7;
+}
 </style>
