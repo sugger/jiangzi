@@ -1,7 +1,7 @@
 <template>
   <div class="gamedetial">
     <div class="game-bg">
-      <img :src="game.navimg" alt="">
+      <img :src="game.navimg" alt="" width="100%" height="100%">
     </div>
     <div class="game-head">
       <img :src="game.img" alt="">
@@ -11,28 +11,27 @@
     </div>
     <div class="game-intruction">
       <p class="game-intruction-tit">游戏简介</p>
-      <p class="game-intruction-content">
-        {{ game.content }}</p>
+      <p class="game-intruction-content" v-html="game.content"></p>
     </div>
     <div class="game-bottom">
       <ul class="game-tit">
-        <li class="game-tit-active">礼包</li>
-        <li>资讯</li>
+        <li :class="{'game-tit-active':selectActive===1}" @click="selectModel(1)">礼包</li>
+        <li :class="{'game-tit-active':selectActive===2}" @click="selectModel(2)">资讯</li>
       </ul>
-      <ul class="game-gift">
-        <li>
-          <p class="game-gift-name">礼包名</p>
-          <p class="game-gift-content">礼包内容</p>
-          <a href="javascript:;" class="game-gift-get">领取</a>
-          <!--<a href="javascript:;">查看</a>-->
+      <ul class="game-gift" v-if="selectActive===1">
+        <li v-for="gift in gifts.gift">
+          <p class="game-gift-name">{{ gift.gamename }}</p>
+          <p class="game-gift-content">{{ gift.card_context }}</p>
+          <a href="javascript:;" v-show="gift.getstatus == 0" class="game-gift-get">领取</a>
+          <a href="javascript:;" v-show="gift.getstatus == 1" class="game-gift-get" @click="checkGiftCode(gift.card)">查看</a>
         </li>
       </ul>
-      <ul class="game-article">
-        <li>
+      <ul class="game-article" v-if="selectActive===2">
+        <li v-for="article in articles">
           <p>
-            <span class="game-article-style">活动</span>
-            <span class="game-article-content">资讯资讯资讯资讯资讯资讯资讯资讯资讯资讯资讯资讯资讯</span>
-            <span class="game-article-time">2017-06-19 14:00</span>
+            <!--<span class="game-article-style">{{  }}</span>-->
+            <span class="game-article-content">{{ article.post_excerpt }}</span>
+            <span class="game-article-time">{{ article.post_date }}</span>
           </p>
         </li>
       </ul>
@@ -42,18 +41,61 @@
 </template>
 
 <script>
+  import { Toast,MessageBox } from 'mint-ui';
 export default {
   created(){
     this.$http.get('http://h5.wan855.cn/api/h5/game/gameinfo/gid/'+this.$route.params.gid).then(function (res) {
       this.game = res.body
+      console.log(this.$route.params.gid)
+      console.log(this.game.articletype)
+
+      //礼包接口
+      this.$http.get('http://h5.wan855.cn/api/h5/game/cardlist/gid/'+this.$route.params.gid).then(function (res) {
+        this.gifts = res.body
+      },function (err) {
+        console.log(err)
+      })
+
+      //文章接口
+      this.$http.get('http://h5.wan855.cn/api/h5/article/getbyid/gid/'+this.game.articletype).then(function (res) {
+        this.articles = res.body
+      },function (err) {
+        console.log(err)
+      })
+
+
     },function (err) {
       console.log(err)
     })
+
+
+
+
   },
   data () {
     return {
-      game:''
+      game:'',
+      selectActive:1,  //样式 1为礼包 2为资讯
+      gifts:'',
+      articles:''
     }
+  },
+  methods:{
+    selectModel(model){
+        //样式
+      this.selectActive = model
+      //确定模块
+      if (model === 1){
+
+      }
+    },
+    checkGiftCode(card){
+      MessageBox({
+        title:'领取提示',
+        message: '<p style="color=#222;"><span style="padding-right: 1rem">兑换码</span><span style="-webkit-user-select:text;background: #ebebeb;padding: 0 .5rem;font-style: italic;">'+ card +'</span></p><p style="font-size: 1.2rem;padding-top: .3rem;line-height: 20px;"">复制兑换码,去游戏中使用</p>',
+        showCancelButton: false
+      });
+    },
   }
 }
 </script>
@@ -145,7 +187,7 @@ export default {
     border-bottom: 0.2rem solid #f6f5fa;
   }
   .game-tit-active{
-    border-bottom: 0.2rem solid #3d91f1!important;
+    border-bottom: 0.2rem solid #ff7800!important;
   }
 
   .game-gift > li{

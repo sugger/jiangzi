@@ -6,7 +6,7 @@
           <router-link :to="{path:'/gamedetial/'+ game.id}">
             <img :src="game.img" alt="">
             <div class="game-box clearfix">
-              <p class="game-name">
+              <p class="game-name" :data-game="game.id">
                 <span class="game-the-name">{{ game.name }}</span>
                 <span v-if="game.ishot == 1" class="is-hot">热门</span>
                 <span v-if="game.isnew == 1" class="is-new">最新</span>

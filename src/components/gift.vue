@@ -17,14 +17,15 @@
 
                   <!--<a href="http://h5.wan855.cn/api/h5/game/getcard?id='+gift.id" v-show="gift.getstatus == 0" class="gift-link gift-link-will">领取礼包</a>-->
 
-                   <a :href="gift.url" v-show="gift.getstatus == 1" class="gift-link gift-link-ed" disabled="disabled">已领取</a>
+                   <a :href="gift.url" v-show="gift.getstatus == 1" class="gift-link gift-link-will" @click="checkGiftCode(gift.card)">查看</a>
                   <!--<a href="#" v-show="gift.idiscommon == 1" class="gift-link gift-link-ed">通用码</a>-->
                 </h3>
                 <p class="gift-content">{{ gift.content }}</p>
                 <div class="gift-percentage">
                   <div :style="percentage(gift.remain_num,gift.card_num)"></div>
                 </div>
-                <p class="gift-percent"><span>{{ gift.card }}</span>剩余{{ percentNum(gift.remain_num,gift.card_num) }}%</p>
+                <p class="gift-percent">剩余{{ percentNum(gift.remain_num,gift.card_num) }}%</p>
+                <!--<span>{{ gift.card }}</span>-->
               </div>
             </li>
           </ul>
@@ -39,7 +40,7 @@
 
 <script>
   import gqcHeader from './base/header'
-  import { Toast } from 'mint-ui';
+  import { Toast,MessageBox } from 'mint-ui';
 export default {
   component:{
     Toast
@@ -76,6 +77,13 @@ export default {
       },
       selectAllGift(e){
           this.giftIndex = e;
+      },
+      checkGiftCode(card){
+          MessageBox({
+            title:'领取提示',
+            message: '<p style="color=#222;"><span style="padding-right: 1rem">兑换码</span><span style="-webkit-user-select:text;background: #ebebeb;padding: 0 .5rem;font-style: italic;">'+ card +'</span></p><p style="font-size: 1.2rem;padding-top: .3rem;line-height: 20px;"">复制兑换码,去游戏中使用</p>',
+            showCancelButton: false
+          });
       },
       // 获取礼包
 //      getGift(gameid,giftid,idiscommon){
@@ -247,4 +255,6 @@ export default {
     height: 2rem;
     line-height: 2rem;
   }
+  /*mini-ui*/
+
 </style>
