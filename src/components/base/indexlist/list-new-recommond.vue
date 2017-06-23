@@ -2,6 +2,7 @@
   <div class="list-new-recommond">
     <ul class="clearfix">
       <li v-for="game in games">
+        <router-link :to="{path:'/gamedetial/'+ game.id}">
         <img :src="game.img" alt="">
         <div class="game-box clearfix">
           <p class="game-name">
@@ -12,6 +13,7 @@
           </p>
           <p class="game-content">{{ game.content }}</p>
         </div>
+        </router-link>
         <a :href="game.url" class="start-game">开始游戏</a>
       </li>
     </ul>

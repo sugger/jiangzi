@@ -11,7 +11,7 @@
     </div>
     <div class="game-intruction">
       <p class="game-intruction-tit">游戏简介</p>
-      <p class="game-intruction-content" v-html="game.content"></p>
+      <p class="game-intruction-content" v-text="game.content"></p>
     </div>
     <div class="game-bottom">
       <ul class="game-tit">
@@ -20,7 +20,7 @@
       </ul>
       <ul class="game-gift" v-if="selectActive===1">
         <li v-for="gift in gifts.gift">
-          <p class="game-gift-name">{{ gift.gamename }}</p>
+          <p class="game-gift-name"><i class="fa fa-gift"></i>{{ gift.gamename }}</p>
           <p class="game-gift-content">{{ gift.card_context }}</p>
           <a href="javascript:;" v-show="gift.getstatus == 0" class="game-gift-get">领取</a>
           <a href="javascript:;" v-show="gift.getstatus == 1" class="game-gift-get" @click="checkGiftCode(gift.card)">查看</a>
@@ -108,7 +108,6 @@ export default {
     background-color: #f6f5fb;
   }
   .game-bg{
-    background-color: red;
     height: 16rem;
   }
   .game-head{
@@ -227,13 +226,13 @@ export default {
   }
   .game-article li{
     position: relative;
-    height: 3rem;
+    height: 4rem;
     border-bottom: 0.2rem solid #f1f1f1;;
   }
   .game-article li p{
-    height: 3rem;
+    height: 4rem;
     font-size: 1.2rem;
-    line-height: 3rem;
+    line-height: 4rem;
     margin: 0 2rem;
   }
   .game-article li p span{
@@ -251,5 +250,10 @@ export default {
   }
   span.game-article-time{
     float: right!important;
+  }
+  .game-gift-name i{
+    color: #ff7800;
+    padding-right: 0.5rem;
+    font-size: 1.6rem;
   }
 </style>
