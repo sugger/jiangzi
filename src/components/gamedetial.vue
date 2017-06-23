@@ -44,33 +44,7 @@
   import { Toast,MessageBox } from 'mint-ui';
 export default {
   created(){
-    this.$http.get('http://h5.wan855.cn/api/h5/game/gameinfo/gid/'+this.$route.params.gid).then(function (res) {
-      this.game = res.body
-      console.log(this.$route.params.gid)
-      console.log(this.game.articletype)
-
-      //礼包接口
-      this.$http.get('http://h5.wan855.cn/api/h5/game/cardlist/gid/'+this.$route.params.gid).then(function (res) {
-        this.gifts = res.body
-      },function (err) {
-        console.log(err)
-      })
-
-      //文章接口
-      this.$http.get('http://h5.wan855.cn/api/h5/article/getbyid/gid/'+this.game.articletype).then(function (res) {
-        this.articles = res.body
-      },function (err) {
-        console.log(err)
-      })
-
-
-    },function (err) {
-      console.log(err)
-    })
-
-
-
-
+    this.getData()
   },
   data () {
     return {
@@ -96,6 +70,34 @@ export default {
         showCancelButton: false
       });
     },
+    getData(){
+      this.$http.get('http://h5.wan855.cn/api/h5/game/gameinfo/gid/'+this.$route.params.gid).then(function (res) {
+        this.game = res.body
+        console.log(this.$route.params.gid)
+        console.log(this.game.articletype)
+
+        //礼包接口
+        this.$http.get('http://h5.wan855.cn/api/h5/game/cardlist/gid/'+this.$route.params.gid).then(function (res) {
+          this.gifts = res.body
+        },function (err) {
+          console.log(err)
+        })
+
+        //文章接口
+        this.$http.get('http://h5.wan855.cn/api/h5/article/getbyid/gid/'+this.game.articletype).then(function (res) {
+          this.articles = res.body
+        },function (err) {
+          console.log(err)
+        })
+
+
+      },function (err) {
+        console.log(err)
+      })
+    }
+  },
+  watch:{
+      "$route":"getData"
   }
 }
 </script>
