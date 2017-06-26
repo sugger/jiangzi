@@ -13,7 +13,7 @@
 
 
                   <a href="javascript:;" v-show="gift.getstatus == 0" class="gift-link gift-link-will"
-                     @click="getGift(gift.id)" :gameid="gift.gid" :giftid="gift.id" :idiscommon="gift.idiscommon">领取礼包</a>
+                     @click="getGift(gift.id,gift.card)" :gameid="gift.gid" :giftid="gift.id" :idiscommon="gift.idiscommon">领取礼包</a>
 
                   <!--<a href="http://h5.wan855.cn/api/h5/game/getcard?id='+gift.id" v-show="gift.getstatus == 0" class="gift-link gift-link-will">领取礼包</a>-->
 
@@ -87,15 +87,20 @@ export default {
       },
       // 获取礼包
 //      getGift(gameid,giftid,idiscommon){
-      getGift(id){
+      getGift(id,card){
 //    ############################ 礼包临时接口 ############################
         this.$http.get('http://h5.wan855.cn/api/h5/game/getcard?id='+id).then(function (res) {
           if(res.body.status == 1){
-            Toast({
-              message: '领取成功',
-              position: 'middle',
-              duration: 1000
-            })
+//            Toast({
+//              message: '领取成功',
+//              position: 'middle',
+//              duration: 1000
+//            })
+            MessageBox({
+              title:'领取提示',
+              message: '<p style="color=#222;"><span style="padding-right: 1rem">兑换码</span><span style="-webkit-user-select:text;background: #ebebeb;padding: 0 .5rem;font-style: italic;">'+ card +'</span></p><p style="font-size: 1.2rem;padding-top: .3rem;line-height: 20px;"">复制兑换码,去游戏中使用</p>',
+              showCancelButton: false
+            });
             this.$http.get('http://h5.wan855.cn/api/h5/game/cardlist').then(function (res) {
               this.games = res.body
             },function (err) {

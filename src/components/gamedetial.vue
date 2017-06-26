@@ -11,7 +11,7 @@
     </div>
     <div class="game-intruction">
       <p class="game-intruction-tit">游戏简介</p>
-      <p class="game-intruction-content" v-text="game.content"></p>
+      <p class="game-intruction-content" v-html="game.content"></p>
     </div>
     <div class="game-bottom">
       <ul class="game-tit">
