@@ -1,7 +1,11 @@
 <template>
   <div class="index-list">
     <ul class="index-content-nav clearfix">
-      <li @click="updateList(list.componentName,index)" :class="{listActive:active === index}" v-for="(list,index) in indexLists">{{ list.name }}</li>
+      <li @click="updateList(list.componentName,index)"
+           v-for="(list,index) in indexLists" :class="{listFontActive:active === index}">
+        {{ list.name }}
+        <div class="list-line" :class="{listLineActive:active === index}"></div>
+      </li>
     </ul>
     <ul class="index-content-lists">
       <keep-alive>
@@ -49,16 +53,27 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .index-content-nav li{
+  position: relative;
   float: left;
   width: 25%;
-  background-color: #f1f0f6;
-  line-height: 3rem;
-  font-size: 1.4rem;
+  line-height: 4rem;
+  height: 4rem;
+  font-size: 1.6rem;
   text-align: center;
   cursor: pointer;
+  color: #999;
 }
-  .index-content-nav li.listActive{
-    background-color: #ff7800;
-    color: #fff;
-  }
+.list-line{
+  position: absolute;
+  width: 6rem;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3rem;
+}
+div.listLineActive{
+  border: 0.1rem solid #4385f5;
+}
+.index-content-nav li.listFontActive{
+  color: #4385f5;
+}
 </style>

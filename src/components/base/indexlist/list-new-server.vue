@@ -1,11 +1,11 @@
 <template>
   <div class="list-new-server">
-    <ul class="server-select">
+<!--    <ul class="server-select">
       <li v-for="(server,index) in serverStyle" @click="toggleServer(index)" :class="{'server-select-content':active === index}">{{ server.name }}</li>
-    </ul>
+    </ul>-->
 
-    <ul class="clearfix list-content" v-if="active === 0">
-
+    <!--<ul class="clearfix list-content" v-if="active === 0">-->
+    <ul class="clearfix list-content">
       <li v-for="game in games">
         <router-link :to="{path:'/gamedetial/'+ game.id}">
         <img :src="game.img" alt="">
@@ -16,10 +16,10 @@
           <p class="game-content">{{ game.content }}</p>
         </div>
         </router-link>
-        <a :href="game.url" class="start-game">开始游戏</a>
+        <a :href="game.url" class="start-game">开始</a>
       </li>
     </ul>
-    <ul class="clearfix list-content" v-if="active === 1">
+    <!--<ul class="clearfix list-content" v-if="active === 1">
       <li v-for="game in games">
         <img :src="game.img" alt="">
         <div class="game-box clearfix">
@@ -28,8 +28,21 @@
           </p>
           <p class="game-content">{{ game.content }}</p>
         </div>
-        <a :href="game.url" class="start-game">开始游戏</a>
-      </li>
+        <a :href="game.url" class="start-game">开始</a>
+      </li>-->
+     <!-- <li>
+        <img src="" alt="">
+        <div class="game-box clearfix">
+          <p class="game-name">
+            <span class="game-the-name">游戏名</span>
+            <span class="is-hot">热门</span>
+            <span class="is-new">最新</span>
+            <span class="is-gift">礼包</span>
+          </p>
+          <p class="game-content">123456798</p>
+        </div>
+        <a href="" class="start-game">开始</a>
+      </li>-->
     </ul>
   </div>
 </template>
@@ -69,45 +82,58 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .list-new-server .list-content li{
-    height:7rem;
-    border-bottom: 0.2rem solid #d9d9d9;
+    height:8rem;
+    border-top: 0.1rem solid #b1adad;
     background-color: #fff;
+    position: relative;
   }
   .list-new-server ul li img{
+    position: absolute;
+    top: 50%;
+    margin-top: -2.5rem;
     float: left;
     height:5rem;
     width:5rem;
     border-radius: 1rem;
-    margin: 0.8rem 0 0 0.8rem
+    left: 1.8rem;
+    overflow: hidden;
   }
   .game-box{
-    float: left;
+    position: absolute;
+    left: 6rem;
   }
   .game-name{
-    line-height: 1.4rem;
+    line-height: 1.6rem;
     padding-left: 2rem;
     color: #272727;
     margin-top: 2rem;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
   p.game-content{
     color: #717171;
-    font-size: 1rem;
+    font-size: 1.4rem;
     line-height: 3rem;
     padding-left: 2rem;
+    max-width: 14rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
   .start-game{
-    float: right;
+    position: absolute;
     display: block;
-    width: 6rem;
+    width: 5rem;
+    height: 2.5rem;
     line-height: 2.5rem;
     font-size: 1.4rem;
-    border:0.1rem solid #ff7800;
-    color: #ff7800;
+    border:0.1rem solid #4385f5;
+    color: #4385f5;
     text-align: center;
     margin-right: 1.8rem;
     margin-top: 2.4rem;
     cursor: pointer;
+    right: 1.1rem;
+    border-radius: 0.5rem;
   }
 
   .list-new-server .server-select{
@@ -128,5 +154,27 @@ export default {
   }
   .server-select{
     margin-top: 1.5rem;
+  }
+  .is-hot,.is-new,.is-gift{
+    display: inline-block;
+    color: #fff;
+    font-size: 0.8rem;
+    line-height: 1.4rem;
+    height: 1.4rem;
+    padding: 0 0.3rem;
+    transform: translateY(-0.2rem);
+    border-radius: 0.3rem;
+  }
+  .is-hot{
+    border: 0.1rem solid #e32e16;
+    color: #e32e16;
+  }
+  .is-new{
+    border: 0.1rem solid #4db233;
+    color: #4db233;
+  }
+  .is-gift{
+    border: 0.1rem solid #ffaa3c;
+    color: #ffaa3c;
   }
 </style>

@@ -52,9 +52,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .header{
-  height:4rem;
+  height:6rem;
   width: 100%;
-  background-color: #f1f0f6;
+  background-color: #fff;
+  position: relative;
 }
 /*.header .img-border{*/
   /*border-radius: 50%;*/
@@ -67,18 +68,23 @@ export default {
 .header > img{
   float: left;
   display: block;
-  width: 2.7rem;
-  height: 2.7rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
-  box-shadow: 0 0.2rem  0.3rem 0.1rem rgba(27,27,27,0.6);
-  margin: 0.5rem 1rem;
-
+  border: 0.1rem solid #4385f5;
+  position: absolute;
+  left: 2rem;
+  top: 50%;
+  margin-top: -2rem;
 }
   .header > p{
-    float: left;
-    color: #4a4a4a;
-    font-size: 1.6rem;
-    line-height: 4rem;
+    position: absolute;
+    left: 7.3rem;
+    top:1.5rem;
+    color: #333;
+    font-size: 2.2rem;
+    line-height: 2.2rem;
+    height: 2.2rem;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -94,13 +100,18 @@ export default {
     margin-right: 2rem;
   }
   .header .follow{
-    float: right;
-    width: 6rem;
-    line-height: 4rem;
-    background-color: #ff7800;
+    position: absolute;
+    top: 50%;
+    right:2rem;
+    margin-top: -1.25rem;
+    width: 5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    border: 0.1rem solid #4385f5;
     text-align: center;
-    font-size: 2rem;
-    color: #fff;
+    border-radius: 0.4rem;
+    font-size: 1.8rem;
+    color: #4385f5;
   }
 .follow-alert{
   position: absolute;
