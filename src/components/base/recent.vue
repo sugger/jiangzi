@@ -3,17 +3,43 @@
     <p>最<br/>近<br/>在<br/>玩</p>
     <div class="recent-play-list clearfix">
       <ul>
-        <li v-for="list in recentPlay">
+        <!--<li v-for="list in recentPlay">
           <img :src="list.img" alt="">
           <p>{{ list.gamename }}</p>
           <a :href="list.url">开始</a>
-        </li>
+        </li>-->
+        <swiper :options="swiperOption">
+          <swiper-slide v-for="list in recentPlay">
+          <li>
+            <img :src="list.img" alt="">
+            <p>{{ list.gamename }}</p>
+            <a :href="list.url">开始</a>
+          </li>
+          </swiper-slide>
+          <!--<swiper-slide>-->
+            <!--<li>-->
+              <!--<img src="" alt="">-->
+              <!--<p></p>-->
+              <!--<a href="">开始</a>-->
+            <!--</li>-->
+          <!--</swiper-slide>-->
+          <!--<swiper-slide>-->
+            <!--<li>-->
+              <!--<img src="" alt="">-->
+              <!--<p></p>-->
+              <!--<a href="">开始</a>-->
+            <!--</li>-->
+          <!--</swiper-slide>-->
+        </swiper>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+  import Vue from 'vue'
+  import { swiper, swiperSlide, swiperPlugins } from 'vue-awesome-swiper'
+
 export default {
   created(){
     this.$http.get('http://h5.wan855.cn/api/index.php?m=game&a=history').then(function (res) {
@@ -27,8 +53,18 @@ export default {
     return {
       recentPlay:[
 
-      ]
+      ],
+      swiperOption: {
+        pagination: '.swiper-pagination',
+        slidesPerView: 4,
+        paginationClickable: true,
+        spaceBetween: 10
+      }
     }
+  },
+  components: {
+    swiper,
+    swiperSlide
   }
 }
 </script>
@@ -42,7 +78,7 @@ export default {
   }
 .recent > p{
   position: absolute;
-  top:3.1rem;
+  top:2.5rem;
   line-height: 1.5rem;
   height: 8.2rem;
   font-size: 1.5rem;
@@ -50,7 +86,7 @@ export default {
   color: #fff;
   background-color: #4385f5;
   text-align: center;
-  padding-top: 1.6rem;
+  padding-top: 1.8rem;
   border-radius: .5rem;
 }
 .recent-play-list{
@@ -63,7 +99,8 @@ export default {
   .recent-play-list ul li{
     height: 10rem;
     width: 7.5rem;
-    display: inline-block;
+    display: block;
+    float: left;
     box-shadow: 0 0 20px #cfcfcf;
     margin: 2.5rem 0.5rem;
     position: relative;
@@ -79,7 +116,6 @@ export default {
   height:5rem;
   display: block;
   border-radius: 1rem;
-  border: 0.1rem solid #4385f5;
 }
 .recent-play-list ul li p{
   position: absolute;
@@ -108,5 +144,8 @@ export default {
   }
   .recent-play-list{
     background-color: #fff;
+  }
+  .swiper-wrapper .swiper-slide:first-of-type{
+    margin-left: 3rem;
   }
 </style>

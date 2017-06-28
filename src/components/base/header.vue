@@ -4,6 +4,7 @@
       <img :src="user.avatar" alt="">
     <!--</div>-->
     <p v-html="user.user_nicename" class="user-name"></p>
+    <p class="user-id">{{ user.id }}</p>
     <a href="javascript:void(0);" class="follow" @click="follow()">关注</a>
     <!--<a href="" class="agreement">用户协议</a>-->
     <div class="follow-alert" :class="style" @click="close">
@@ -52,7 +53,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .header{
-  height:6rem;
+  height:5rem;
   width: 100%;
   background-color: #fff;
   position: relative;
@@ -71,18 +72,18 @@ export default {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  border: 0.1rem solid #4385f5;
+  /*border: 0.1rem solid #4385f5;*/
   position: absolute;
   left: 2rem;
   top: 50%;
   margin-top: -2rem;
 }
-  .header > p{
+  .header > .user-name{
     position: absolute;
     left: 7.3rem;
-    top:1.5rem;
+    top:1rem;
     color: #333;
-    font-size: 2rem;
+    font-size: 1.6rem;
     line-height: 2rem;
     height: 2rem;
     text-overflow: ellipsis;
@@ -110,7 +111,7 @@ export default {
     border: 0.1rem solid #4385f5;
     text-align: center;
     border-radius: 0.4rem;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: #4385f5;
   }
 .follow-alert{

@@ -58,7 +58,7 @@ export default {
 <style scoped>
 .list-hot ul li{
   height:8rem;
-  border-top: 0.1rem solid #b1adad;
+  border-top: 0.1rem solid rgb(237,237,237);
   background-color: #fff;
   position: relative;
 }
@@ -86,7 +86,7 @@ export default {
 }
 p.game-content{
   color: #717171;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 3rem;
   padding-left: 2rem;
   max-width: 14rem;
@@ -129,7 +129,7 @@ p.game-content{
   color: #4db233;
 }
 .is-gift{
-  border: 0.1rem solid #ffaa3c;
-  color: #ffaa3c;
+  border: 0.1rem solid #4385f5;
+  color: #4385f5;
 }
 </style>
