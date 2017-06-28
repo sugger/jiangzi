@@ -82,13 +82,13 @@ export default {
     left: 7.3rem;
     top:1.5rem;
     color: #333;
-    font-size: 2.2rem;
-    line-height: 2.2rem;
-    height: 2.2rem;
+    font-size: 2rem;
+    line-height: 2rem;
+    height: 2rem;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    width:12rem;
+    width:14rem;
   }
   .header .agreement{
     float: right;
@@ -118,7 +118,7 @@ export default {
   top: 0;
   left:0;
   width: 100%;
-  height:200%;
+  height:2000px;
   z-index: 999;
   background-color: rgba(0,0,0,.6);
   display: none;

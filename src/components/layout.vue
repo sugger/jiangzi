@@ -10,25 +10,20 @@
       <ul>
         <router-link :to="{path:'/'}">
           <li class="footer-link-1">
-            <div class="footer-logo-1"></div>
+            <div class="footer-logo"></div>
             <p>游戏</p>
           </li>
         </router-link>
         <router-link :to="{path:'/gift'}">
-          <li class="footer-link-2">
-            <div class="footer-logo-2"></div>
+          <li class="footer-link-3">
+            <div class="footer-logo"></div>
             <p>礼包</p>
           </li>
         </router-link>
 
-          <!--<li class="footer-link-3">-->
-            <!--<div class="footer-logo-3" onclick="javascript:window.location.href='http://www.guoqianchen.com'"></div>-->
-            <!--<p>商城</p>-->
-          <!--</li>-->
-
         <router-link :to="{path:'/person'}">
-          <li class="footer-link-4">
-            <div class="footer-logo-4"></div>
+          <li class="footer-link-5">
+            <div class="footer-logo"></div>
             <p>个人</p>
           </li>
         </router-link>
@@ -208,8 +203,8 @@ li{
     position: relative;
   }
   .footer{
-    height:4.6rem;
-    background-color: #f1f0f6;
+    height:5.2rem;
+    background-color: rgba(0,0,0,.8);
     max-width: 85rem;
     position: fixed;
     bottom: 0;
@@ -224,48 +219,60 @@ li{
     font-size: 1.4rem;
     height: 7rem;
     line-height: 2rem;
-    color:#333;
+    color:#fff;
   }
   .footer ul li div{
     margin: 0 auto;
-    margin-top: 0.9rem;
+    margin-top: 0.7rem;
     width: 2rem;
     height:2rem;
-    background-size: cover;
+    background-size: cover!important;
   }
   .footer ul li p{
-    line-height: 1.4rem;
-    font-size: 0.4rem;
+    padding-top: 0.7rem;
+    line-height: 1rem;
+    font-size: 1rem;
   }
-  .footer-logo-1{
-    background: url("../assets/layout1.png") 0 0 no-repeat;
+  .footer-link-1 .footer-logo{
+    background: url("../assets/icon-game.png") 0 0 no-repeat;
   }
-  .footer-logo-2{
-    background: url("../assets/layout2.png") 0 0 no-repeat;
+  .footer-link-2 .footer-logo{
+    background: url("../assets/icon-event.png") 0 0 no-repeat;
   }
-  .footer-logo-3{
-    background: url("../assets/layout3.png") 0 0 no-repeat;
+  .footer-link-3 .footer-logo{
+    background: url("../assets/icon-gift.png") 0 0 no-repeat;
   }
-  .footer-logo-4{
-    background: url("../assets/layout4.png") 0 0 no-repeat;
+  .footer-link-4 .footer-logo{
+    background: url("../assets/icon-community.png") 0 0 no-repeat;
   }
-
+  .footer-link-5 .footer-logo{
+    background: url("../assets/icon-person.png") 0 0 no-repeat;
+  }
 
   .router-link-exact-active li{
-    color: #ff7800 !important;
+    color: #4385f5 !important;
   }
   .router-link-exact-active .footer-link-1 div {
-    background: url("../assets/layout-active1.png") 0 0 no-repeat !important;
+    background: url("../assets/icon-game-blue.png") 0 0 no-repeat !important;
     background-size: cover !important;
   }
   .router-link-exact-active .footer-link-2 div {
-    background: url("../assets/layout-active2.png") 0 0 no-repeat !important;
+    background: url("../assets/icon-event-blue.png") 0 0 no-repeat !important;
+    background-size: cover !important;
+  }
+  .router-link-exact-active .footer-link-3 div {
+    background: url("../assets/icon-gift-blue.png") 0 0 no-repeat !important;
     background-size: cover !important;
   }
   .router-link-exact-active .footer-link-4 div {
-    background: url("../assets/layout-active4.png") 0 0 no-repeat !important;
+    background: url("../assets/icon-community-blue.png") 0 0 no-repeat !important;
     background-size: cover !important;
   }
+  .router-link-exact-active .footer-link-5 div {
+    background: url("../assets/icon-person-blue.png") 0 0 no-repeat !important;
+    background-size: cover !important;
+  }
+
   .bottom-question{
     height: 7.8rem;
   }
