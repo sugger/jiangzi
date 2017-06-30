@@ -56,9 +56,9 @@ export default {
   position: relative;
   float: left;
   width: 25%;
-  line-height: 4rem;
-  height: 4rem;
-  font-size: 1.6rem;
+  line-height: 3.6rem;
+  height: 3.4rem;
+  font-size: 1.5rem;
   text-align: center;
   cursor: pointer;
   color: #999;
@@ -76,4 +76,11 @@ div.listLineActive{
 .index-content-nav li.listFontActive{
   color: #4385f5;
 }
+  /*@media only screen and (max-width:400px){*/
+    /*.index-content-nav li{*/
+      /*line-height: 3rem;*/
+      /*height: 3rem;*/
+      /*font-size: 1.4rem;*/
+    /*}*/
+  /*}*/
 </style>

@@ -56,7 +56,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .list-new-recommond ul li{
-    height:8rem;
+    height:6.2rem;
     border-top: 0.1rem solid rgb(237,237,237);
     background-color: #fff;
     position: relative;
@@ -80,7 +80,7 @@
     line-height: 1.6rem;
     padding-left: 2rem;
     color: #272727;
-    margin-top: 2rem;
+    margin-top: 1.2rem;
     font-size: 1.6rem;
   }
   .game-the-name{
@@ -91,7 +91,7 @@
     font-size: 1.2rem;
     line-height: 3rem;
     padding-left: 2rem;
-    max-width: 14rem;
+    max-width: 18rem;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -106,10 +106,12 @@
     border:0.1rem solid #4385f5;
     color: #4385f5;
     text-align: center;
-    margin-right: 1.8rem;
-    margin-top: 2.4rem;
+    /*margin-right: 1.8rem;*/
+    /*margin-top: 2.4rem;*/
     cursor: pointer;
-    right: 1.1rem;
+    top: 50%;
+    margin-top: -1.25rem;
+    right: 1.8rem;
     border-radius: 0.5rem;
   }
   .is-hot,.is-new,.is-gift{
@@ -133,5 +135,22 @@
   .is-gift{
     border: 0.1rem solid #4385f5;
     color: #4385f5;
+  }
+  @media only screen and (max-width: 350px){
+    .list-hot ul li img{
+      margin-top: -2rem;
+      height:4rem;
+      width:4rem;
+      left: 1rem;
+    }
+    .game-box{
+      left: 4rem;
+    }
+    .start-game{
+      right: 1rem;
+    }
+    p.game-content{
+      max-width: 15rem;
+    }
   }
 </style>

@@ -1,12 +1,14 @@
 <template>
   <div class="header">
-    <!--<div class="img-border clearfix ">-->
       <img :src="user.avatar" alt="">
-    <!--</div>-->
+
     <p v-html="user.user_nicename" class="user-name"></p>
+    <!--<p class="user-name">greentea</p>-->
     <p class="user-id">{{ user.id }}</p>
+    <!--<p class="user-id">123456789</p>-->
+
     <a href="javascript:void(0);" class="follow" @click="follow()">关注</a>
-    <!--<a href="" class="agreement">用户协议</a>-->
+
     <div class="follow-alert" :class="style" @click="close">
       <div class="follow-window">
         <div class="follow-heading"></div>
@@ -81,7 +83,7 @@ export default {
   .header > .user-name{
     position: absolute;
     left: 7.3rem;
-    top:1rem;
+    top:0.7rem;
     color: #333;
     font-size: 1.6rem;
     line-height: 2rem;
@@ -90,6 +92,17 @@ export default {
     overflow: hidden;
     white-space: nowrap;
     width:14rem;
+  }
+  .user-id{
+    position: absolute;
+    left: 7.3rem;
+    top: 3rem;
+    background: url("../../assets/user_id.png") left center no-repeat;
+    background-size: 1.3rem;
+    text-indent: 1.6rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    font-size: 1.2rem;
   }
   .header .agreement{
     float: right;

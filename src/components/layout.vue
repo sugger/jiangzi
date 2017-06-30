@@ -231,7 +231,7 @@ li{
   .footer ul li p{
     padding-top: 0.7rem;
     line-height: 1rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
   .footer-link-1 .footer-logo{
     background: url("../assets/icon-game.png") 0 0 no-repeat;
