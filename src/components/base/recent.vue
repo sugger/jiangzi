@@ -6,7 +6,6 @@
         <swiper :options="swiperOption">
 
           <!--v-for-->
-
           <swiper-slide v-for="list in recentPlay">
           <li>
             <img :src="list.img" alt="">
@@ -17,7 +16,7 @@
 
           <!--模拟-->
 
-        <!--  <swiper-slide>
+         <!-- <swiper-slide>
             <li>
               <img src="" alt="">
               <p>sdf</p>
@@ -38,6 +37,8 @@
               <a href="">开始</a>
             </li>
           </swiper-slide>-->
+
+          <!--模拟 END-->
         </swiper>
       </ul>
     </div>
@@ -81,12 +82,12 @@ export default {
 <style scoped>
   .recent{
     font-size: 62.5%;
-    height: 11rem;
+    /*height: 11rem;*/
     position: relative;
   }
 .recent > p{
   position: absolute;
-  top:2rem;
+  top:2.3rem;
   line-height: 1.5rem;
   height: 7.5rem;
   font-size: 1.5rem;
@@ -99,10 +100,10 @@ export default {
   z-index: 2;
 }
 .recent-play-list{
-  height:11rem;
+  /*height:11rem;*/
 }
   .recent-play-list ul{
-    height: 11rem;
+    height: 12rem;
     text-align: center;
   }
   .recent-play-list ul li{
@@ -110,8 +111,8 @@ export default {
     width: 7rem;
     display: block;
     float: left;
-    box-shadow: 0 0 20px #cfcfcf;
-    margin: 2rem 0 0;
+    box-shadow: 0 0 .25rem rgba(0,0,0,.2);
+    margin: 2.3rem 0 0.5rem;
     position: relative;
   }
 

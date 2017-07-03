@@ -2,10 +2,18 @@
   <div class="list-news">
     <ul>
       <li v-for="onenew in news" class="clearfix" @click="pageUrl(onenew.url)">
-        <span :class="articleClass(onenew.term_id)">{{ articleName(onenew.term_id) }}</span>
+        <span>{{ articleName(onenew.term_id) }}</span>
         <span>{{ onenew.post_title }}</span>
         <span>{{ onenew.post_date }}</span>
       </li>
+
+      <!--模拟 START-->
+      <!--<li class="clearfix" @click="pageUrl(onenew.url)">
+        <span>活动</span>
+        <span>?????</span>
+        <span>2017.1.1</span>
+      </li>-->
+      <!--模拟 END-->
     </ul>
   </div>
 </template>
@@ -60,35 +68,53 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .list-news ul li{
-  line-height: 4rem;
+  line-height: 4.4rem;
+  height: 4.4rem;
+  position: relative;
   border-bottom: 0.1rem solid #d9d9d9;
 }
+.list-news ul li:first-of-type{
+  border-top: 0.1rem solid #d9d9d9;
+}
   .list-news ul li span:first-of-type{
-    margin-top: 1rem;
-    margin-left: 1rem;
-    line-height:2rem;
+    position: absolute;
+    left: 1.8rem;
+    top: 50%;
+    margin-top: -1.1rem;
+    line-height:2.2rem;
     text-align: center;
     display: block;
-    vertical-align: middle;
-    width:4rem;
-    height:2rem;
-    color: #f4fcf8;
-    float: left;
+    width:3.2rem;
+    height:2.2rem;
+    color: #4385f5;
+    border: 0.1rem solid #4385f5;
+    border-radius: 0.4rem;
+    font-size: 1.2rem;
   }
 .list-news ul li span:nth-of-type(2){
-  font-size: 1.4rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.7rem;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   display: block;
-  float: left;
-  width:13rem;
-  text-indent: 1rem;
+  width:18rem;
+  left: 6.5rem;
+  line-height: 1.4rem;
+  height: 1.4rem;
+  font-size: 1.2rem;
+  color: #333;
 }
 .list-news ul li span:last-of-type{
-  float: right;
-  font-size: 1.4rem;
-  margin-right: 1rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.7rem;
+  font-size: 1.2rem;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  color: #666;
+  right: 1.8rem;
 }
   .gonggao{
     background-color: #02ca7a;

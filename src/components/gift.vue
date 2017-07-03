@@ -1,39 +1,73 @@
 <template>
   <div>
-    <gqc-header></gqc-header>
+    <!--<gqc-header></gqc-header>-->
     <div class="gift">
-      <p>游戏礼包列表</p>
-      <ul class="clearfix" >
+      <ul class="clearfix game-list" >
         <li class="clearfix" v-for="(game,index) in games" v-if="game.gift !== null">
-          <img :src="game.pic" alt="">
+          <div class="game-box">
+            <img :src="game.pic" alt="" class="game-img">
+            <p class="game-name">{{ game.gamename }}</p>
+            <a :href="game.url" class="game-start-btn">开始</a>
+          </div>
           <ul class="gift-list clearfix" >
-            <li class="clearfix" v-for="gift in game.gift" :class="{'gift-block':index == giftIndex}">
-              <div>
-                <h3>{{ gift.name }}
+            <li class="clearfix" v-for="(gift,index2) in game.gift" :class="{block: index == giftIndex}">
+              <p class="gift-name">{{ gift.name }}</p>
+              <p class="gift-content">{{ gift.content }}</p>
 
+              <a href="javascript:;" v-show="gift.getstatus == 0" class="gift-get"
+              @click="getGift(gift.id)" :gameid="gift.gid" :giftid="gift.id" :idiscommon="gift.idiscommon">领取</a>
 
-                  <a href="javascript:;" v-show="gift.getstatus == 0" class="gift-link gift-link-will"
-                     @click="getGift(gift.id,gift.card)" :gameid="gift.gid" :giftid="gift.id" :idiscommon="gift.idiscommon">领取礼包</a>
-
-                  <!--<a href="http://h5.wan855.cn/api/h5/game/getcard?id='+gift.id" v-show="gift.getstatus == 0" class="gift-link gift-link-will">领取礼包</a>-->
-
-                   <a :href="gift.url" v-show="gift.getstatus == 1" class="gift-link gift-link-will" @click="checkGiftCode(gift.card)">查看</a>
-                  <!--<a href="#" v-show="gift.idiscommon == 1" class="gift-link gift-link-ed">通用码</a>-->
-                </h3>
-                <p class="gift-content">{{ gift.content }}</p>
-                <div class="gift-percentage">
-                  <div :style="percentage(gift.remain_num,gift.card_num)"></div>
-                </div>
-                <p class="gift-percent">剩余{{ percentNum(gift.remain_num,gift.card_num) }}%</p>
-                <!--<span>{{ gift.card }}</span>-->
-              </div>
+              <a :href="gift.url" v-show="gift.getstatus == 1" class="gift-get" @click="checkGiftCode(gift.card)">查看</a>
             </li>
           </ul>
-          <div class="gift-select-all" @click="selectAllGift(index)" :class="{'gift-none':index == giftIndex}" v-if="game.total_gift != 1">查看所有礼包</div>
+          <div class="gift-select-all" @click="selectAllGift(index)" v-if="game.total_gift != 1" :class="{none:index == giftIndex}">查看更多礼包({{game.total_gift}})</div>
         </li>
       </ul>
     </div>
 
+
+    <!--礼包模拟 START-->
+  <!--  <div class="gift">
+      <ul class="clearfix game-list">
+        <li class="clearfix">
+          <div class="game-box">
+          <img src="game.pic" alt="" class="game-img">
+          <p class="game-name">游戏名</p>
+          <a href="game.url" class="game-start-btn">开始</a>
+          </div>
+
+          <ul class="gift-list clearfix" >
+            <li class="clearfix" >
+              <p class="gift-name">gift.name</p>
+              <p class="gift-content">gift.content </p>
+              &lt;!&ndash;<a href="javascript:;" class="gift-link gift-link-will"&ndash;&gt;
+              &lt;!&ndash;@click="getGift(gift.id,gift.card)">领取</a>&ndash;&gt;
+              <a href="gift.url" class="gift-get" @click="checkGiftCode(gift.card)">查看</a>
+
+              &lt;!&ndash;<div class="gift-percentage">
+                  <div style="percentage(gift.remain_num,gift.card_num)"></div>
+                </div>&ndash;&gt;
+                &lt;!&ndash;<p class="gift-percent">剩余10%</p>&ndash;&gt;
+            </li>
+            <li class="clearfix" >
+              <p class="gift-name">gift.name</p>
+              <p class="gift-content">gift.content </p>
+              &lt;!&ndash;<a href="javascript:;" class="gift-link gift-link-will"&ndash;&gt;
+              &lt;!&ndash;@click="getGift(gift.id,gift.card)">领取</a>&ndash;&gt;
+              <a href="gift.url" class="gift-get" @click="checkGiftCode(gift.card)">查看</a>
+
+              &lt;!&ndash;<div class="gift-percentage">
+                  <div style="percentage(gift.remain_num,gift.card_num)"></div>
+                </div>&ndash;&gt;
+              &lt;!&ndash;<p class="gift-percent">剩余10%</p>&ndash;&gt;
+            </li>
+          </ul>
+          <div class="gift-select-all" @click="selectAllGift(index)">查看更多礼包(game.giftNum)</div>
+        </li>
+
+      </ul>
+    </div>-->
+    <!--礼包模拟 END-->
   </div>
 
 </template>
@@ -61,10 +95,8 @@ export default {
       games:[
 
       ],
-      'gift-block':false,
-      'gift-none':false,
-//      giftBlock:'gift-block',
-//      giftNone:'gift-none',
+      block:false,
+      none:false,
       giftIndex:'0'
     }
   },
@@ -75,8 +107,13 @@ export default {
       percentNum(num,sum){
         return parseInt(num/sum*100)
       },
-      selectAllGift(e){
-          this.giftIndex = e;
+      selectAllGift(index){
+
+//        this.block = 'block'
+          this.giftIndex = index
+          this.none = 'none'
+
+
       },
       checkGiftCode(card){
           MessageBox({
@@ -87,7 +124,7 @@ export default {
       },
       // 获取礼包
 //      getGift(gameid,giftid,idiscommon){
-      getGift(id,card){
+      getGift(id){
 //    ############################ 礼包临时接口 ############################
         this.$http.get('http://h5.wan855.cn/api/h5/game/getcard?id='+id).then(function (res) {
           if(res.body.status == 1){
@@ -164,102 +201,104 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .gift > p{
-    line-height: 3rem;
-    font-size: 1.6rem;
-    color: #4a4a4a;
-    text-indent: 1rem;
-    background-color: #fff;
-  }
-  .gift ul li{
-    background-color: #f1f0f6;
-    /*margin-bottom: 1rem;*/
-  }
-  .gift ul li img{
-    width: 5rem;
+  .game-box{
+   height:6.2rem;
+   position: relative;
+ }
+  .game-img{
+    position: absolute;
+    top: 50%;
+    margin-top: -2.5rem;
     height:5rem;
+    width:5rem;
     border-radius: 1rem;
-    float: left;
-    margin: 1rem;
-  }
-  .gift .gift-list li{
-    float: right;
-    width: 75%;
-  }
-  .gift .gift-list li:first-of-type h3{
-     padding-top: 1rem;
-   }
-  .gift .gift-list li h3{
-
-    font-size: 1.6rem;
-    line-height: 2rem;
-    color: #ff7800;
-  }
-  .gift .gift-list li .gift-content{
-    color: #828282;
-    font-size: 1rem;
-    line-height: 2rem;
-    height: 2rem;
-    width: 15rem;
+    left: 1.8rem;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
-  .gift .gift-list li .gift-percentage{
-    width: 90%;
-    box-shadow: 0 .1rem 0.5rem ;
-    border-radius: 1.2rem;
-    height: 0.4rem;
+  .game-name{
+    position: absolute;
+    top: 50%;
+    font-size: 1.6rem;
+    height: 1.6rem;
+    left: 8rem;
+    margin-top: -0.8rem;
+    color: #333;
   }
-  .gift .gift-list li .gift-percentage div{
-    background-color: #ff7800;
-    height:100%;
-    border-radius: 1rem;
-  }
-  .gift-percent{
-    text-align: right;
-    line-height: 2.5rem;
-    color: #4d4d4d;
-    font-size: 1rem;
-    padding-right: 1rem;
-  }
-  .gift-percent span{
-    float: left;
-  }
-
-  .gift-link{
-    float: right;
+  .game-start-btn{
+    position: absolute;
     display: block;
-    width: 6rem;
-    height:2.2rem;
-    line-height: 2.2rem;
-    text-align: center;
-    margin-right: 1rem;
+    width: 5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
     font-size: 1.4rem;
-    margin-top: 0.5rem;
+    border:0.1rem solid #4385f5;
+    color: #4385f5;
+    text-align: center;
+    cursor: pointer;
+    top: 50%;
+    margin-top: -1.25rem;
+    right: 1.8rem;
+    border-radius: 0.5rem;
   }
-  .gift-link-will{
-    border:0.1rem solid #ff7800;
-    color: #ff7800;
+  .gift-list{
+    top:6.2rem;
+    margin:0 1.8rem 0;
   }
-  .gift-link-ed{
-    border:0.1rem solid #ccc;
-    color: #ccc;
+  .gift-list > li{
+    position: relative;
+    height: 4.4rem;
+    border-bottom: 0.1rem solid #f0f0f0;
+  }
+  .gift-list > li:first-of-type{
+    border-top: 0.1rem solid #f0f0f0;
+  }
+  .gift-name{
+    position: absolute;
+    height: 1.4rem;
+    font-size: 1.4rem;
+    color: #333;
+    top: 0.7rem;
+  }
+  .gift-content{
+    position: absolute;
+    height: 1.2rem;
+    font-size: 1.2rem;
+    color: #999;
+    bottom: 0.7rem;
+  }
+  .gift-get{
+    position: absolute;
+    display: block;
+    width: 5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    font-size: 1.4rem;
+    border:0.1rem solid #4385f5;
+    color: #4385f5;
+    text-align: center;
+    /*margin-right: 1.8rem;*/
+    /*margin-top: 2.4rem;*/
+    cursor: pointer;
+    top: 50%;
+    right: 0;
+    margin-top: -1.25rem;
+    border-radius: 0.5rem;
+  }
+  .gift-select-all{
+    height: 3rem;
+    line-height: 3rem;
+    color: #666;
+    border-bottom: 0.1rem solid #dfdede;
+    text-align: center;
+  }
+  .block{
+    display: block!important;
+  }
+  .none{
+    display: none!important;
   }
   .gift-list li + li{
     display: none;
   }
-  .gift-block{
-    display: block !important;
-  }
-  .gift-none{
-    display: none !important;
-  }
-  .gift-select-all{
-    text-align: center;
-    height: 2rem;
-    line-height: 2rem;
-  }
-  /*mini-ui*/
 
 </style>

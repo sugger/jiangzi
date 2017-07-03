@@ -1,47 +1,64 @@
 <template>
   <div class="list-new-server">
-<!--    <ul class="server-select">
+    <ul class="server-select">
       <li v-for="(server,index) in serverStyle" @click="toggleServer(index)" :class="{'server-select-content':active === index}">{{ server.name }}</li>
-    </ul>-->
+    </ul>
 
-    <!--<ul class="clearfix list-content" v-if="active === 0">-->
-    <ul class="clearfix list-content">
-      <li v-for="game in games">
+    <ul class="clearfix list-content" v-if="active === 0">
+
+      <!--已开新服 START -->
+      <li v-for="game in yikai">
         <router-link :to="{path:'/gamedetial/'+ game.id}">
         <img :src="game.img" alt="">
         <div class="game-box clearfix">
           <p class="game-name">
-            <span class="game-the-name">{{ game.name }}</span>
+            <span class="game-the-name">{{ game.gamename }}</span>
           </p>
-          <p class="game-content">{{ game.content }}</p>
+          <p class="game-content">{{ game.servername }}</p>
         </div>
+        <p class="game-status">已开服</p>
         </router-link>
         <a :href="game.url" class="start-game">开始</a>
       </li>
+      <!--已开新服 END -->
+
+      <!--已开新服 模拟 START-->
+     <!-- <li>
+        <router-link to="{path:'/gamedetial/'+ game.id}">
+          <img src="game.img" alt="">
+          <div class="game-box clearfix">
+            <p class="game-name">
+              <span class="game-the-name">game.name</span>
+            </p>
+            <p class="game-content">game.content</p>
+          </div>
+          <p class="game-status">已开服</p>
+        </router-link>
+        <a href="game.url" class="start-game">开始</a>
+      </li>-->
+      <!--已开新服 模拟 END-->
+
     </ul>
-    <!--<ul class="clearfix list-content" v-if="active === 1">
-      <li v-for="game in games">
+    <ul class="clearfix list-content" v-if="active === 1">
+      <li v-for="game in yugao">
         <img :src="game.img" alt="">
         <div class="game-box clearfix">
           <p class="game-name">
-            <span class="game-the-name">{{ game.name }}</span>
+            <span class="game-the-name">{{ game.gamename }}</span>
           </p>
-          <p class="game-content">{{ game.content }}</p>
+          <p class="game-content">{{ game.servername }}</p>
         </div>
-        <a :href="game.url" class="start-game">开始</a>
-      </li>-->
+        <p class="game-time">开服时间{{ game.start_time }}</p>
+      </li>
      <!-- <li>
         <img src="" alt="">
         <div class="game-box clearfix">
           <p class="game-name">
             <span class="game-the-name">游戏名</span>
-            <span class="is-hot">热门</span>
-            <span class="is-new">最新</span>
-            <span class="is-gift">礼包</span>
           </p>
           <p class="game-content">123456798</p>
         </div>
-        <a href="" class="start-game">开始</a>
+        <p class="game-time">开服时间7月1日</p>
       </li>-->
     </ul>
   </div>
@@ -50,8 +67,15 @@
 <script>
 export default {
   created(){
+    //已开新服
     this.$http.get('http://h5.wan855.cn/api/h5/game/server').then((res) => {
-      this.games = res.body
+      this.yikai = res.body
+    },(err) => {
+      console.log(err)
+    })
+    //新服预告
+    this.$http.get('http://h5.wan855.cn/api/h5/game/server/type/yugao').then((res) => {
+      this.yugao = res.body
     },(err) => {
       console.log(err)
     })
@@ -67,7 +91,8 @@ export default {
         }
       ],
       active:0,
-      games:[]
+      yikai:[],
+      yugao:[]
     }
 
   },
@@ -87,6 +112,7 @@ export default {
     background-color: #fff;
     position: relative;
   }
+
   .list-new-server ul li img{
     position: absolute;
     top: 50%;
@@ -110,7 +136,7 @@ export default {
     font-size: 1.6rem;
   }
   p.game-content{
-    color: #717171;
+    color: #ec5f56;
     font-size: 1.2rem;
     line-height: 3rem;
     padding-left: 2rem;
@@ -118,6 +144,25 @@ export default {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+  }
+  .game-status{
+    position: absolute;
+    top:50%;
+    height: 1.2rem;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    margin-top: -0.6rem;
+    right: 8rem;
+    color: #999;
+  }
+  .game-time{
+    position: absolute;
+    font-size: 1.6rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    right: 1.8rem;
+    top: 50%;
+    margin-top: -0.9rem;
   }
   .start-game{
     position: absolute;
@@ -140,18 +185,26 @@ export default {
 
   .list-new-server .server-select{
     text-align: center;
+    margin:1.4rem 1.8rem 0;
+
   }
   .list-new-server .server-select li{
     display: inline-block ;
-    width: 7rem;
-    border: 0.1rem solid #ff7800;
+    width: 48%;
+    border: 0.1rem solid #4385f5;
     line-height: 2rem;
-    color: #ff7800;
+    color: #999 ;
     font-size: 1.4rem;
     cursor: pointer;
   }
+  .list-new-server .server-select li:first-of-type{
+    border-radius: 0.5rem 0 0 0.5rem;
+  }
+  .list-new-server .server-select li:last-of-type{
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
   .list-new-server .server-select li.server-select-content{
-    background-color: #ff7800;
+    background-color: #4385f5;
     color: #fff;
   }
   .server-select{

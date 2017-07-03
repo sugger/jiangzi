@@ -204,7 +204,8 @@ li{
   }
   .footer{
     height:5.2rem;
-    background-color: rgba(0,0,0,.8);
+    background-color: #fff;
+    border-top: 0.1rem solid #ededed;
     max-width: 85rem;
     position: fixed;
     bottom: 0;
@@ -219,7 +220,7 @@ li{
     font-size: 1.4rem;
     height: 7rem;
     line-height: 2rem;
-    color:#fff;
+    color:#666666;
   }
   .footer ul li div{
     margin: 0 auto;
