@@ -3,15 +3,30 @@
     <div class="game-bg">
       <img :src="game.navimg" alt="" width="100%" height="100%">
     </div>
+
+
     <div class="game-head">
       <img :src="game.img" alt="">
       <p class="game-name">{{ game.name }}</p>
       <p class="game-brief">{{ game.excerpt }}</p>
-      <a :href="game.url" class="game-start">开始游戏</a>
+      <a :href="game.url" class="game-start">开始</a>
     </div>
+
+    <!--+++-->
+ <!--   <div class="game-head">
+      <img :src="game.img" alt="">
+      <p class="game-name">game.name</p>
+      <p class="game-brief">game.excerptgame.excerptgame.excerptgame.excerpt</p>
+      <a :href="game.url" class="game-start">开始</a>
+    </div>-->
+    <!--+++-->
+
     <div class="game-intruction">
-      <p class="game-intruction-tit">游戏简介</p>
+      <div class="game-intruction-tit">
+        <p class="game-intruction-tit-border"></p>游戏简介
+      </div>
       <p class="game-intruction-content" v-html="game.content"></p>
+       </p>
     </div>
     <div class="game-bottom">
       <ul class="game-tit">
@@ -26,15 +41,40 @@
           <a href="javascript:;" v-show="gift.getstatus == 1" class="game-gift-get" @click="checkGiftCode(gift.card)">查看</a>
         </li>
       </ul>
+
+      <!--+++++-->
+  <!--    <ul class="game-gift">
+        <li>
+          <p class="game-gift-name"><i class="fa fa-gift"></i>gift.gamename </p>
+          <p class="game-gift-content">gift.card_context </p>
+          <a href="javascript:;" class="game-gift-get">领取</a>
+          &lt;!&ndash;<a href="javascript:;"  class="game-gift-get" @click="checkGiftCode(gift.card)">查看</a>&ndash;&gt;
+        </li>
+      </ul>-->
+      <!--+++++-->
+
+
+
       <ul class="game-article" v-if="selectActive===2">
         <li v-for="article in articles">
-          <p>
-            <!--<span class="game-article-style">{{  }}</span>-->
+
+            <span class="game-article-style">公告</span>
             <span class="game-article-content">{{ article.post_excerpt }}</span>
             <span class="game-article-time">{{ article.post_date }}</span>
-          </p>
+
         </li>
       </ul>
+      <!--+++++-->
+   <!--   <ul class="game-article">
+        <li>
+
+          <span class="game-article-style">公告</span>
+          <span class="game-article-content">article.post_excerpt</span>
+          <span class="game-article-time">article.post_date </span>
+
+        </li>
+      </ul>-->
+      <!--+++++-->
     </div>
 
   </div>
@@ -105,7 +145,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .gamedetial{
-    background-color: #f6f5fb;
+    background-color: #ececec;
   }
   .game-bg{
     height: 16rem;
@@ -123,37 +163,43 @@ export default {
     display: block;
     left: 2rem;
     top: -2rem;
+    border:0.2rem solid #fff;
   }
   .game-head .game-name{
     position: absolute;
-    color: #222;
+    color: #333;
     font-size: 1.4rem;
     left: 10rem;
     top: 1.5rem;
   }
   .game-head .game-brief{
     font-size: 1.2rem;
-    color: #adadad;
+    color: #999;
     position: absolute;
     left: 10rem;
     top:3.3rem;
-    max-width: 8rem;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    max-width: 18rem;
   }
   .game-head .game-start{
     position: absolute;
     display: block;
-    width: 6rem;
+    width: 5rem;
+    height: 2.5rem;
     line-height: 2.5rem;
     font-size: 1.4rem;
-    border: .1rem solid #ff7800;
-    color: #ff7800;
+    border:0.1rem solid #4385f5;
+    color: #4385f5;
     text-align: center;
+    /*margin-right: 1.8rem;*/
+    /*margin-top: 2.4rem;*/
     cursor: pointer;
-    top: 2rem;
-    right: 2rem;
+    top: 50%;
+    margin-top: -1.25rem;
+    right: 1.8rem;
+    border-radius: 0.5rem;
   }
   .game-intruction{
     margin-top: 1rem;
@@ -161,10 +207,20 @@ export default {
     height: 10rem;
   }
   .game-intruction-tit{
-    height: 3rem;
-    line-height: 3rem;
+    height: 4rem;
+    line-height: 4rem;
     font-size: 1.6rem;
-    text-indent: 2rem;
+    position: relative;
+    text-indent: 3rem;
+  }
+  .game-intruction-tit-border{
+    position: absolute;
+    height: 1.6rem;
+    width: 0.2rem;
+    top: 50%;
+    margin-top: -0.8rem;
+    left: 2rem;
+    background-color: #4385f5;
   }
   .game-intruction-content{
     color: #6a6a6a;
@@ -188,7 +244,8 @@ export default {
     border-bottom: 0.2rem solid #f6f5fa;
   }
   .game-tit-active{
-    border-bottom: 0.2rem solid #ff7800!important;
+    border-bottom: 0.2rem solid #4385f5!important;
+    color: #4385f5;
   }
 
   .game-gift > li{
@@ -203,56 +260,90 @@ export default {
     height: 1.6rem;
     color: #222;
     left: 2rem;
-    top: 1.5rem;
+    top: 1.3rem;
   }
   .game-gift .game-gift-content{
     position: absolute;
-    top:3.5rem;
+    bottom:1rem;
     left: 2rem;
     color: #989898;
   }
   .game-gift .game-gift-get{
     position: absolute;
     display: block;
-    width: 6rem;
+    width: 5rem;
+    height: 2.5rem;
     line-height: 2.5rem;
     font-size: 1.4rem;
-    border: .1rem solid #ff7800;
-    color: #ff7800;
+    border:0.1rem solid #4385f5;
+    color: #4385f5;
     text-align: center;
+    /*margin-right: 1.8rem;*/
+    /*margin-top: 2.4rem;*/
     cursor: pointer;
-    top: 2rem;
-    right: 2rem;
+    top: 50%;
+    margin-top: -1.25rem;
+    right: 1.8rem;
+    border-radius: 0.5rem;
   }
   .game-article li{
     position: relative;
     height: 4rem;
-    border-bottom: 0.2rem solid #f1f1f1;;
+    border-bottom: 0.1rem solid #f1f1f1;
   }
-  .game-article li p{
-    height: 4rem;
-    font-size: 1.2rem;
-    line-height: 4rem;
-    margin: 0 2rem;
-  }
-  .game-article li p span{
+
+  .game-article li span{
     display: block;
   }
-  .game-article-style,
-  .game-article-content{
-    float: left;
-  }
+
   .game-article-content{
     width: 40%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
   }
-  span.game-article-time{
-    float: right!important;
+  .game-article-style,
+  .game-article-content,
+  .game-article-time{
+    position: absolute;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 1.4rem;
+    top: 50%;
+    margin-top: -1rem;
+  }
+  .game-article-style{
+    display: block;
+    width: 3.5rem;
+    border:0.1rem solid #4385f5;
+    color: #4385f5;
+    text-align: center;
+    cursor: pointer;
+    left: 1.8rem;
+    border-radius: 0.3rem;
+  }
+  .game-article-content{
+    position: absolute;
+    font-size: 1.4rem;
+    height: 2rem;
+    line-height: 2rem;
+    top:50%;
+    margin-top: -1rem;
+    left: 7rem;
+    max-width: 15rem;
+  }
+  .game-article-time{
+    position: absolute;
+    font-size: 1.4rem;
+    height: 2rem;
+    line-height: 2rem;
+    top:50%;
+    margin-top: -1rem;
+    right: 1.8rem;
+
   }
   .game-gift-name i{
-    color: #ff7800;
+    color: #4385f5;
     padding-right: 0.5rem;
     font-size: 1.6rem;
   }
