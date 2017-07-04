@@ -1,33 +1,33 @@
 <template>
   <div class="person">
     <person-header></person-header>
-    <div class="person-button-box">
-      <ul>
-
-            <li class="personimg1" onclick="javascript:window.location.href='http://www.guoqianchen.com'"><p>社区</p></li>
-
-          <!--<router-link to="/person/qiandao">-->
-            <!--<li class="personimg2"><p>签到</p></li>-->
-          <!--</router-link>-->
-          <router-link to="/person/myinfo">
-            <li class="personimg3"><p>个人资料</p></li>
-          </router-link>
-      </ul>
+    <div class="person-function">
+      <li>
+        <span class="person-function-tit">我的积分</span>
+        <span class="person-function-right"></span>
+      </li>
+     <!-- <router-link to="/person/qiaodao" tag="li">
+        <span class="person-function-tit">签到</span>
+        <span class="person-function-right"></span>
+      </router-link>-->
+      <router-link to="/person/realname" tag="li">
+        <span class="person-function-tit">实名认证</span>
+        <span class="person-function-right"></span>
+      </router-link>
+      <router-link to="/person/addtel" tag="li">
+        <span class="person-function-tit">绑定手机</span>
+        <span class="person-function-right"></span>
+      </router-link>
+  <!--    <router-link to="/person/gradeinfo" tag="li">
+        <span class="person-function-tit">用户条例</span>
+        <span class="person-function-right"></span>
+      </router-link>-->
+    <!--  <router-link to="/person/" tag="li">
+        <span class="person-function-tit">在线客服</span>
+        <span class="person-function-right"></span>
+      </router-link>-->
     </div>
-    <div class="person-list">
-      <ul>
-        <li>我的积分 <b>10</b></li>
-        <router-link to="/person/addtel" tag="li">绑定手机 <span></span></router-link>
-        <!--<router-link to="/person/realname" tag="li">实名认证 <span></span></router-link>-->
-        <!--<router-link to="/person/updatepsd" tag="li"></router-link>-->
-        <!--<router-link to="/person/gradeinfo" tag="li">等级说明 <span></span></router-link>-->
-      </ul>
-    </div>
-    <!--<div class="person-logout clearfix">-->
-      <!--<div>-->
-        <!--<a href="">退出登录</a>-->
-      <!--</div>-->
-    <!--</div>-->
+
 
 
 
