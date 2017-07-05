@@ -2,32 +2,27 @@
   <div class="person">
     <person-header></person-header>
     <div class="person-function">
-      <li>
+  <!--    <li class="person-function-gap person-score">
         <span class="person-function-tit">我的积分</span>
-        <span class="person-function-right"></span>
-      </li>
-     <!-- <router-link to="/person/qiaodao" tag="li">
+        <span class="person-function-score">121</span>
+      </li>-->
+      <router-link to="/person/qiaodao" tag="li" class="person-qiandao person-function-gap">
         <span class="person-function-tit">签到</span>
-        <span class="person-function-right"></span>
-      </router-link>-->
-      <router-link to="/person/realname" tag="li">
+      </router-link>
+      <router-link to="/person/realname" tag="li" class="person-function-gap person-realname">
         <span class="person-function-tit">实名认证</span>
-        <span class="person-function-right"></span>
       </router-link>
-      <router-link to="/person/addtel" tag="li">
+      <router-link to="/person/addtel" tag="li" class="person-addtel">
         <span class="person-function-tit">绑定手机</span>
-        <span class="person-function-right"></span>
       </router-link>
-  <!--    <router-link to="/person/gradeinfo" tag="li">
+    <!--  <router-link to="/person/gradeinfo" tag="li" class="person-function-gap person-gradeinfo">
         <span class="person-function-tit">用户条例</span>
-        <span class="person-function-right"></span>
-      </router-link>-->
-    <!--  <router-link to="/person/" tag="li">
+      </router-link>
+      <router-link to="/person/" tag="li" class="person-function-gap person-online">
         <span class="person-function-tit">在线客服</span>
-        <span class="person-function-right"></span>
       </router-link>-->
     </div>
-
+    <a href="javascript:;" class="person-exit">退出</a>
 
 
 
@@ -83,188 +78,66 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scope>
-
-  .person-button-box{
-    height: 13rem;
-    background-color: #f1f0f6;
+  .person{
+    height: 1000px;
+    background-color: #ececec;
   }
-  .person-button-box ul{
-    text-align: center;
-  }
-  .person-button-box ul li{
-    display: inline-block;
-    height: 7rem;
-    width: 5.5rem;
-    position: relative;
-    margin: 2rem 1.5rem;
-  }
-  .person-button-box ul li p{
-    text-align: center;
-    color: #333;
-    font-size: 1.2rem;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
-  .person-button-box ul li:last-of-type div{
-    width:76px;
-  }
-  .person-button-box ul li.personimg1{
-    background: url("../assets/person-logo1.png") top center no-repeat;
-    background-size: 5rem;
-  }
-  .person-button-box ul li.personimg2{
-    background: url("../assets/person-logo2.png") top center no-repeat;
-    background-size: 5rem;
-  }
-  .person-button-box ul li.personimg3{
-    background: url("../assets/person-logo3.png") top center no-repeat;
-    background-size: 5rem;
-  }
-  .person-button-box:before{
-    content: '';
-    height: 2rem;
-    display: block;
-    background-color: #fff;
-  }
-  .person-list{
-    margin-top: 2rem;
-  }
-  .person-list ul li{
-    line-height: 4rem;
-    font-size: 1.6rem;
-    padding-left: 2rem;
-    border-bottom: 1px solid #d4d4d4;
-    position: relative;
-    text-indent: 30px;
-  }
-  .person-list ul li:first-of-type{
-    background: url("../assets/person-list-logo.png") 13px 7px no-repeat;
-    border-top: 1px solid #d4d4d4;
-  }
-  .person-list ul li:nth-of-type(2){
-    background: url("../assets/person-list-logo.png") 13px -63px  no-repeat;
-
-  }
-  .person-list ul li:nth-of-type(3){
-    background: url("../assets/person-list-logo.png") 13px -133px no-repeat;
-  }
-  .person-list ul li:last-of-type{
-    background: url("../assets/person-list-logo.png") 13px -202px no-repeat;
-  }
-  .person-list ul li b{
-    font-weight: normal;
-    position: absolute;
-    display: block;
-    float: right;
-    top:50%;
-    height: 2rem;
-    right: 2rem;
-    line-height: 2rem;
-    margin-top: -1rem;
-  }
-  .person-list ul li span{
-    font-weight: normal;
-    position: absolute;
-    display: block;
-    float: right;
-    top:50%;
-    right: 2rem;
-    line-height: 2rem;
-    margin-top: -8px;
-    width: 16px;
-    height:16px;
-    background: url("../assets/person-link-logo.png") center no-repeat;
-    background-size: 10px 10px;
-  }
-  .person-logout{
-    height:14rem;
-    background-color: #f1f0f6;
-  }
-  .person-logout div{
-    line-height: 4rem;
-    background-color: #fff;
-    margin-top: 4rem;
-    text-align: center;
-  }
-  .person-logout div a{
-    display: inline-block;
-    font-size: 1.8rem;
-  }
-
-
-
-
-
-
-  .per-tit{
-    line-height: 4rem;
-    text-align: center;
-    color: #fff;
-    background-color: #ff4d46;
-    font-size: 1.6rem;
-  }
-  .per-content > p{
-    line-height: 5.4rem;
-    color: #ff4d46;
-    text-align: center;
-    font-size: 1.4rem;
-  }
-  .per-content-box{
-    border: 0.1rem solid #cdcbcb;
-    width: 90%;
-    line-height: 4rem;
-    margin: 0 auto;
-    text-indent: 2rem;
-    font-size: 1.2rem;
-  }
-  .per-content-box:first-of-type{
-    margin-bottom: 2rem;
-
-  }
-  .per-content-box:last-of-type{
-    margin-bottom: 4rem;
-  }
-  .per-content-box span{
-    color: #676767;
-  }
-  .per-content-box input{
-    width: 40%;
-    height: 2.8rem;
-    border:0.1rem solid #fff;
-    border-left: 0.1rem solid #b2b2b2;
-    outline: none;
-    text-indent: 2rem;
-    font-size: 1.2rem;
-  }
-  .per-content-box span.yzm{
-    float: right;
-    display: block;
-    font-size: 0.8rem;
-    line-height: 2rem;
-    text-align: center;
-    width: 6rem;
-    text-indent: 0;
-    margin-top: 1rem;
-    background-color: #ff4d46;
-    color: #fff;
-    margin-right: 1rem;
-  }
-  .per-content-box-tit{
-    float: left;
-    display: block;
-    width: 25%;
-  }
-  .per-content-submit-btn{
-    display: block;
-    width:90%;
+  .person-function li{
+    height: 5rem;
     line-height: 5rem;
-    color: #fff;
-    background-color: #ff4d46;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 2.2rem;
+    text-indent: 6rem;
+    background-size: 3.5rem,1rem;
+    font-size: 1.6rem;
+    color: #444;
+    background-color: #fff;
+    border-bottom: 0.1rem solid #ececec;
+    font-weight: bold;
   }
+  .person-function-score{
+    float: right;
+    padding-right: 1.6rem;
+    font-weight: normal;
+    color: #999;
+  }
+  .person-function-gap{
+    margin-top: 1rem;
+  }
+  .person-score{
+    background: url("../assets/score.png")  1.6rem center no-repeat
+  }
+  .person-qiandao{
+    background: url("../assets/qiandao.png")  1.6rem center no-repeat,
+    url("../assets/person-function-right.png")  right 1.6rem center no-repeat;
+  }
+  .person-realname{
+    background: url("../assets/realname.png")  1.6rem center no-repeat,
+    url("../assets/person-function-right.png")  right 1.6rem center no-repeat;
+  }
+  .person-addtel{
+    background: url("../assets/addtel.png")  1.6rem center no-repeat,
+    url("../assets/person-function-right.png")  right 1.6rem center no-repeat;
+  }
+  .person-gradeinfo{
+    background: url("../assets/userinfo.png")  1.6rem center no-repeat,
+    url("../assets/person-function-right.png")  right 1.6rem center no-repeat;
+  }
+  .person-online{
+    background: url("../assets/online.png")  1.6rem center no-repeat,
+    url("../assets/person-function-right.png")  right 1.6rem center no-repeat;
+  }
+  .person-exit{
+    display: block;
+    width: 80%;
+    margin:2rem auto 0;
+    height: 4rem;
+    line-height: 4rem;
+    text-align: center;
+    font-size: 2rem;
+    background-color: #4385f5;
+    border-radius: 2rem;
+    color: #fff;
+  }
+
   .follow-alert{
     position: absolute;
     top: 0;
@@ -327,9 +200,6 @@ export default {
       opacity: 1;
     }
   }
-  .user-name span{
-    float: right;
-    transform: translateY(1rem);
-  }
+
 
 </style>

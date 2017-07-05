@@ -65,7 +65,7 @@ export default {
   margin-top: -8px;
   width: 16px;
   height:16px;
-  background: url("../../../assets/person-link-logo.png") center no-repeat;
+
   background-size: 10px 10px;
 
 }

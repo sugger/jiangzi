@@ -39,7 +39,7 @@ export default {
   .person-header{
     height: 6rem;
     position: relative;
-
+    background-color: #fff;
   }
   .person-img{
     position: absolute;
