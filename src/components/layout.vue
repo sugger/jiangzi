@@ -197,10 +197,17 @@ li{
 .clearfix:after{
   clear: both;
 }
+
+
+
+html,body{
+  height: 100%;
+}
   #guoqianchen{
     max-width: 85rem;
     margin: 0 auto;
     position: relative;
+    height: 100%;
   }
   .footer{
     height:5.2rem;

@@ -1,11 +1,17 @@
 <template>
   <div class="list-news">
     <ul>
-      <li v-for="onenew in news" class="clearfix" @click="pageUrl(onenew.url)">
+<!--      <li v-for="onenew in news" class="clearfix" @click="pageUrl(onenew.url)">
         <span>{{ articleName(onenew.term_id) }}</span>
         <span>{{ onenew.post_title }}</span>
         <span>{{ onenew.post_date }}</span>
-      </li>
+      </li>-->
+
+      <router-link tag="li" :to="{path:'/newsdetial/'+77}" class="clearfix" v-for="onenew in news">
+        <span>{{ articleName(onenew.term_id) }}</span>
+        <span>{{ onenew.post_title }}</span>
+        <span>{{ onenew.post_date }}</span>
+      </router-link>
 
       <!--模拟 START-->
       <!--<li class="clearfix" @click="pageUrl(onenew.url)">

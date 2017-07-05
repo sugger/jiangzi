@@ -40,7 +40,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .grade-info{
-  background: url("../../../assets/grade-info.jpg") 0 0 no-repeat;
+  /*background: url("../../../assets/grade-info.jpg") 0 0 no-repeat;*/
   height: 270rem;
   background-size: contain;
   position: relative;
