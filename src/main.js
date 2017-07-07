@@ -18,6 +18,10 @@ import Gradeinfo from './components/base/person/gradeinfo.vue'
 import Register from './components/register.vue'
 import Gamedetial from './components/gamedetial.vue'
 import Newsdetial from './components/newsdetial.vue'
+import Hot from './components/base/indexlist/list-hot.vue'
+import NewServer from './components/base/indexlist/list-new-server.vue'
+import News from './components/base/indexlist/list-news.vue'
+import Subject from './components/base/indexlist/list-subject.vue'
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.http.options.emulateJSON = true
@@ -79,6 +83,23 @@ let router = new VueRouter({
     {
       path:'/newsdetial/:aid',
       component: Newsdetial
+    },
+    //indexList
+    {
+      path:'/hot',
+      component: Hot
+    },
+    {
+      path:'/new-server',
+      component: NewServer
+    },
+    {
+      path:'/news',
+      component: News
+    },
+    {
+      path:'/subject',
+      component: Subject
     }
   ]
 })

@@ -1,6 +1,25 @@
 <template>
   <div class="index-list">
     <ul class="index-content-nav clearfix">
+      <router-link :to="{path:'/hot'}" tag="li">
+        <p>热门</p>
+      </router-link>
+      <router-link :to="{path:'/new-server'}" tag="li">
+        <p>新开服</p>
+      </router-link>
+      <router-link :to="{path:'/news'}" tag="li">
+        <p>资讯</p>
+      </router-link>
+      <router-link :to="{path:'/subject'}" tag="li">
+        <p>专题</p>
+      </router-link>
+    </ul>
+  <!--  <ul class="index-content-lists">
+      <keep-alive>
+        <p :is="currentList"></p>
+      </keep-alive>
+    </ul>-->
+   <!-- <ul class="index-content-nav clearfix">
       <li @click="updateList(list.componentName,index)"
            v-for="(list,index) in indexLists" :class="{listFontActive:active === index}">
         {{ list.name }}
@@ -11,13 +30,13 @@
       <keep-alive>
         <p :is="currentList"></p>
       </keep-alive>
-    </ul>
+    </ul>-->
   </div>
 </template>
 
 <script>
   import Hot from './indexlist/list-hot.vue'
-  import Recommond from './indexlist/list-new-recommond.vue'
+  import Recommond from './indexlist/list-subject.vue'
   import News from './indexlist/list-news.vue'
   import Server from './indexlist/list-new-server.vue'
 export default {
@@ -37,7 +56,7 @@ export default {
   data () {
     return {
       currentList:'Hot',
-      indexLists:[],
+
       active:0
     }
   },
@@ -57,25 +76,53 @@ export default {
   float: left;
   width: 25%;
   line-height: 3.6rem;
-  height: 3.4rem;
   font-size: 1.5rem;
   text-align: center;
   cursor: pointer;
-  color: #999;
+  color: #333;
+  height: 7.5rem;
+  background-size: 4rem!important;
 }
-.list-line{
+.index-content-nav li p{
   position: absolute;
-  width: 6rem;
+  font-size: 1.4rem;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  text-align: center;
+  width: 100%;
   bottom: 0;
-  left: 50%;
-  margin-left: -3rem;
+
 }
-div.listLineActive{
-  border: 0.1rem solid #4385f5;
+.index-content-nav li:first-of-type{
+  background: url("../../assets/list-hot.png") center 1rem no-repeat;
 }
-.index-content-nav li.listFontActive{
-  color: #4385f5;
+.index-content-nav li:nth-child(2){
+  background: url("../../assets/list-new-server.png") center 1rem no-repeat;
 }
+.index-content-nav li:nth-child(3){
+  background: url("../../assets/list-news.png") center 1rem no-repeat;
+}
+.index-content-nav li:last-of-type{
+  background: url("../../assets/list-subject.png") center 1rem no-repeat;
+}
+
+
+/*previous*/
+
+/*.list-line{*/
+  /*position: absolute;*/
+  /*width: 6rem;*/
+  /*bottom: 0;*/
+  /*left: 50%;*/
+  /*margin-left: -3rem;*/
+/*}*/
+
+/*div.listLineActive{*/
+  /*border: 0.1rem solid #4385f5;*/
+/*}*/
+/*.index-content-nav li.listFontActive{*/
+  /*color: #4385f5;*/
+/*}*/
   /*@media only screen and (max-width:400px){*/
     /*.index-content-nav li{*/
       /*line-height: 3rem;*/

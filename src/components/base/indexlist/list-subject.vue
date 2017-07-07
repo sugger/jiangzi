@@ -1,5 +1,5 @@
 <template>
-  <div class="list-new-recommond">
+  <div class="list-subject">
     <ul class="clearfix">
       <li v-for="game in games">
         <router-link :to="{path:'/gamedetial/'+ game.id}">
