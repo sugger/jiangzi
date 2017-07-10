@@ -22,6 +22,7 @@ import Hot from './components/base/indexlist/list-hot.vue'
 import NewServer from './components/base/indexlist/list-new-server.vue'
 import News from './components/base/indexlist/list-news.vue'
 import Subject from './components/base/indexlist/list-subject.vue'
+import SubjectDetial from './components/subjectdetial.vue'
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.http.options.emulateJSON = true
@@ -100,6 +101,10 @@ let router = new VueRouter({
     {
       path:'/subject',
       component: Subject
+    },
+    {
+      path:'/subjectdetial/:sjid',
+      component: SubjectDetial
     }
   ]
 })

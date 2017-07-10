@@ -1,7 +1,6 @@
 <template>
   <div class="list-hot">
     <ul class="clearfix">
-
         <li v-for="game in hotgames">
           <router-link :to="{path:'/gamedetial/'+ game.id}">
             <img :src="game.img" alt="">
@@ -17,34 +16,6 @@
           </router-link>
           <a :href="game.url" class="start-game">开始</a>
         </li>
-      <!--<infinite-loading :on-infinite="onInfinite" ref="infiniteLoading"></infinite-loading>-->
-<!--      <li>
-          <img src="" alt="">
-          <div class="game-box clearfix">
-            <p class="game-name">
-              <span class="game-the-name">游戏名</span>
-              <span class="is-hot">热门</span>
-              <span class="is-new">最新</span>
-              <span class="is-gift">礼包</span>
-            </p>
-            <p class="game-content">傻逼就是你傻逼就是你傻逼就是你傻逼就是你傻逼就是你傻逼就是你</p>
-          </div>
-        <a href="" class="start-game">开始</a>
-      </li>
-
-      <li>
-        <img src="" alt="">
-        <div class="game-box clearfix">
-          <p class="game-name">
-            <span class="game-the-name">游戏名</span>
-            <span class="is-hot">热门</span>
-            <span class="is-new">最新</span>
-            <span class="is-gift">礼包</span>
-          </p>
-          <p class="game-content">123456798</p>
-        </div>
-        <a href="" class="start-game">开始</a>
-      </li>-->
     </ul>
   </div>
 </template>

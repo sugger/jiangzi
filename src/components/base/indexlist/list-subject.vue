@@ -1,156 +1,74 @@
 <template>
   <div class="list-subject">
-    <ul class="clearfix">
-      <li v-for="game in games">
-        <router-link :to="{path:'/gamedetial/'+ game.id}">
-        <img :src="game.img" alt="">
-        <div class="game-box clearfix">
-          <p class="game-name">
-            <span class="game-the-name">{{ game.name }}</span>
-            <span v-if="game.ishot == 1" class="is-hot">热门</span>
-            <span v-if="game.isnew == 1" class="is-new">最新</span>
-            <span v-if="game.gift !== null" class="is-gift">礼包</span>
-          </p>
-          <p class="game-content">{{ game.content }}</p>
-        </div>
-        </router-link>
-        <a :href="game.url" class="start-game">开始</a>
-      </li>
+    <listSubjectHeader></listSubjectHeader>
 
-      <!--<li>
-        <img src="" alt="">
-        <div class="game-box clearfix">
-          <p class="game-name">
-            <span class="game-the-name">游戏名</span>
-            <span class="is-hot">热门</span>
-            <span class="is-new">最新</span>
-            <span class="is-gift">礼包</span>
-          </p>
-          <p class="game-content">123456798</p>
+    <ul class="clearfix subject">
+      <li v-for="subject in subjects">
+        <router-link :to="{path:'/subjectdetial/'+subject.id}">
+          <img :src="subject.image" alt="" >
+        </router-link>
+        <div class="subject-bottom">
+          <p class="subject-bottom-title">{{ subject.title }}</p>
+          <p class="subject-bottom-time">{{ subject.btime }}</p>
+
         </div>
-        <a href="" class="start-game">开始</a>
-      </li>-->
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
+  import listSubjectHeader from './list-subject-header.vue'
   export default {
     created(){
-      this.$http.get('http://h5.wan855.cn/api/index.php?m=game&a=xin').then(function (res) {
-        this.games = res.body
-        console.log(res)
-        console.log(typeof this.hotgames)
+      this.$http.get('http://h5.wan855.cn/api/h5/activity/index').then(function (res) {
+        this.subjects = res.body.data
       },function (err) {
         console.log(err)
       })
     },
     data () {
       return {
-        games:[]
+        subjects:[]
       }
+    },
+    components:{
+      listSubjectHeader
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .list-new-recommond ul li{
-    height:6.2rem;
-    border-top: 0.1rem solid rgb(237,237,237);
+  .list-subject{
+    background-color: #ececec;
+  }
+  .subject li img{
+    height: 20rem;
+    width: 100%;
+    background-size: cover;
+  }
+  .subject-bottom{
+    height: 6rem;
     background-color: #fff;
     position: relative;
   }
-  .list-new-recommond ul li img{
+  .subject-bottom-title,.subject-bottom-time{
     position: absolute;
-    top: 50%;
-    margin-top: -2.5rem;
-    float: left;
-    height:5rem;
-    width:5rem;
-    border-radius: 1rem;
-    left: 1.8rem;
-    overflow: hidden;
+    left: 1.5rem;
   }
-  .game-box{
-    position: absolute;
-    left: 6rem;
-  }
-  .game-name{
+  .subject-bottom-title{
+    top:1rem;
+    height: 1.6rem;
     line-height: 1.6rem;
-    padding-left: 2rem;
-    color: #272727;
-    margin-top: 1.2rem;
     font-size: 1.6rem;
+    color: #333;
   }
-  .game-the-name{
-    display: inline-block;
-  }
-  p.game-content{
-    color: #717171;
+  .subject-bottom-time{
+    bottom: 1rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
     font-size: 1.2rem;
-    line-height: 3rem;
-    padding-left: 2rem;
-    max-width: 18rem;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .start-game{
-    position: absolute;
-    display: block;
-    width: 5rem;
-    height: 2.5rem;
-    line-height: 2.5rem;
-    font-size: 1.4rem;
-    border:0.1rem solid #4385f5;
-    color: #4385f5;
-    text-align: center;
-    /*margin-right: 1.8rem;*/
-    /*margin-top: 2.4rem;*/
-    cursor: pointer;
-    top: 50%;
-    margin-top: -1.25rem;
-    right: 1.8rem;
-    border-radius: 0.5rem;
-  }
-  .is-hot,.is-new,.is-gift{
-    display: inline-block;
-    color: #fff;
-    font-size: 0.8rem;
-    line-height: 1.4rem;
-    height: 1.4rem;
-    padding: 0 0.3rem;
-    transform: translateY(-0.2rem);
-    border-radius: 0.3rem;
-  }
-  .is-hot{
-    border: 0.1rem solid #e32e16;
-    color: #e32e16;
-  }
-  .is-new{
-    border: 0.1rem solid #4db233;
-    color: #4db233;
-  }
-  .is-gift{
-    border: 0.1rem solid #4385f5;
-    color: #4385f5;
-  }
-  @media only screen and (max-width: 350px){
-    .list-hot ul li img{
-      margin-top: -2rem;
-      height:4rem;
-      width:4rem;
-      left: 1rem;
-    }
-    .game-box{
-      left: 4rem;
-    }
-    .start-game{
-      right: 1rem;
-    }
-    p.game-content{
-      max-width: 15rem;
-    }
+    color: #999;
   }
 </style>
