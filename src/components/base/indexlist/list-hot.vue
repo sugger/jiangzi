@@ -1,5 +1,9 @@
 <template>
   <div class="list-hot">
+    <!--<div class="list-public-title">-->
+      <!--<p>最热榜单</p>-->
+    <!--</div>-->
+    <listPublicHeader title="最热榜单"></listPublicHeader>
     <ul class="clearfix">
         <li v-for="game in hotgames">
           <router-link :to="{path:'/gamedetial/'+ game.id}">
@@ -22,6 +26,7 @@
 
 <script>
   import InfiniteLoading from 'vue-infinite-loading';
+  import listPublicHeader from './list-public-header.vue'
 export default {
   created(){
     this.$http.get('http://h5.wan855.cn/api/h5/game/hot').then(function (res) {
@@ -58,6 +63,7 @@ export default {
   },
   components: {
     InfiniteLoading,
+    listPublicHeader
   },
 }
 </script>

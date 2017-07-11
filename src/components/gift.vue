@@ -1,6 +1,7 @@
 <template>
   <div>
     <!--<gqc-header></gqc-header>-->
+    <listPublicHeader title="全部礼包"></listPublicHeader>
     <div class="gift">
       <ul class="clearfix game-list" >
         <li class="clearfix" v-for="(game,index) in games" v-if="game.gift !== null">
@@ -15,59 +16,15 @@
               <p class="gift-content">{{ gift.content }}</p>
 
               <a href="javascript:;" v-show="gift.getstatus == 0" class="gift-get"
-              @click="getGift(gift.id)" :gameid="gift.gid" :giftid="gift.id" :idiscommon="gift.idiscommon">领取</a>
+              @click="getGift(gift.id)" :gameid="game.gid" :giftid="gift.id" :idiscommon="gift.idiscommon">领取</a>
 
               <a :href="gift.url" v-show="gift.getstatus == 1" class="gift-get" @click="checkGiftCode(gift.card)">查看</a>
             </li>
           </ul>
-          <div class="gift-select-all" @click="selectAllGift(index)" v-if="game.total_gift != 1" :class="{none:index == giftIndex}">查看更多礼包({{game.total_gift}})</div>
+          <div class="gift-select-all" @click="selectAllGift(index)" v-if="game.total_gift != 1" :class="{none:index == giftIndex}">查看更多礼包({{game.total_gift - 1}})</div>
         </li>
       </ul>
     </div>
-
-
-    <!--礼包模拟 START-->
-  <!--  <div class="gift">
-      <ul class="clearfix game-list">
-        <li class="clearfix">
-          <div class="game-box">
-          <img src="game.pic" alt="" class="game-img">
-          <p class="game-name">游戏名</p>
-          <a href="game.url" class="game-start-btn">开始</a>
-          </div>
-
-          <ul class="gift-list clearfix" >
-            <li class="clearfix" >
-              <p class="gift-name">gift.name</p>
-              <p class="gift-content">gift.content </p>
-              &lt;!&ndash;<a href="javascript:;" class="gift-link gift-link-will"&ndash;&gt;
-              &lt;!&ndash;@click="getGift(gift.id,gift.card)">领取</a>&ndash;&gt;
-              <a href="gift.url" class="gift-get" @click="checkGiftCode(gift.card)">查看</a>
-
-              &lt;!&ndash;<div class="gift-percentage">
-                  <div style="percentage(gift.remain_num,gift.card_num)"></div>
-                </div>&ndash;&gt;
-                &lt;!&ndash;<p class="gift-percent">剩余10%</p>&ndash;&gt;
-            </li>
-            <li class="clearfix" >
-              <p class="gift-name">gift.name</p>
-              <p class="gift-content">gift.content </p>
-              &lt;!&ndash;<a href="javascript:;" class="gift-link gift-link-will"&ndash;&gt;
-              &lt;!&ndash;@click="getGift(gift.id,gift.card)">领取</a>&ndash;&gt;
-              <a href="gift.url" class="gift-get" @click="checkGiftCode(gift.card)">查看</a>
-
-              &lt;!&ndash;<div class="gift-percentage">
-                  <div style="percentage(gift.remain_num,gift.card_num)"></div>
-                </div>&ndash;&gt;
-              &lt;!&ndash;<p class="gift-percent">剩余10%</p>&ndash;&gt;
-            </li>
-          </ul>
-          <div class="gift-select-all" @click="selectAllGift(index)">查看更多礼包(game.giftNum)</div>
-        </li>
-
-      </ul>
-    </div>-->
-    <!--礼包模拟 END-->
   </div>
 
 </template>
@@ -75,10 +32,9 @@
 <script>
   import gqcHeader from './base/header'
   import { Toast,MessageBox } from 'mint-ui';
+  import listPublicHeader from './base/indexlist/list-public-header.vue'
 export default {
-  component:{
-    Toast
-  },
+
   created(){
     this.$http.get('http://h5.wan855.cn/api/h5/game/cardlist').then(function (res) {
       this.games = res.body
@@ -88,7 +44,8 @@ export default {
     })
   },
   components:{
-    gqcHeader
+    gqcHeader,
+    listPublicHeader,
   },
   data () {
     return {
@@ -97,7 +54,8 @@ export default {
       ],
       block:false,
       none:false,
-      giftIndex:'0'
+      giftIndex:'0',
+      card:''
     }
   },
   methods:{
@@ -123,19 +81,17 @@ export default {
           });
       },
       // 获取礼包
-//      getGift(gameid,giftid,idiscommon){
       getGift(id){
 //    ############################ 礼包临时接口 ############################
         this.$http.get('http://h5.wan855.cn/api/h5/game/getcard?id='+id).then(function (res) {
-          if(res.body.status == 1){
-//            Toast({
-//              message: '领取成功',
-//              position: 'middle',
-//              duration: 1000
-//            })
+            console.log(res)
+          this.card = res.body
+          if(this.card.status == 1){
+            console.log('status == 1')
+            console.log(this.card)
             MessageBox({
               title:'领取提示',
-              message: '<p style="color=#222;"><span style="padding-right: 1rem">兑换码</span><span style="-webkit-user-select:text;background: #ebebeb;padding: 0 .5rem;font-style: italic;">'+ card +'</span></p><p style="font-size: 1.2rem;padding-top: .3rem;line-height: 20px;"">复制兑换码,去游戏中使用</p>',
+              message: '<p style="color=#222;"><span style="padding-right: 1rem">兑换码</span><span style="-webkit-user-select:text;background: #ebebeb;padding: 0 .5rem;font-style: italic;">'+ this.card.cardid +'</span></p><p style="font-size: 1.2rem;padding-top: .3rem;line-height: 20px;"">复制兑换码,去游戏中使用</p>',
               showCancelButton: false
             });
             this.$http.get('http://h5.wan855.cn/api/h5/game/cardlist').then(function (res) {
@@ -143,10 +99,16 @@ export default {
             },function (err) {
               console.log(err)
             })
+          }else{
+            Toast({
+              message:this.card.msg,
+              position:'middle'
+            })
           }
         },function (err) {
           console.log(err)
         })
+
 //    ############################ 礼包临时接口 ############################
 
 
@@ -290,6 +252,7 @@ export default {
     color: #666;
     border-bottom: 0.1rem solid #dfdede;
     text-align: center;
+    font-size: 1.2rem;
   }
   .block{
     display: block!important;

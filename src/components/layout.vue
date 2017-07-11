@@ -42,7 +42,7 @@ export default {
           //第三方登录信息
         if (res.body.oauth === null){
           console.log('跳转到授权接口')
-//          window.location.href = 'http://h5.wan855.cn/api/h5/user/oauthlogin/oauthtype/wechat'
+          window.location.href = 'http://h5.wan855.cn/api/h5/user/oauthlogin/oauthtype/wechat'
           console.log('授权接口跳转完成')
         }else{
           this.$router.push({path:'/register'})
@@ -53,8 +53,6 @@ export default {
     },function (err) {
       console.log(err)
     })
-
-
 
   },
   data(){
@@ -208,6 +206,7 @@ html,body{
     margin: 0 auto;
     position: relative;
     height: 100%;
+
   }
   .footer{
     height:5.2rem;
@@ -284,5 +283,20 @@ html,body{
   .bottom-question{
     height: 7.8rem;
   }
-
+  /*.list-public-title{*/
+    /*height: 4rem;*/
+    /*position: relative;*/
+  /*}*/
+  /*.list-public-title p{*/
+    /*position: absolute;*/
+    /*height: 3rem;*/
+    /*line-height: 3rem;*/
+    /*font-size: 1.4rem;*/
+    /*width: 9rem;*/
+    /*text-align: center;*/
+    /*font-weight: bolder;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
+    /*border-bottom: 0.2rem solid #4385f5;*/
+  /*}*/
 </style>

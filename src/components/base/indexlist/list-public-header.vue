@@ -1,10 +1,10 @@
 <template>
-  <div class="list-subject-header">
+  <div class="list-public-header">
     <router-link :to="{path:'/'}">
-      <a href="javascript:;" class="subject-logo subject-logo-home"></a>
+      <a href="javascript:;" class="public-logo public-logo-home"></a>
     </router-link>
-    <a href="javascript:;" class="subject-title">精选专题</a>
-    <!--<a href="javascript:;" class="subject-logo subject-logo-search"></a>-->
+    <a href="javascript:;" class="public-title">{{ title }}</a>
+    <!--<a href="javascript:;" class="public-logo public-logo-search"></a>-->
   </div>
 </template>
 
@@ -14,18 +14,19 @@ export default {
     return {
 
     }
-  }
+  },
+  props:['title']
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.list-subject-header{
+.list-public-header{
   height: 4rem;
   background-color: #52bbf8;
   position: relative;
 }
-  .subject-logo{
+  .public-logo{
     position: absolute;
     display: block;
     height: 2rem;
@@ -34,15 +35,15 @@ export default {
     top:50%;
     margin-top: -1rem;
   }
-  .subject-logo-home{
+  .public-logo-home{
     left: 1.5rem;
     background: url("../../../assets/subject-header-home.png") 0 0 no-repeat;
   }
-  .subject-logo-search{
+  .public-logo-search{
     right: 1.5rem;
     background: url("../../../assets/subject-header-search.png") 0 0 no-repeat;
   }
-  .subject-title{
+  .public-title{
     position: absolute;
     font-size: 1.6rem;
     height: 1.6rem;

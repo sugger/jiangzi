@@ -59,7 +59,7 @@
         <li v-for="article in articles">
 
             <span class="game-article-style">公告</span>
-            <span class="game-article-content">{{ article.post_excerpt }}</span>
+            <span class="game-article-content">{{ article.post_title }}</span>
             <span class="game-article-time">{{ article.post_date }}</span>
 
         </li>
@@ -124,7 +124,7 @@ export default {
         })
 
         //文章接口
-        this.$http.get('http://h5.wan855.cn/api/h5/article/getbyid/gid/'+this.game.articletype).then(function (res) {
+        this.$http.get('http://h5.wan855.cn/api/h5/article/getbyid/id/'+this.game.articletype).then(function (res) {
           this.articles = res.body
         },function (err) {
           console.log(err)

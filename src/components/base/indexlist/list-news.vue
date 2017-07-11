@@ -1,5 +1,10 @@
 <template>
   <div class="list-news">
+    <!--<div class="list-public-title">-->
+      <!--<p>全部资讯</p>-->
+    <!--</div>-->
+    <listPublicHeader title="全部资讯"></listPublicHeader>
+
     <ul>
 <!--      <li v-for="onenew in news" class="clearfix" @click="pageUrl(onenew.url)">
         <span>{{ articleName(onenew.term_id) }}</span>
@@ -12,19 +17,12 @@
         <span>{{ onenew.post_title }}</span>
         <span>{{ onenew.post_date }}</span>
       </router-link>
-
-      <!--模拟 START-->
-      <!--<li class="clearfix" @click="pageUrl(onenew.url)">
-        <span>活动</span>
-        <span>?????</span>
-        <span>2017.1.1</span>
-      </li>-->
-      <!--模拟 END-->
     </ul>
   </div>
 </template>
 
 <script>
+  import listPublicHeader from './list-public-header.vue'
 export default {
   created(){
     this.$http.get('http://h5.wan855.cn/api/h5/article').then((res) => {
@@ -67,6 +65,9 @@ export default {
             window.location.href = url
           }
       }
+  },
+  components:{
+    listPublicHeader
   }
 }
 </script>
