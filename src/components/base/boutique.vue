@@ -1,5 +1,6 @@
 <template>
   <div class="boutique">
+    <p class="boutique-title">精品推荐</p>
     <ul class="clearfix">
         <li v-for="game in hotgames">
           <router-link :to="{path:'/gamedetial/'+ game.id}">
@@ -65,6 +66,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .boutique-title{
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 1.6rem;
+    font-weight: bolder;
+    text-indent: 1.8rem;
+    color: #4385f5;
+  }
 .boutique ul li{
   height:6.2rem;
   border-top: 0.1rem solid rgb(237,237,237);

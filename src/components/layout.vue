@@ -54,8 +54,6 @@ export default {
       console.log(err)
     })
 
-
-
   },
   data(){
       return{
@@ -208,6 +206,7 @@ html,body{
     margin: 0 auto;
     position: relative;
     height: 100%;
+
   }
   .footer{
     height:5.2rem;
@@ -284,5 +283,20 @@ html,body{
   .bottom-question{
     height: 7.8rem;
   }
-
+  /*.list-public-title{*/
+    /*height: 4rem;*/
+    /*position: relative;*/
+  /*}*/
+  /*.list-public-title p{*/
+    /*position: absolute;*/
+    /*height: 3rem;*/
+    /*line-height: 3rem;*/
+    /*font-size: 1.4rem;*/
+    /*width: 9rem;*/
+    /*text-align: center;*/
+    /*font-weight: bolder;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
+    /*border-bottom: 0.2rem solid #4385f5;*/
+  /*}*/
 </style>

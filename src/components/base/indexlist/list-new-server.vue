@@ -5,8 +5,6 @@
     </ul>
 
     <ul class="clearfix list-content" v-if="active === 0">
-
-      <!--已开新服 START -->
       <li v-for="game in yikai">
         <router-link :to="{path:'/gamedetial/'+ game.id}">
         <img :src="game.img" alt="">
@@ -20,24 +18,6 @@
         </router-link>
         <a :href="game.url" class="start-game">开始</a>
       </li>
-      <!--已开新服 END -->
-
-      <!--已开新服 模拟 START-->
-     <!-- <li>
-        <router-link to="{path:'/gamedetial/'+ game.id}">
-          <img src="game.img" alt="">
-          <div class="game-box clearfix">
-            <p class="game-name">
-              <span class="game-the-name">game.name</span>
-            </p>
-            <p class="game-content">game.content</p>
-          </div>
-          <p class="game-status">已开服</p>
-        </router-link>
-        <a href="game.url" class="start-game">开始</a>
-      </li>-->
-      <!--已开新服 模拟 END-->
-
     </ul>
     <ul class="clearfix list-content" v-if="active === 1">
       <li v-for="game in yugao">
@@ -185,12 +165,12 @@ export default {
 
   .list-new-server .server-select{
     text-align: center;
-    margin:1.4rem 1.8rem 0;
+    margin:1.4rem 0;
 
   }
   .list-new-server .server-select li{
     display: inline-block ;
-    width: 48%;
+    width: 49%;
     border: 0.1rem solid #4385f5;
     line-height: 2rem;
     color: #999 ;

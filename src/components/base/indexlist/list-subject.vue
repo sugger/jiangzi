@@ -1,6 +1,6 @@
 <template>
   <div class="list-subject">
-    <listSubjectHeader></listSubjectHeader>
+    <listPublicHeader title="精选专题"></listPublicHeader>
 
     <ul class="clearfix subject">
       <li v-for="subject in subjects">
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import listSubjectHeader from './list-subject-header.vue'
+  import listPublicHeader from './list-public-header.vue'
   export default {
     created(){
       this.$http.get('http://h5.wan855.cn/api/h5/activity/index').then(function (res) {
@@ -33,7 +33,7 @@
       }
     },
     components:{
-      listSubjectHeader
+      listPublicHeader
     }
   }
 </script>

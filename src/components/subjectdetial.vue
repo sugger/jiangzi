@@ -1,6 +1,6 @@
 <template>
   <div class="subjectdetial">
-    <listSubjectHeader></listSubjectHeader>
+    <listPublicHeader></listPublicHeader>
     <div class="subjectdetial-wrap">
       <img :src="subject.image" alt="">
       <div class="subjectdetial-box">
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import listSubjectHeader from './base/indexlist/list-subject-header.vue'
+  import listPublicHeader from './base/indexlist/list-public-header.vue'
 export default {
   created(){
     this.getSubject()
@@ -51,7 +51,7 @@ export default {
     }
   },
   components:{
-    listSubjectHeader
+    listPublicHeader
   },
   watch:{
     "$route":"getSubject"

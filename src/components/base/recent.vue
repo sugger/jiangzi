@@ -13,32 +13,6 @@
             <a :href="list.url">开始</a>
           </li>
           </swiper-slide>
-
-          <!--模拟-->
-
-         <!-- <swiper-slide>
-            <li>
-              <img src="" alt="">
-              <p>sdf</p>
-              <a href="">开始</a>
-            </li>
-          </swiper-slide>
-          <swiper-slide>
-            <li>
-              <img src="" alt="">
-              <p>sdf</p>
-              <a href="">开始</a>
-            </li>
-          </swiper-slide>
-          <swiper-slide>
-            <li>
-              <img src="" alt="">
-              <p></p>
-              <a href="">开始</a>
-            </li>
-          </swiper-slide>-->
-
-          <!--模拟 END-->
         </swiper>
       </ul>
     </div>
@@ -84,6 +58,7 @@ export default {
     font-size: 62.5%;
     /*height: 11rem;*/
     position: relative;
+
   }
 .recent > p{
   position: absolute;

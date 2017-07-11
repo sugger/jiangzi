@@ -71,6 +71,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .index-list{
+
+    background-color: #fff;
+  }
 .index-content-nav li{
   position: relative;
   float: left;
@@ -80,7 +84,7 @@ export default {
   text-align: center;
   cursor: pointer;
   color: #333;
-  height: 7.5rem;
+  height: 8rem;
   background-size: 4rem!important;
 }
 .index-content-nav li p{
@@ -90,7 +94,7 @@ export default {
   line-height: 1.4rem;
   text-align: center;
   width: 100%;
-  bottom: 0;
+  bottom: 0.5rem;
 
 }
 .index-content-nav li:first-of-type{
