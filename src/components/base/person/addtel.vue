@@ -1,21 +1,36 @@
 <template>
-  <div class="">
-    <p class="per-tit">绑定手机</p>
-    <div class="per-content">
-      <p>请输入正确的手机号码</p>
-      <div class="per-content-box">
-        <span class="per-content-box-tit">手机号码</span>
-        <input type="text" placeholder="请输入您的手机号码" v-model="tel">
+  <div class="addtel clearfix">
+    <!--previous S-->
+    <div class="per-previous clearfix" v-if="user.mobile === ''">
+      <img :src="user.avatar" alt="" class="per-img">
+      <div class="per-content">
+        <div class="per-content-box per-validate-tel">
+          <input type="text" placeholder="请输入您的手机号码" v-model="tel">
+        </div>
+        <div class="per-content-box per-validate-message">
+          <input type="text" placeholder="请输入手机验证码" v-model="yanzhengCode" >
+          <input type="button" :value="yanzhengVal" class="per-validate-code per-validate-code-pre" @click="getCode()" v-if="yanzhengBtn == true">
+          <input type="button" :value="yanzhengVal" class="per-validate-code per-validate-code-after"  v-else disabled style="color: #7e7e7e">
+        </div>
       </div>
-      <div class="per-content-box">
-        <span class="per-content-box-tit">手机验证码</span>
-        <input type="text" placeholder="请输入手机验证码" v-model="yanzhengCode" >
-        <input type="button" :value="yanzhengVal" @click="getCode()" v-if="yanzhengBtn == true">
-        <input type="button" :value="yanzhengVal" @click="getCode()" v-else disabled style="color: #7e7e7e">
+      <p class="fail-info">{{ fail.words }}</p>
+      <a href="javascript:;" class="per-content-submit-btn" @click="bind()">提交认证</a>
+    </div>
+    <!--previous S-->
+
+
+    <!--after S-->
+    <div class="per-addtel-after" v-if="user.mobile !== ''">
+      <div class="per-success">
+        <p>您已绑定手机</p>
+      </div>
+      <div class="per-content">
+        <div class="per-content-box">
+          手机号:{{ user.mobile }}
+        </div>
       </div>
     </div>
-    <p class="fail-info">{{ fail.words }}</p>
-    <a href="javascript:;" class="per-content-submit-btn" @click="bind()">提交认证</a>
+    <!--after E-->
   </div>
 </template>
 
@@ -23,6 +38,14 @@
   import { Toast } from 'mint-ui';
 
   export default {
+      created(){
+        this.$http.get('http://h5.wan855.cn/api/index.php?m=User&a=getUserinfo').then(function (res) {
+          //平台登录信息
+          this.user = res.body.user
+        }, function (err) {
+          console.log(err)
+        })
+      },
       component:{
         Toast
       },
@@ -40,7 +63,8 @@
         theClass:{
           'fail-color':true
         },
-        flag:false
+        flag:false,
+        user:''
       }
     },
     methods:{
@@ -133,23 +157,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .per-content-box input[type=button]{
-    background-color: #fff;
-    border: 0.1rem solid #d8d8d8;
-    color: #272727;
-    width: 7rem;
-    height: 2.5rem;
-    float: right;
-    margin-top: 0.75rem;
-    text-indent: 0;
-  }
-  .fail-info{
-    line-height: 1.6rem;
-    text-indent: 2rem;
-    height: 1.6rem;
-    font-size: 1.6rem;
-    color:#FD482C;
-    padding-bottom: 0.5rem
-  }
+
 
 </style>

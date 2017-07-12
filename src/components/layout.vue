@@ -42,7 +42,7 @@ export default {
           //第三方登录信息
         if (res.body.oauth === null){
           console.log('跳转到授权接口')
-          window.location.href = 'http://h5.wan855.cn/api/h5/user/oauthlogin/oauthtype/wechat'
+//          window.location.href = 'http://h5.wan855.cn/api/h5/user/oauthlogin/oauthtype/wechat'
           console.log('授权接口跳转完成')
         }else{
           this.$router.push({path:'/register'})
