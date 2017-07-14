@@ -83,4 +83,7 @@ export default {
     margin: 1rem 1.5rem 0;
     min-height: 30rem;
   }
+  .news-detial-content p{
+    line-height: 2rem;
+  }
 </style>
