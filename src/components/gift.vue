@@ -13,7 +13,7 @@
           <ul class="gift-list clearfix" >
             <li class="clearfix" v-for="(gift,index2) in game.gift" :class="{block: index == giftIndex}">
               <p class="gift-name">{{ gift.name }}</p>
-              <p class="gift-content">{{ gift.content }}</p>
+              <p class="gift-content">{{ gift.card_context }}</p>
 
               <a href="javascript:;" v-show="gift.getstatus == 0" class="gift-get"
               @click="getGift(gift.id)" :gameid="game.gid" :giftid="gift.id" :idiscommon="gift.idiscommon">领取</a>
@@ -227,6 +227,10 @@ export default {
     font-size: 1.2rem;
     color: #999;
     bottom: 0.7rem;
+    width: 70%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
   .gift-get{
     position: absolute;

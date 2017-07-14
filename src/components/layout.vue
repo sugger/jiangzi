@@ -195,8 +195,11 @@ li{
 .clearfix:after{
   clear: both;
 }
-
-
+/*移动端默认样式 IOS*/
+input[type=button]{
+  -webkit-appearance:none;
+  outline:none
+}
 
 html,body{
   height: 100%;

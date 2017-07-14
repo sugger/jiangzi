@@ -1,11 +1,11 @@
 <template>
   <div class="subjectdetial">
-    <listPublicHeader></listPublicHeader>
+    <listPublicHeader title="精选专题"></listPublicHeader>
     <div class="subjectdetial-wrap">
       <img :src="subject.image" alt="">
       <div class="subjectdetial-box">
         <p class="subjectdetial-title">{{ subject.title }}</p>
-        <p class="subjectdetial-content">{{ subject.content }}</p>
+        <div class="subjectdetial-content">{{ subject.content }}</div>
       </div>
     </div>
     <div class="subject-about-game">
@@ -66,6 +66,7 @@ export default {
   }
   .subjectdetial-wrap img{
     height: 20rem;
+    width: 100%;
     background-size: cover;
   }
   .subjectdetial-box{
@@ -78,7 +79,7 @@ export default {
     padding:1.5rem 1.5rem .8rem;
   }
   .subjectdetial-content{
-    height: 2.2rem;
+    height: 100%;
     line-height: 2.2rem;
     font-size: 1.2rem;
     padding:0 1.5rem;
