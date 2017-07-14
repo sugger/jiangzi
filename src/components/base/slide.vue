@@ -1,6 +1,6 @@
 <template>
   <div class="slide">
-    <slider animation="fade" height="16rem">
+    <slider animation="fade" height="18rem">
       <slider-item v-for="(list, index) in lists" :key="index">
         <!--<div :style="i">-->
           <!--<p style="line-height: 13rem; font-size: 5rem; text-align: center;">Page{{ index + 1 }}</p>-->
