@@ -1,35 +1,36 @@
 <template>
   <div class="realname clearfix">
     <!--previous S-->
-    <div class="per-previous" v-if="user.mobile === ''">
+    <div class="per-previous" v-if="user.realname === ''">
       <img :src="user.avatar" alt="" class="per-img">
       <div class="per-content">
         <div class="per-content-box per-validate-realname">
-          <input type="text" placeholder="请输入您的真实姓名">
+          <input type="text" placeholder="请输入您的真实姓名" v-model.trim="realname.username" @blur="judgeUsername()">
         </div>
         <div class="per-content-box per-validate-id">
-          <input type="text" placeholder="请输入您的身份证号">
+          <input type="text" placeholder="请输入您的身份证号" v-model="realname.identity" @blur="judgeId()">
         </div>
       </div>
+      <p class="per-fail">{{ fail }}</p>
+      <a href="javascript:;" class="per-content-submit-btn" @click="bindId()">提交认证</a>
       <p class="government-warn">根据最新监管要求，进行游戏需要身份验证</p>
-      <a href="javascript:;" class="per-content-submit-btn" @click="">提交认证</a>
     </div>
     <!--previous E-->
 
 
     <!--after S-->
-    <div class="per-realname-after" v-if="user.mobile !== ''">
+    <div class="per-realname-after" v-if="user.realname !== ''">
       <div class="per-success">
         <p>您已通过实名认证</p>
       </div>
       <div class="per-content">
         <div class="per-content-box">
           真实姓名
-          <p class="per-after-info">王</p>
+          <p class="per-after-info">{{ hiddenUsername() }}</p>
         </div>
         <div class="per-content-box">
           身份证号
-          <p class="per-after-info">120</p>
+          <p class="per-after-info">{{ hiddenId() }}</p>
         </div>
       </div>
     </div>
@@ -39,33 +40,81 @@
 </template>
 
 <script>
+  import { Toast } from 'mint-ui'
   export default {
     created(){
-      this.$http.get('http://h5.wan855.cn/api/index.php?m=User&a=getUserinfo').then(function(res) {
-        //平台登录信息
-        this.user = res.body.user
-      },function (err) {
-        console.log(err)
-      })
+      this.getData()
     },
     data () {
       return {
         user:[],
-        code:0
+        code:0,
+        realname:{
+            username:'',
+            identity:''
+        },
+        fail:''
       }
     },
     methods:{
 //      http://h5.wan855.cn/api/h5/User/fcm?idcard=asdfg&name=sdlkfjlk
       bindId(){
-        this.$http.get('http://h5.wan855.cn/api/h5/User/fcm?idcard=asdfg&name=sdlkfjlk').then(function(res) {
+        if (this.judgeUsername() && this.judgeId()){
+          this.$http.get('http://h5.wan855.cn/api/h5/User/fcm?idcard=' + this.realname.identity + '&name=' + this.realname.username).then(function(res) {
+            //平台登录信息
+//            console.log(res)
+            this.code = res.body.code
+            if(this.code === 1){
+              this.getData()
+            }else{
+              Toast({
+                message:'认证失败',
+                position:'middle',
+                duration:1000
+              })
+            }
+          },function (err) {
+            console.log(err)
+          })
+        }else if(this.realname.username === "" && this.realname.identity === ""){
+            this.fail = '请填写真实姓名及身份证号!!'
+        }
+
+      },
+      getData(){
+        this.$http.get('http://h5.wan855.cn/api/index.php?m=User&a=getUserinfo').then(function(res) {
           //平台登录信息
-          this.code = res.body.code
-          if(code === 1){
-              
-          }
+          this.user = res.body.user
         },function (err) {
           console.log(err)
         })
+      },
+      judgeUsername(){
+        let regUsername = /^[\u4e00-\u9fa5 ]{2,20}$/
+        if(!(regUsername.test(this.realname.username))){
+          this.fail = '您输入的真实姓名有误,请重新输入';
+          return false;
+        }
+        this.fail = ""
+        return true;
+      },
+      judgeId(){
+        let regId = /^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/
+        if(!(regId.test(this.realname.identity))){
+          this.fail = '您输入的身份证号有误,请重新输入';
+          return false;
+        }
+        this.fail = ''
+        return true;
+      },
+      hiddenUsername(){
+          let newUsername = this.user.realname.substr(0,1) + '**'
+          return newUsername
+      },
+      hiddenId(){
+          console.log(typeof this.user.id_card)
+        let newId = this.user.id_card.substr(0,3) + '**********' + this.user.id_card.substr(-3,3)
+        return newId
       }
     }
   }
@@ -103,10 +152,10 @@
     border: none;
     border-left: 0.2rem solid #ececec;
     height: 3rem;
-    line-height: 4rem;
     text-indent: 2rem;
     color: #999;
     font-size: 1.4rem;
+    width: 17rem;
   }
   .government-warn{
     margin:2rem 0;
@@ -150,9 +199,16 @@
     background-color: #ff815a;
     color: #fff;
   }
+  .per-fail{
+    font-size: 1.4rem;
+    color: #fb2b26;
+    text-align: center;
+    height: 1.4rem;
+    line-height: 1.4rem;
+    margin: 1rem 0 2rem;
+  }
 
-
-  /*---------------------------------
+  /*-----------------------------------
                                   after
                                   ------------------------------------*/
   .per-realname-after .per-success{
@@ -163,7 +219,7 @@
   }
 
   .per-realname-after .per-success p{
-    width: 14rem;
+    width: 16rem;
     text-align: right;
     margin:0 auto;
     height: 4rem;
@@ -191,20 +247,8 @@
     width: 100%;
     text-align: center;
     font-size: 1.6rem;
-    color: #999;
+    color: #999npm;
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </style>

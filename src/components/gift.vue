@@ -227,6 +227,10 @@ export default {
     font-size: 1.2rem;
     color: #999;
     bottom: 0.7rem;
+    width: 70%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
   .gift-get{
     position: absolute;

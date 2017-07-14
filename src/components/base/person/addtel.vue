@@ -13,7 +13,7 @@
           <input type="button" :value="yanzhengVal" class="per-validate-code per-validate-code-after"  v-else disabled style="color: #7e7e7e">
         </div>
       </div>
-      <p class="fail-info">{{ fail.words }}</p>
+      <p class="per-fail">{{ fail }}</p>
       <a href="javascript:;" class="per-content-submit-btn" @click="bind()">提交认证</a>
     </div>
     <!--previous S-->
@@ -39,12 +39,7 @@
 
   export default {
       created(){
-        this.$http.get('http://h5.wan855.cn/api/index.php?m=User&a=getUserinfo').then(function (res) {
-          //平台登录信息
-          this.user = res.body.user
-        }, function (err) {
-          console.log(err)
-        })
+        this.getData()
       },
       component:{
         Toast
@@ -56,23 +51,29 @@
         wait:60,    //手机验证码等待时间
         yanzhengVal:'获取验证码',  //手机验证码提示
         yanzhengBtn:true,   //判断手机验证码按钮true/false
-        fail:{
-          words:'',   //注册填写错误提示
-          register:'' //注册错误提示
-        },
+        fail:'',//注册填写错误提示
         theClass:{
           'fail-color':true
         },
         flag:false,
-        user:''
+        user:'',
+        code:''   //绑定是否成功
       }
     },
     methods:{
+      getData(){
+        this.$http.get('http://h5.wan855.cn/api/index.php?m=User&a=getUserinfo').then(function (res) {
+          //平台登录信息
+          this.user = res.body.user
+        }, function (err) {
+          console.log(err)
+        })
+      },
       getCode(){
         let send = {phone: this.tel, verify: this.imgCode}
         let reg = /^1[34578]\d{9}$/
         if (!(reg.test(this.tel))){
-          this.fail.words = '手机号格式错误!!!'
+          this.fail = '手机号格式错误!!!'
           return;
         }
         if (this.flag === false) {
@@ -82,10 +83,10 @@
               //成功
               this.flag = true
               this.getCodeBtn()
-              this.fail.words = ''
+              this.fail = ''
             } else {
               //手机号格式错误
-              this.fail.words = res.body.msg
+              this.fail = res.body.msg
             }
           }, function (err) {
             console.log(err)
@@ -118,8 +119,9 @@
         console.log(this)
         let vueThis = this
         let daojishi = setInterval(function(){
+            console.log('this'+ this)
           console.log(vueThis.yanzhengVal)
-          console.log('每一秒,都说明我在想你')
+          console.log('GQC')
           if(vueThis.wait === 0){
             vueThis.yanzhengVal = '获取验证码'
             vueThis.yanzhengBtn = true
@@ -135,18 +137,17 @@
       bind(){
         let registerContent = {phone:this.tel,verify:this.yanzhengCode}
         this.$http.post('http://h5.wan855.cn/api/h5/user/bindphone',registerContent).then(function (res) {
-          if (res.body.code === 1){
+            this.code = res.body.code
+          if (this.code === 1){
             //注册成功
+            this.getData()
+          }else{
+            //注册失败
             Toast({
-              message: '绑定成功',
+              message: '绑定失败',
               position: 'middle',
               duration: 1000
             })
-            console.log("跳转")
-            this.$router.push({path:'/'})
-          }else{
-            //注册失败
-            this.fail.words = res.body.msg
 
           }
         })

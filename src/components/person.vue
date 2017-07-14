@@ -6,9 +6,9 @@
         <span class="person-function-tit">我的积分</span>
         <span class="person-function-score">121</span>
       </li>-->
-      <router-link to="/person/qiaodao" tag="li" class="person-qiandao person-function-gap">
+      <!--<router-link to="/person/qiaodao" tag="li" class="person-qiandao person-function-gap">
         <span class="person-function-tit">签到</span>
-      </router-link>
+      </router-link>-->
       <router-link to="/person/realname" tag="li" class="person-function-gap person-realname">
         <span class="person-function-tit">实名认证</span>
       </router-link>
@@ -25,17 +25,18 @@
     <a href="javascript:;" class="person-exit">退出</a>
 
 
-
+    <!--手机绑定弹出层 S-->
     <div class="follow-alert" :class="style" @click="close">
       <div class="follow-window">
-        <div class="follow-heading"></div>
-        <p class="follow-text">防止账号丢失</p>
+        <!--<div class="follow-heading"></div>-->
+        <p class="follow-text follow-text-header">防止账号丢失</p>
         <p class="follow-text">设置后可用手机号登录</p>
         <router-link :to="{path:'/person/addtel'}">
           <a href="javascript:;" class="follow-bind">立即绑定</a>
         </router-link>
       </div>
     </div>
+    <!--手机绑定弹出层 E-->
   </div>
 </template>
 
@@ -79,7 +80,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scope>
   .person{
-    height: 1000px;
+    height: calc(100% - 5.2rem);
     background-color: #ececec;
   }
   .person-function li{
@@ -91,7 +92,6 @@ export default {
     color: #444;
     background-color: #fff;
     border-bottom: 0.1rem solid #ececec;
-    font-weight: bold;
   }
   .person-function-score{
     float: right;
@@ -143,8 +143,8 @@ export default {
     top: 0;
     left:0;
     width: 100%;
-    height:200%;
     z-index: 999;
+    height: 100%;
     background-color: rgba(0,0,0,.6);
     display: none;
   }
@@ -153,11 +153,12 @@ export default {
   }
   .follow-window{
     width:25rem;
-    height: 25rem;
+    height: 15rem;
     position: absolute;
-    top: 10%;
+    top: 50%;
     left:50%;
     margin-left: -12.5rem;
+    margin-top: -7.5rem;
     z-index:999;
     border-radius: 0.5rem;
     overflow: hidden;
@@ -176,6 +177,13 @@ export default {
     line-height: 2rem;
     height: 2rem;
     padding: 0.5rem 0 ;
+    font-size: 1.4rem;
+  }
+  .follow-text-header{
+    line-height: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.8rem;
+    margin-top: 1rem;
   }
   .follow-bind{
     display: block;
@@ -183,7 +191,7 @@ export default {
     line-height: 3rem;
     width: 14rem;
     text-align: center;
-    margin: 2rem auto;
+    margin: 2rem auto 0;
     border-radius: 3rem;
     background-color: #FD482C;
     color: #fff;
@@ -192,11 +200,11 @@ export default {
   @keyframes focus
   {
     from {
-      top: 0;
+      top: 40%;
       opacity: 0;
     }
     to {
-      top: 10%;
+      top: 50%;
       opacity: 1;
     }
   }
