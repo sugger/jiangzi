@@ -56,13 +56,11 @@
 
 
       <ul class="game-article" v-if="selectActive===2">
-        <li v-for="article in articles">
-
+        <router-link tag="li" v-for="article in articles" :to="{path:'/newsdetial/'+article.id}">
             <span class="game-article-style">公告</span>
             <span class="game-article-content">{{ article.post_title }}</span>
             <span class="game-article-time">{{ article.post_date }}</span>
-
-        </li>
+        </router-link>
       </ul>
       <!--+++++-->
    <!--   <ul class="game-article">
@@ -235,7 +233,7 @@ export default {
   .game-intruction{
     margin-top: 1rem;
     background-color: #fff;
-    height: 10rem;
+    min-height: 10rem;
   }
   .game-intruction-tit{
     height: 4rem;
@@ -256,7 +254,9 @@ export default {
   .game-intruction-content{
     color: #6a6a6a;
     margin:0 2rem;
-    line-height: 1.4rem;
+    line-height: 1.6rem;
+    font-size: 1.3rem;
+    padding: 0 0 0.5rem;
   }
   .game-bottom{
     margin-top: 1rem;

@@ -80,8 +80,8 @@ export default {
   }
   .subjectdetial-content{
     height: 100%;
-    line-height: 2.2rem;
-    font-size: 1.2rem;
+    line-height: 1.6rem;
+    font-size: 1.3rem;
     padding:0 1.5rem;
   }
   .subject-about-game{
