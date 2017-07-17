@@ -8,7 +8,7 @@
             <div class="game-box clearfix">
               <p class="game-name" :data-game="game.id">
                 <span class="game-the-name">{{ game.name }}</span>
-                <span v-if="game.ishot == 1" class="is-hot">独家</span>
+                <span v-if="game.ishot == 1" class="is-hot">热门</span>
                 <!--<span v-if="game.isnew == 1" class="is-new">最新</span>-->
                 <span v-if="game.gift !== null" class="is-gift">礼包</span>
               </p>

@@ -37,7 +37,7 @@
         <li v-for="gift in gifts.gift">
           <p class="game-gift-name"><i class="fa fa-gift"></i>{{ gift.gamename }}</p>
           <p class="game-gift-content">{{ gift.card_context }}</p>
-          <a href="javascript:;" v-show="gift.getstatus == 0" class="game-gift-get">领取</a>
+          <a href="javascript:;" v-show="gift.getstatus == 0" class="game-gift-get"@click="getGift(gift.id)">领取</a>
           <a href="javascript:;" v-show="gift.getstatus == 1" class="game-gift-get" @click="checkGiftCode(gift.card)">查看</a>
         </li>
       </ul>
@@ -134,8 +134,39 @@ export default {
       },function (err) {
         console.log(err)
       })
+    },
+    // 获取礼包
+    getGift(id){
+      this.$http.get('http://h5.wan855.cn/api/h5/game/getcard?id='+id).then(function (res) {
+        console.log(res)
+        this.card = res.body
+        if(this.card.status == 1){
+          console.log('status == 1')
+          console.log(this.card)
+          MessageBox({
+            title:'领取提示',
+            message: '<p style="color=#222;"><span style="padding-right: 1rem">兑换码</span><span style="-webkit-user-select:text;background: #ebebeb;padding: 0 .5rem;font-style: italic;">'+ this.card.cardid +'</span></p><p style="font-size: 1.2rem;padding-top: .3rem;line-height: 20px;"">复制兑换码,去游戏中使用</p>',
+            showCancelButton: false
+          });
+
+          this.$http.get('http://h5.wan855.cn/api/h5/game/cardlist/gid/'+this.$route.params.gid).then(function (res) {
+            this.gifts = res.body
+          },function (err) {
+            console.log(err)
+          })
+        }else{
+          Toast({
+            message:this.card.msg,
+            position:'middle'
+          })
+        }
+      },function (err) {
+        console.log(err)
+      })
     }
+
   },
+
   watch:{
       "$route":"getData"
   }

@@ -82,7 +82,6 @@ export default {
       },
       // 获取礼包
       getGift(id){
-//    ############################ 礼包临时接口 ############################
         this.$http.get('http://h5.wan855.cn/api/h5/game/getcard?id='+id).then(function (res) {
             console.log(res)
           this.card = res.body
@@ -108,51 +107,6 @@ export default {
         },function (err) {
           console.log(err)
         })
-
-//    ############################ 礼包临时接口 ############################
-
-
-//          ############################ 自动领取 ############################
-        //判断是否通服
-       /* if (idiscommon == "1"){
-          //获取角色id
-            this.$http.get('http://h5.wan855.cn/api/h5/game/myrole?gid='+gameid).then(function (res) {
-                console.log('获取角色id'+res)
-                if(res.body.code == 1) {
-                  //向游戏内发放道具
-                  this.$http.get('http://h5.wan855.cn/api/h5/game/getcard?gid=' + gameid + '&id=' + giftid + '&roleid=' + res.body.data[0].playerUid).then(function (res2) {
-                    console.log('向游戏内发放道具'+res)
-                    console.log(res2.body.status)
-                    console.log(res2.body.auto)
-                      if (res2.body.status == 1){
-                        console.log('领取成功!!!!!')
-                        if (res2.body.auto == 1){
-                            console.log('发放成功!!!!!')
-                        }
-                      }
-                  }, function (err) {
-                    console.log(err)
-                  })
-                }
-            },function (err) {
-              console.log(err)
-            })
-
-        }else{
-          this.$http.get('http://h5.wan855.cn/api/h5/game/myrole?gid='+games.id+'&sid='+games.sid).then(function (res) {
-
-            this.games = res.body
-          },function (err) {
-            console.log(err)
-          })
-        }*/
-//        ############################ 自动领取 ############################
-
-
-
-
-
-
       }
   },
   computed:{
