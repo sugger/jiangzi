@@ -3,9 +3,6 @@
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
-    <div class="bottom-question">
-
-    </div>
     <div class="footer">
       <ul>
         <router-link :to="{path:'/'}">

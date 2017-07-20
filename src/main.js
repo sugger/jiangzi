@@ -112,6 +112,7 @@ let router = new VueRouter({
 new Vue({
   el: '#guoqianchen',
   router,
-  template: '<Layout/>',
-  components: { Layout }
+  // template: '<Layout/>',
+  // components: { Layout }
+  render:h => h(Layout)
 })
