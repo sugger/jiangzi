@@ -1,21 +1,16 @@
-# games
+# 酱紫游戏
 
-> this is a webapp
+> 一个手游游戏平台
 
-## Build Setup
 
-``` bash
-# install dependencies
-npm install
+# 项目介绍
 
-# serve with hot reload at localhost:8080
-npm run dev
+开始时间 2017.4
+前端 Greentea
+PHP Old Wang
 
-# build for production with minification
-npm run build
+### v1.0版本
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+- 主页 : 轮播 导航 最近在玩 精品推荐
+- 礼包
+- 个人 : 实名 手机绑定
