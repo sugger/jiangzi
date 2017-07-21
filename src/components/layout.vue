@@ -5,10 +5,16 @@
       </keep-alive>
     <div class="footer">
       <ul>
-        <router-link :to="{path:'/'}">
+        <router-link :to="{path:'/index'}">
           <li class="footer-link-1">
             <div class="footer-logo"></div>
             <p>游戏</p>
+          </li>
+        </router-link>
+        <router-link :to="{path:'/store'}">
+          <li class="footer-link-2">
+            <div class="footer-logo"></div>
+            <p>商城</p>
           </li>
         </router-link>
         <router-link :to="{path:'/gift'}">
@@ -41,7 +47,7 @@ export default {
           //第三方登录信息
         if (res.body.oauth === null){
           console.log('跳转到授权接口')
-          window.location.href = 'http://h5.wan855.cn/api/h5/user/oauthlogin/oauthtype/wechat'
+//          window.location.href = 'http://h5.wan855.cn/api/h5/user/oauthlogin/oauthtype/wechat'
           console.log('授权接口跳转完成')
         }else{
           this.$router.push({path:'/register'})
@@ -52,18 +58,26 @@ export default {
     },function (err) {
       console.log(err)
     })
-
     //获取SDK配置文件
-    this.$http.get('http://h5.wan855.cn/api/h5/index/getwechatsdkconf').then(function (res) {
-      //平台登录信息
-      this.config = res.body
-      console.log(res)
+/*    this.$http.get('http://h5.wan855.cn/api/h5/index/getwechatsdkconf').then(function (res) {
+      console.log(this)
       if(config !==''){
         WeiXin.config(config)
       }
     }, function (err) {
       console.log(err)
-    })
+    })*/
+
+
+
+    this.$axios.get('http://h5.wan855.cn/api/h5/index/getwechatsdkconf')
+      .then(res => {
+        this.config = res.data
+//        console.log(this.config)
+      })
+      .catch(function(error){
+          console.log(error)
+      })
   },
   data(){
       return{
@@ -258,7 +272,7 @@ html,body{
     background: url("../assets/icon-game.png") 0 0 no-repeat;
   }
   .footer-link-2 .footer-logo{
-    background: url("../assets/icon-event.png") 0 0 no-repeat;
+    background: url("../assets/icon-store.png") 0 0 no-repeat;
   }
   .footer-link-3 .footer-logo{
     background: url("../assets/icon-gift.png") 0 0 no-repeat;
@@ -270,26 +284,26 @@ html,body{
     background: url("../assets/icon-person.png") 0 0 no-repeat;
   }
 
-  .router-link-exact-active li{
+  .router-link-active li{
     color: #4385f5 !important;
   }
-  .router-link-exact-active .footer-link-1 div {
+  .router-link-active .footer-link-1 div {
     background: url("../assets/icon-game-blue.png") 0 0 no-repeat !important;
     background-size: cover !important;
   }
-  .router-link-exact-active .footer-link-2 div {
-    background: url("../assets/icon-event-blue.png") 0 0 no-repeat !important;
+  .router-link-active .footer-link-2 div {
+    background: url("../assets/icon-store-blue.png") 0 0 no-repeat !important;
     background-size: cover !important;
   }
-  .router-link-exact-active .footer-link-3 div {
+  .router-link-active .footer-link-3 div {
     background: url("../assets/icon-gift-blue.png") 0 0 no-repeat !important;
     background-size: cover !important;
   }
-  .router-link-exact-active .footer-link-4 div {
+  .router-link-active .footer-link-4 div {
     background: url("../assets/icon-community-blue.png") 0 0 no-repeat !important;
     background-size: cover !important;
   }
-  .router-link-exact-active .footer-link-5 div {
+  .router-link-active .footer-link-5 div {
     background: url("../assets/icon-person-blue.png") 0 0 no-repeat !important;
     background-size: cover !important;
   }

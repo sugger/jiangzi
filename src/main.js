@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import Layout from './components/layout.vue'
 import VueRouter from 'vue-router'
+import Axios from 'axios'
 import VueResource from 'vue-resource'
 import Index from './components/index.vue'
 import Gift from './components/gift.vue'
@@ -23,14 +24,26 @@ import NewServer from './components/base/indexlist/list-new-server.vue'
 import News from './components/base/indexlist/list-news.vue'
 import Subject from './components/base/indexlist/list-subject.vue'
 import SubjectDetial from './components/subjectdetial.vue'
+import Store from './components/store.vue'
+import integralStore from './components/store/integralStore.vue'
+import integralTask from './components/store/integralTask.vue'
+import integralLog from './components/store/integralLog.vue'
+import integralLuck from './components/store/integralLuck.vue'
+import storeDetial from './components/store/integralstore/storedetial.vue'
 Vue.use(VueResource)
 Vue.use(VueRouter)
+Vue.prototype.$axios = Axios
 Vue.http.options.emulateJSON = true
 let router = new VueRouter({
   mode:'history',
   routes:[
     {
       path: '/',
+      redirect:'/index',
+      component: Index
+    },
+    {
+      path: '/index',
       component: Index
     },
     {
@@ -105,7 +118,35 @@ let router = new VueRouter({
     {
       path:'/subjectdetial/:sjid',
       component: SubjectDetial
-    }
+    },
+    {
+      path:'/store',
+      component: Store,
+      redirect:'/store/store',
+      children:[
+        {
+          path:'/store/store',
+          component: integralStore,
+        },
+        {
+          path:'/store/task',
+          component: integralTask,
+        },
+        {
+          path:'/store/log',
+          component: integralLog,
+        },
+        {
+          path:'/store/luck',
+          component: integralLuck,
+        },
+        {
+          path:'/store/store/storedetial/:id',
+          component: storeDetial
+        },
+      ]
+    },
+
   ]
 })
 /* eslint-disable no-new */
