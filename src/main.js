@@ -30,6 +30,7 @@ import integralTask from './components/store/integralTask.vue'
 import integralLog from './components/store/integralLog.vue'
 import integralLuck from './components/store/integralLuck.vue'
 import storeDetial from './components/store/integralstore/storedetial.vue'
+import storeGet from './components/store/integralstore/storeget.vue'
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.prototype.$axios = Axios
@@ -141,8 +142,12 @@ let router = new VueRouter({
           component: integralLuck,
         },
         {
-          path:'/store/store/storedetial/:id',
+          path:'/store/store/storedetial/:iid',
           component: storeDetial
+        },
+        {
+          path:'/store/store/storedetial/get/:iid',
+          component: storeGet
         },
       ]
     },

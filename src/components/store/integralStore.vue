@@ -39,7 +39,7 @@ import Boardcast from "./integralstore/boardcast.vue"
     },
     components:{
       Boardcast
-    }
+    },
   }
 </script>
 

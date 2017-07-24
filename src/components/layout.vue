@@ -327,4 +327,20 @@ html,body{
     /*bottom: 0;*/
     /*border-bottom: 0.2rem solid #4385f5;*/
   /*}*/
+
+  /*通用样式*/
+  .btn{
+    border:none;
+    outline: none;
+    background-color: transparent;
+
+  }
+  .link{
+    display: block;
+    text-align: center;
+    line-height: 3rem;
+    height: 3rem;
+    background-color: #fff;
+    color: #666;
+  }
 </style>
