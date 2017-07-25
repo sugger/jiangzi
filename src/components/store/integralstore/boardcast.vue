@@ -1,16 +1,11 @@
 <template>
   <div class="broadcast">
     <swiper :options="swiperOption">
-      <swiper-slide><p class="broadcast-list"><span>[飞天小猪猪]</span>1234567890</p></swiper-slide>
-      <swiper-slide><p class="broadcast-list"><span>[飞天小猪猪]</span>1234567890</p></swiper-slide>
-      <swiper-slide><p class="broadcast-list"><span>[飞天小猪猪]</span>1234567890</p></swiper-slide>
-      <swiper-slide><p class="broadcast-list"><span>[飞天小猪猪]</span>1234567890</p></swiper-slide>
-      <swiper-slide><p class="broadcast-list"><span>[飞天小猪猪]</span>1234567890</p></swiper-slide>
-      <swiper-slide><p class="broadcast-list"><span>[飞天小猪猪]</span>1234567890</p></swiper-slide>
-      <swiper-slide><p class="broadcast-list"><span>[飞天小猪猪]</span>1234567890</p></swiper-slide>
-      <swiper-slide><p class="broadcast-list"><span>[飞天小猪猪]</span>1234567890</p></swiper-slide>
-      <swiper-slide><p class="broadcast-list"><span>[飞天小猪猪]</span>1234567890</p></swiper-slide>
-      <swiper-slide><p class="broadcast-list"><span>[飞天小猪猪]</span>1234567890</p></swiper-slide>
+      <swiper-slide>
+        <p class="broadcast-list" v-if=" boardcast.code=== 200" v-for="item in boardcast.data">
+          <span>{{ boardcast.data.user_nicename }}</span>兑换了{{boardcast.data.product_name}}
+        </p>
+      </swiper-slide>
     </swiper>
   </div>
 </template>
@@ -18,6 +13,15 @@
 <script>
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
+created(){
+    this.$axios.get('http://h5.wan855.cn/api/h5/Goods/broadcast')
+      .then(res => {
+        this.boardcast = res
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+},
   data () {
     return {
       swiperOption: {
@@ -27,6 +31,7 @@ export default {
         height: 30,
         autoHeight:true
       },
+      boardcast:''
     }
   },
   components: {

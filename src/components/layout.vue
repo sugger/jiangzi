@@ -72,8 +72,9 @@ export default {
 
     this.$axios.get('http://h5.wan855.cn/api/h5/index/getwechatsdkconf')
       .then(res => {
-        this.config = res.data
-//        console.log(this.config)
+        this.config = res;
+        WeiXin.config(this.config)
+        console.log(this.config)
       })
       .catch(function(error){
           console.log(error)

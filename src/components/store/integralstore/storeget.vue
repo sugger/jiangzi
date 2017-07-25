@@ -70,12 +70,20 @@
           this.goodsNum = goodsNum
       },
       checkout(){
+          let _this = this
+
+
         MessageBox({
-          title: '',
+          title: ' ',
           message: '兑换成功',
           showCancelButton: true,
+          confirmButtonText:'回到首页',
+          cancelButtonText:'继续兑换',
+          confirmButtonClass:'confirm'
+        }).then(action => {
+          _this.$router.push({path:'./index'})
+        })
 
-        });
       }
 
     },
@@ -213,5 +221,6 @@
   .mint-msgbox-message{
     line-height: 5rem;
   }
+
 </style>
 
