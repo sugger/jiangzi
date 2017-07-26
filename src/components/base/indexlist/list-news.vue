@@ -25,7 +25,7 @@
   import listPublicHeader from './list-public-header.vue'
 export default {
   created(){
-    this.$http.get('http://h5.wan855.cn/api/h5/article').then((res) => {
+    this.$http.get('/api/h5/article').then((res) => {
       this.news = res.body
 //      console.log('news---',res)
     },(err) => {

@@ -25,7 +25,7 @@
 
 export default {
   created(){
-    this.$http.get('http://h5.wan855.cn/api/index.php?m=game&a=history').then(function (res) {
+    this.$http.get('/api/index.php/game/history').then(function (res) {
       this.recentPlay = res.body
       console.log()
     },function (err) {

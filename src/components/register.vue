@@ -24,7 +24,7 @@
 <script>
 export default {
   created(){
-//    this.$http.get('http://h5.wan855.cn/api/?g=h5&m=user&a=verify',{phone:tel,verify:imgCode}).then(function(res) {
+//    this.$http.get('/api/?g=h5&m=user&a=verify',{phone:tel,verify:imgCode}).then(function(res) {
 //
 //    },function (err) {
 //      console.log(err)
@@ -36,7 +36,7 @@ export default {
     return {
       tel:'',   //输入的手机号
       imgCode:'',   //输入的图片二维码
-      imgUrl: 'http://h5.wan855.cn/api/?g=h5&m=user&a=verify&vc=',    //图片二维码地址
+      imgUrl: '/api/?g=h5&m=user&a=verify&vc=',    //图片二维码地址
       yanzhengCode:'',    //输入的手机验证码
       wait:60,    //手机验证码等待时间
       yanzhengVal:'获取验证码',  //手机验证码提示
@@ -58,7 +58,7 @@ export default {
       let flag = false
       let send = {phone:this.tel,verify:this.imgCode}
       if (flag === false){
-        this.$http.post('http://h5.wan855.cn/api/?g=h5&m=user&a=sendVerify',send,{emulateJSON:true}).then(function(res) {
+        this.$http.post('/api/?g=h5&m=user&a=sendVerify',send,{emulateJSON:true}).then(function(res) {
           console.log(res)
           if (res.body.code === 1){
             //成功
@@ -100,7 +100,7 @@ export default {
     },
     register(tel,yanzhengCode){
         let registerContent = {phone:tel,verify:yanzhengCode}
-        this.$http.post('http://h5.wan855.cn/api/?g=h5&m=user&a=registerByPhone',registerContent).then(function (res) {
+        this.$http.post('/api/?g=h5&m=user&a=registerByPhone',registerContent).then(function (res) {
           if (res.body.code === 1){
               //注册成功
               alert('注册成功')

@@ -57,10 +57,10 @@
       }
     },
     methods:{
-//      http://h5.wan855.cn/api/h5/User/fcm?idcard=asdfg&name=sdlkfjlk
+//      /api/h5/User/fcm?idcard=asdfg&name=sdlkfjlk
       bindId(){
         if (this.judgeUsername() && this.judgeId()){
-          this.$http.get('http://h5.wan855.cn/api/h5/User/fcm?idcard=' + this.realname.identity + '&name=' + this.realname.username).then(function(res) {
+          this.$http.get('/api/h5/User/fcm?idcard=' + this.realname.identity + '&name=' + this.realname.username).then(function(res) {
             //平台登录信息
 //            console.log(res)
             this.code = res.body.code
@@ -82,7 +82,7 @@
 
       },
       getData(){
-        this.$http.get('http://h5.wan855.cn/api/index.php?m=User&a=getUserinfo').then(function(res) {
+        this.$http.get('/api/h5/user/getUserinfo').then(function(res) {
           //平台登录信息
           this.user = res.body.user
         },function (err) {

@@ -14,7 +14,7 @@
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
 created(){
-    this.$axios.get('http://h5.wan855.cn/api/h5/Goods/broadcast')
+    this.$axios.get('/api/h5/Goods/broadcast')
       .then(res => {
         this.boardcast = res
       })

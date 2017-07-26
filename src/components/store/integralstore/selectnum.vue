@@ -17,10 +17,13 @@ export default {
   methods:{
       add(){
           this.goodsNum++
-          let allIntegral = this.goodsnumber * this.goodsNum    //商品数 * 商品单价 = 商品积分总数
+
+          let allIntegral = parseInt(this.goodsintegral) * parseInt(this.goodsNum)    //商品数 * 商品单价 = 商品积分总数
+          console.log(allIntegral)
           if (allIntegral > this.userintegral){
               this.goodsNum--
               this.$emit('my-event',this.goodsNum)
+              console.log('我比你大')
               return;
           }
           this.$emit('my-event',this.goodsNum)

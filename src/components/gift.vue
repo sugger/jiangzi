@@ -36,7 +36,7 @@
 export default {
 
   created(){
-    this.$http.get('http://h5.wan855.cn/api/h5/game/cardlist').then(function (res) {
+    this.$http.get('/api/h5/game/cardlist').then(function (res) {
       this.games = res.body
 //      console.log('games.length'+this.games.length)
     },function (err) {
@@ -82,7 +82,7 @@ export default {
       },
       // 获取礼包
       getGift(id){
-        this.$http.get('http://h5.wan855.cn/api/h5/game/getcard?id='+id).then(function (res) {
+        this.$http.get('/api/h5/game/getcard?id='+id).then(function (res) {
             console.log(res)
           this.card = res.body
           if(this.card.status == 1){
@@ -93,7 +93,7 @@ export default {
               message: '<p style="color=#222;"><span style="padding-right: 1rem">兑换码</span><span style="-webkit-user-select:text;background: #ebebeb;padding: 0 .5rem;font-style: italic;">'+ this.card.cardid +'</span></p><p style="font-size: 1.2rem;padding-top: .3rem;line-height: 20px;"">复制兑换码,去游戏中使用</p>',
               showCancelButton: false
             });
-            this.$http.get('http://h5.wan855.cn/api/h5/game/cardlist').then(function (res) {
+            this.$http.get('/api/h5/game/cardlist').then(function (res) {
               this.games = res.body
             },function (err) {
               console.log(err)

@@ -23,7 +23,7 @@ import Boardcast from "./integralstore/boardcast.vue"
 
   export default {
       created(){
-        this.$axios.get('http://h5.wan855.cn/api/h5/Goods/info')
+        this.$axios.get('/api/h5/Goods/info')
           .then(res => {
             this.commodity = res.data
             console.log(this.commodity)

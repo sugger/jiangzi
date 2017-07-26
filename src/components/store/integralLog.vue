@@ -28,7 +28,7 @@
 <script>
 export default {
   created(){
-    this.$axios.get('http://h5.wan855.cn/api/Integral/Integral/source')
+    this.$axios.get('/api/Integral/Integral/source')
       .then(res => {
           if (res.code == 200){
             this.getLogs = res.data
@@ -38,7 +38,7 @@ export default {
       .catch(function(error){
         console.log(error)
       })
-    this.$axios.get('http://h5.wan855.cn/api/h5/Goods/record')
+    this.$axios.get('/api/h5/Goods/record')
       .then(res => {
           if(res.code == 200){
             this.exchangeLogs = res.data

@@ -18,7 +18,7 @@
   import personHeader from './person-header.vue'
 export default {
   created(){
-    this.$http.get('http://h5.wan855.cn/api/index.php?m=User&a=getUserinfo').then(function(res) {
+    this.$http.get('/api/h5/user/getUserinfo').then(function(res) {
       //平台登录信息
       this.user = res.body.user
     },function (err) {

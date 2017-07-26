@@ -109,20 +109,20 @@ export default {
       });
     },
     getData(){
-      this.$http.get('http://h5.wan855.cn/api/h5/game/gameinfo/gid/'+this.$route.params.gid).then(function (res) {
+      this.$http.get('/api/h5/game/gameinfo/gid/'+this.$route.params.gid).then(function (res) {
         this.game = res.body
         console.log(this.$route.params.gid)
         console.log(this.game.articletype)
 
         //礼包接口
-        this.$http.get('http://h5.wan855.cn/api/h5/game/cardlist/gid/'+this.$route.params.gid).then(function (res) {
+        this.$http.get('/api/h5/game/cardlist/gid/'+this.$route.params.gid).then(function (res) {
           this.gifts = res.body
         },function (err) {
           console.log(err)
         })
 
         //文章接口
-        this.$http.get('http://h5.wan855.cn/api/h5/article/getbyid/id/'+this.game.articletype).then(function (res) {
+        this.$http.get('/api/h5/article/getbyid/id/'+this.game.articletype).then(function (res) {
           this.articles = res.body
         },function (err) {
           console.log(err)
@@ -135,7 +135,7 @@ export default {
     },
     // 获取礼包
     getGift(id){
-      this.$http.get('http://h5.wan855.cn/api/h5/game/getcard?id='+id).then(function (res) {
+      this.$http.get('/api/h5/game/getcard?id='+id).then(function (res) {
         console.log(res)
         this.card = res.body
         if(this.card.status == 1){
@@ -147,7 +147,7 @@ export default {
             showCancelButton: false
           });
 
-          this.$http.get('http://h5.wan855.cn/api/h5/game/cardlist/gid/'+this.$route.params.gid).then(function (res) {
+          this.$http.get('/api/h5/game/cardlist/gid/'+this.$route.params.gid).then(function (res) {
             this.gifts = res.body
           },function (err) {
             console.log(err)

@@ -146,7 +146,7 @@ let router = new VueRouter({
           component: storeDetial
         },
         {
-          path:'/store/store/storedetial/get/:iid',
+          path:'/store/store/storedetial/get/:getid',
           component: storeGet
         },
       ]

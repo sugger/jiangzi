@@ -17,7 +17,7 @@
   import { Slider, SliderItem } from 'vue-easy-slider'
 export default {
   created(){
-    this.$http.get('http://h5.wan855.cn/api/h5/index/shounav').then(function (res) {
+    this.$http.get('/api/h5/index/shounav').then(function (res) {
       this.lists = res.body
     },function (err) {
       console.log(err)

@@ -43,7 +43,7 @@ export default {
   },
   methods:{
     getSubject(){
-      this.$http.get('http://h5.wan855.cn/api/h5/activity/details/id/'+this.$route.params.sjid).then((res) => {
+      this.$http.get('/api/h5/activity/details/id/'+this.$route.params.sjid).then((res) => {
         this.subject = res.body.data
       },(err) => {
         console.log(err)

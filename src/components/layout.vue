@@ -41,13 +41,13 @@
   import WeiXin from 'weixin-js-sdk'
 export default {
   created(){
-    this.$http.get('http://h5.wan855.cn/api/h5/user/getUserinfo').then(function(res) {
+    this.$http.get('/api/h5/user/getUserinfo').then(function(res) {
       //平台登录信息
       if (res.body.user === null){
           //第三方登录信息
         if (res.body.oauth === null){
           console.log('跳转到授权接口')
-//          window.location.href = 'http://h5.wan855.cn/api/h5/user/oauthlogin/oauthtype/wechat'
+          window.location.href = '/api/h5/user/oauthlogin/oauthtype/wechat'
           console.log('授权接口跳转完成')
         }else{
           this.$router.push({path:'/register'})
@@ -59,7 +59,7 @@ export default {
       console.log(err)
     })
     //获取SDK配置文件
-/*    this.$http.get('http://h5.wan855.cn/api/h5/index/getwechatsdkconf').then(function (res) {
+/*    this.$http.get('/api/h5/index/getwechatsdkconf').then(function (res) {
       console.log(this)
       if(config !==''){
         WeiXin.config(config)
@@ -70,7 +70,7 @@ export default {
 
 
 
-    this.$axios.get('http://h5.wan855.cn/api/h5/index/getwechatsdkconf')
+    this.$axios.get('/api/h5/index/getwechatsdkconf')
       .then(res => {
         this.config = res;
         WeiXin.config(this.config)

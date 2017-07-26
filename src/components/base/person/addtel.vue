@@ -62,7 +62,7 @@
     },
     methods:{
       getData(){
-        this.$http.get('http://h5.wan855.cn/api/index.php?m=User&a=getUserinfo').then(function (res) {
+        this.$http.get('/api/index.php?m=User&a=getUserinfo').then(function (res) {
           //平台登录信息
           this.user = res.body.user
         }, function (err) {
@@ -77,7 +77,7 @@
           return;
         }
         if (this.flag === false) {
-          this.$http.get('http://h5.wan855.cn/api/h5/user/sendPhoneVerify?phone='+ this.tel).then(function (res) {
+          this.$http.get('/api/h5/user/sendPhoneVerify?phone='+ this.tel).then(function (res) {
             console.log(res)
             if (res.body.code === 1) {
               //成功
@@ -136,7 +136,7 @@
       },
       bind(){
         let registerContent = {phone:this.tel,verify:this.yanzhengCode}
-        this.$http.post('http://h5.wan855.cn/api/h5/user/bindphone',registerContent).then(function (res) {
+        this.$http.post('/api/h5/user/bindphone',registerContent).then(function (res) {
             this.code = res.body.code
           if (this.code === 1){
             //注册成功

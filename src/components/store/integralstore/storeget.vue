@@ -1,12 +1,12 @@
 <template>
   <div class="storeget">
     <div class="detial clearfix">
-      <img :src="goods.product_info.product_img" alt="" class="detial-img">
+      <img :src="goods.product_img" alt="" class="detial-img">
       <div class="detial-box">
-        <p class="detial-title">{{ goods.product_info.product_name }}</p>
+        <p class="detial-title">{{ goods.product_name }}</p>
         <p class="store-get-select">
-          积分:<span>{{ goods.product_info.integral_exchange }}</span>
-          <selectNum :goodsintegral="goods.product_info.integral_exchange"
+          积分:<span>{{ goods.integral_exchange }}</span>
+          <selectNum :goodsintegral="goods.integral_exchange"
                      :userintegral="user.score" @my-event="getMyEvent"></selectNum>
         </p>
       </div>
@@ -27,8 +27,8 @@
   export default {
     created(){
       this.getData()
-      console.log(this.goods.product_info.integral_exchange * this.goodsNum)
-      console.log(this.goods.product_info.integral_exchange)
+      console.log(this.goods.integral_exchange * this.goodsNum)
+      console.log(this.goods.integral_exchange)
     },
     data () {
       return {
@@ -39,28 +39,28 @@
     },
     computed:{
       totalIntegral(){
-        return this.goods.product_info.integral_exchange * this.goodsNum
+        return this.goods.integral_exchange * this.goodsNum
       }
     },
     methods:{
       integralEnough(){
-        if(this.user.score >= this.goods.product_info.product_num){
+        if(this.user.score >= this.goods.product_num){
           return true
         }else{
           return false
         }
       },
       getData(){
-        this.$axios.get('http://h5.wan855.cn/api/h5/Goods/detail?goods_id='+this.$route.params.iid)
+        this.$axios.get('/api/h5/Goods/detail?goods_id='+this.$route.params.getid)
           .then(res => {
-            this.goods = res.data
+            this.goods = res.data.product_info
           })
           .catch(function(error){
             console.log(error)
           })
-        this.$axios.get('http://h5.wan855.cn/api/h5/user/getUserinfo')
+        this.$axios.get('/api/h5/user/getUserinfo')
           .then(res => {
-            this.user = res.user
+            this.user = res.data.user
           })
           .catch(function(error){
             console.log(error)
@@ -80,8 +80,8 @@
           confirmButtonText:'回到首页',
           cancelButtonText:'继续兑换',
           confirmButtonClass:'confirm'
-        }).then(action => {
-          _this.$router.push({path:'./index'})
+        }).then(function() {
+          _this.$router.push({path:'/index'})
         })
 
       }

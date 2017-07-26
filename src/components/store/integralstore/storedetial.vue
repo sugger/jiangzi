@@ -43,14 +43,15 @@ export default {
           }
       },
       getData(){
-        this.$axios.get('http://h5.wan855.cn/api/h5/Goods/detail?goods_id='+this.$route.params.iid)
+        this.$axios.get('/api/h5/Goods/detail?goods_id='+this.$route.params.iid)
           .then(res => {
             this.goods = res.data
+            console.log(res)
           })
           .catch(function(error){
             console.log(error)
           })
-        this.$axios.get('http://h5.wan855.cn/api/h5/user/getUserinfo')
+        this.$axios.get('/api/h5/user/getUserinfo')
           .then(res => {
             this.user = res.user
           })

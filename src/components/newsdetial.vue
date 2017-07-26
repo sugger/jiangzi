@@ -22,7 +22,7 @@ export default {
   },
   methods:{
       getData(){
-        this.$http.get('http://h5.wan855.cn/api/h5/article/getarticle/id/'+this.$route.params.aid).then(function (res) {
+        this.$http.get('/api/h5/article/getarticle/id/'+this.$route.params.aid).then(function (res) {
           console.log('res.body.data'+res.body.data)
           console.log('res.body'+res.body)
           this.article = res.body.data

@@ -29,7 +29,7 @@
   import listPublicHeader from './list-public-header.vue'
 export default {
   created(){
-    this.$http.get('http://h5.wan855.cn/api/h5/game/hot').then(function (res) {
+    this.$http.get('/api/h5/game/hot').then(function (res) {
       this.hotgames = res.body
     },function (err) {
       console.log(err)
@@ -44,7 +44,7 @@ export default {
   },
   methods:{
       getGame(){
-        this.$http.get('http://h5.wan855.cn/api/h5/game/hot').then(function (res) {
+        this.$http.get('/api/h5/game/hot').then(function (res) {
           this.hotgames = res.body
         },function (err) {
           console.log(err)

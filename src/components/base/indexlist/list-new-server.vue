@@ -48,13 +48,13 @@
 export default {
   created(){
     //已开新服
-    this.$http.get('http://h5.wan855.cn/api/h5/game/server').then((res) => {
+    this.$http.get('/api/h5/game/server').then((res) => {
       this.yikai = res.body
     },(err) => {
       console.log(err)
     })
     //新服预告
-    this.$http.get('http://h5.wan855.cn/api/h5/game/server/type/yugao').then((res) => {
+    this.$http.get('/api/h5/game/server/type/yugao').then((res) => {
       this.yugao = res.body
     },(err) => {
       console.log(err)

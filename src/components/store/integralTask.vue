@@ -33,7 +33,7 @@
 <script>
 export default {
     created(){
-      this.$axios.get('http://h5.wan855.cn/api/integral/task?type=1')
+      this.$axios.get('/api/integral/task?type=1')
         .then(res => {
           this.tasks = res.data
         })
