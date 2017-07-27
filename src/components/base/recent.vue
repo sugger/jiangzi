@@ -25,7 +25,7 @@
 
 export default {
   created(){
-    this.$http.get('/api/index.php/game/history').then(function (res) {
+    this.$http.get('/api/h5/game/history').then(function (res) {
       this.recentPlay = res.body
       console.log()
     },function (err) {
