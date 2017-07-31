@@ -3,23 +3,23 @@
     <div class="select">
       <ul>
         <li @click="selectTaskType(1)">获得记录  <div :class="{'integral-task-select-type': 1 == active}"></div></li>
-        <li @click="selectTaskType(2)">日常任务 <div :class="{'integral-task-select-type': 2 == active}"></div></li>
+        <li @click="selectTaskType(2)">兑换记录 <div :class="{'integral-task-select-type': 2 == active}"></div></li>
       </ul>
     </div>
-    <ul class="task-log" v-if="active === 1">
+    <ul class="task-log" v-if="active == 1">
       <!--获得记录-->
       <li v-for="get in getLogs">
         <p class="log-name">{{ get.task_name }}</p>
         <p class="log-time">{{ get.task_time }}</p>
-        <p class="log-integral">{{ get.task_count }}</p>
+        <p class="log-integral">+{{ get.task_count }}积分</p>
       </li>
     </ul>
-    <ul class="task-log" v-if="active === 2">
+    <ul class="task-log" v-if="active == 2">
       <!--兑换记录-->
       <li v-for="exchange in exchangeLogs">
         <p class="log-name">{{ exchange.product_name }}</p>
-        <p class="log-time">{{ exchange.exchang_time }}</p>
-        <p class="log-integral">+{{ exchange.expend_integral }}</p>
+        <p class="log-time">{{ exchange.exchange_time }}</p>
+        <p class="log-integral">-{{ exchange.expend_integral }}积分</p>
       </li>
     </ul>
   </div>
@@ -30,8 +30,9 @@ export default {
   created(){
     this.$axios.get('/api/Integral/Integral/source')
       .then(res => {
-          if (res.code == 200){
-            this.getLogs = res.data
+          console.log(res)
+          if (res.data.code == 200){
+            this.getLogs = res.data.data
           }
 
       })
@@ -40,8 +41,10 @@ export default {
       })
     this.$axios.get('/api/h5/Goods/record')
       .then(res => {
-          if(res.code == 200){
-            this.exchangeLogs = res.data
+
+          if(res.data.code == 200){
+
+            this.exchangeLogs = res.data.data
           }
       })
       .catch(function(error){
@@ -76,20 +79,21 @@ export default {
     position: absolute;
     font-size: 1.4rem;
     color: #333;
-    left: 1rem;
+    left: 1.5rem;
     top:.8rem;
   }
   .task-log li .log-time{
     position: absolute;
     font-size: 1.2rem;
     color: #666;
-    top:2.2rem;
-    left: 1rem;
+    bottom: .6rem;
+    left: 1.5rem;
   }
   .task-log li .log-integral{
     position: absolute;
     right: 1.5rem;
     height: 1.6rem;
+    line-height: 1.6rem;
     font-size: 1.6rem;
     top:50%;
     margin-top: -0.8rem;

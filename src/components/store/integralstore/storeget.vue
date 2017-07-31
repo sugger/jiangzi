@@ -24,6 +24,7 @@
 <script>
   import selectNum from "./selectnum.vue"
   import { Toast,MessageBox } from 'mint-ui';
+  import qs from 'qs';
   export default {
     created(){
       this.getData()
@@ -71,18 +72,30 @@
       },
       checkout(){
           let _this = this
+        /*this.$axios.get('/api/h5/Goods/exchange?goods_id=' +
+              this.goods.id + '&goods_num=' + this.goodsNum + '&expend_integral=' + this.goods.integral_exchange * this.goodsNum
+
+        )*/
+          let data = {
+            goods_id : this.goods.id,
+            goods_num : this.goodsNum,
+            expend_integral : this.goods.integral_exchange * this.goodsNum
+          }
+          this.$axios.post('/api/h5/Goods/exchange',qs.stringify(data))
+          .then(res => {
+            Toast({
+              message: '兑换成功',
+              position: 'middle',
+              duration: 1000
+            })
+              _this.$router.push({path:'/store/store'})
+
+          })
+          .catch(function(error){
+            console.log(error)
+          })
 
 
-        MessageBox({
-          title: ' ',
-          message: '兑换成功',
-          showCancelButton: true,
-          confirmButtonText:'回到首页',
-          cancelButtonText:'继续兑换',
-          confirmButtonClass:'confirm'
-        }).then(function() {
-          _this.$router.push({path:'/index'})
-        })
 
       }
 

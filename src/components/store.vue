@@ -16,10 +16,10 @@
           <p>积分记录</p>
           <div class="triangle"></div>
         </router-link>
-        <router-link tag="li" to="/store/luck">
+    <!--    <router-link tag="li" to="/store/luck">
           <p>积分抽奖</p>
           <div class="triangle"></div>
-        </router-link>
+        </router-link>-->
       </ul>
     </div>
     <!--商城导航 E-->
@@ -61,7 +61,7 @@ export default {
   }
 .store-nav ul li{
   float: left;
-  width: 25%;
+  width: 33%;
   height: 6rem;
   text-align: center;
   font-size: 1.6rem;

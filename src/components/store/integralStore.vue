@@ -10,7 +10,7 @@
         <router-link tag="li" v-for="item in commodity" :to="{path:'/store/store/storedetial/'+item.id}">
           <img :src="item.product_img" alt="">
           <p class="commodity-list-tit">{{ item.product_name }}</p>
-          <p class="commodity-list-integral">{{ item.product_descript }}</p>
+          <p class="commodity-list-integral">{{ item.integral_exchange }}积分</p>
         </router-link>
       </ul>
     </div>
@@ -25,6 +25,7 @@ import Boardcast from "./integralstore/boardcast.vue"
       created(){
         this.$axios.get('/api/h5/Goods/info')
           .then(res => {
+
             this.commodity = res.data
             console.log(this.commodity)
           })
@@ -80,15 +81,15 @@ import Boardcast from "./integralstore/boardcast.vue"
     font-size: 1.4rem;
     font-weight: bolder;
     color: #333;
-    height: 2.5rem;
-    line-height: 2.5rem;
+    height: 2rem;
+    line-height: 2rem;
     text-indent: 1rem;
   }
   .commodity-list-integral{
     font-size: 1.2rem;
     color: #ff6b4f;
     text-indent: 1rem;
-    height: 2rem;
-    line-height: 2rem;
+    height: 1.4rem;
+    line-height: 1.4rem;
   }
 </style>

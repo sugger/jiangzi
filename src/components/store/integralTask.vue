@@ -7,7 +7,7 @@
       </ul>
     </div>
     <ul class="task" v-if="active == 1">
-      <li v-for="task in tasks.data" v-if="task.type === '2'">
+      <li v-for="task in tasks" v-if="task.type === '2'">
         <img :src="task.image" alt="">
         <p class="task-name">{{ task.title }} <span>+{{ task.integral }}积分</span></p>
         <p class="task-content">{{ task.content }}</p>
@@ -18,7 +18,7 @@
     </ul>
 
     <ul class="task" v-if="active == 2">
-      <li v-for="task in tasks.data" v-if="task.type === '1'">
+      <li v-for="task in tasks" v-if="task.type === '1'">
         <img :src="task.image" alt="">
         <p class="task-name">{{ task.title }} <span>+{{ task.integral }}积分</span></p>
         <p class="task-content">{{ task.content }}</p>
@@ -35,7 +35,8 @@ export default {
     created(){
       this.$axios.get('/api/integral/task?type=1')
         .then(res => {
-          this.tasks = res.data
+            console.log(res)
+          this.tasks = res.data.data
         })
         .catch(function(error){
           console.log(error)
@@ -43,7 +44,7 @@ export default {
     },
   data () {
     return {
-        tasks:'',
+        tasks:[],
         //1日常任务 2新手任务
         active:'1'
     }
