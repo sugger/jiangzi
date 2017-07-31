@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import listPublicHeader from './base/indexlist/list-public-header.vue'
+  import listPublicHeader from '../common/list-public-header.vue'
 export default {
   created(){
     this.getSubject()

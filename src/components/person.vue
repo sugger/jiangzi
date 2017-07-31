@@ -42,7 +42,7 @@
 
 <script>
   import Vue from 'vue'
-  import personHeader from './base/person/person-header'
+  import personHeader from './person/person-header'
 export default {
   created(){
     this.$http.get('/api/h5/user/getUserinfo').then(function (res) {

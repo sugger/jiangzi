@@ -26,7 +26,7 @@
 
 <script>
   import InfiniteLoading from 'vue-infinite-loading';
-  import listPublicHeader from './list-public-header.vue'
+  import listPublicHeader from './common/list-public-header.vue'
 export default {
   created(){
     this.$http.get('/api/h5/game/hot').then(function (res) {

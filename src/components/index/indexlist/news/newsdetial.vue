@@ -55,7 +55,7 @@ export default {
     position: relative;
     height: 3rem;
     line-height: 3rem;
-    background: url("../assets/article-clock.png") 1.5rem center no-repeat;
+    background: url("../../../../assets/article-clock.png") 1.5rem center no-repeat;
     background-size: 1.2rem;
   }
   .news-detial-box .time{

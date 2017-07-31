@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import listPublicHeader from './list-public-header.vue'
+  import listPublicHeader from './common/list-public-header.vue'
 export default {
   created(){
     this.$http.get('/api/h5/article').then((res) => {

@@ -37,11 +37,11 @@ export default {
   }
   .public-logo-home{
     left: 1.5rem;
-    background: url("../../../assets/subject-header-home.png") 0 0 no-repeat;
+    background: url("../../../../assets/subject-header-home.png") 0 0 no-repeat;
   }
   .public-logo-search{
     right: 1.5rem;
-    background: url("../../../assets/subject-header-search.png") 0 0 no-repeat;
+    background: url("../../../../assets/subject-header-search.png") 0 0 no-repeat;
   }
   .public-title{
     position: absolute;

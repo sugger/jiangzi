@@ -32,7 +32,7 @@
 <script>
   import gqcHeader from './base/header'
   import { Toast,MessageBox } from 'mint-ui';
-  import listPublicHeader from './base/indexlist/list-public-header.vue'
+  import listPublicHeader from './index/indexlist/common/list-public-header.vue'
 export default {
 
   created(){

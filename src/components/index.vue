@@ -11,11 +11,11 @@
 </template>
 
 <script>
-  import Slide from './base/slide'
-  import Recent from './base/recent'
-  import indexList from './base/indexList'
+  import Slide from './index/slide'
+  import Recent from './index/recent'
+  import indexList from './index/indexList'
   import gqcHeader from './base/header'
-  import Boutique from './base/boutique'
+  import Boutique from './index/boutique'
 export default {
   components:{
     Slide,

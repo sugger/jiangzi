@@ -176,16 +176,16 @@
     color: #fff;
   }
   .per-validate-realname{
-    background: url("../../../assets/validate-username.png") 1.8rem center no-repeat;
+    background: url("../../assets/validate-username.png") 1.8rem center no-repeat;
   }
   .per-validate-id{
-    background: url("../../../assets/validate-id.png") 1.8rem center no-repeat;
+    background: url("../../assets/validate-id.png") 1.8rem center no-repeat;
   }
   .per-validate-tel{
-    background: url("../../../assets/validate-tel.png") 1.8rem center no-repeat;
+    background: url("../../assets/validate-tel.png") 1.8rem center no-repeat;
   }
   .per-validate-message{
-    background: url("../../../assets/validate-message.png") 1.8rem center no-repeat;
+    background: url("../../assets/validate-message.png") 1.8rem center no-repeat;
   }
   .per-validate-code{
     position: absolute;
@@ -223,7 +223,7 @@
     text-align: right;
     margin:0 auto;
     height: 4rem;
-    background: url("../../../assets/validate-id-success.png") 0 center no-repeat;
+    background: url("../../assets/validate-id-success.png") 0 center no-repeat;
     background-size: 2.5rem;
   }
   .per-after-info{
@@ -237,7 +237,7 @@
 
   .per-addtel-after .per-success{
     position: relative;
-    background: url("../../../assets/validate-tel-success.png") center 2rem no-repeat;
+    background: url("../../assets/validate-tel-success.png") center 2rem no-repeat;
     height: 15rem;
     background-size: 4rem;
   }
