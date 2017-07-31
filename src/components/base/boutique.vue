@@ -80,6 +80,9 @@ export default {
   background-color: #fff;
   position: relative;
 }
+  .boutique ul li:last-of-type{
+    margin-bottom: 5.2rem;
+  }
 .boutique ul li img{
   position: absolute;
   top: 50%;
