@@ -11,12 +11,12 @@
             <p>游戏</p>
           </li>
         </router-link>
-   <!--     <router-link :to="{path:'/store'}">
+        <router-link :to="{path:'/store'}">
           <li class="footer-link-2">
             <div class="footer-logo"></div>
             <p>商城</p>
           </li>
-        </router-link>-->
+        </router-link>
         <router-link :to="{path:'/gift'}">
           <li class="footer-link-3">
             <div class="footer-logo"></div>

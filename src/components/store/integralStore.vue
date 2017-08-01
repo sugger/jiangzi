@@ -3,14 +3,13 @@
     <!--广播部分 S-->
     <Boardcast></Boardcast>
     <!--广播部分 E-->
-    <h1 class="commodity-title">兑换商品</h1>
     <!--商品列表 S-->
     <div class="commodity-list">
-      <ul>
+      <ul class="clearfix">
         <router-link tag="li" v-for="item in commodity" :to="{path:'/store/store/storedetial/'+item.id}">
           <img :src="item.product_img" alt="">
           <p class="commodity-list-tit">{{ item.product_name }}</p>
-          <p class="commodity-list-integral">{{ item.integral_exchange }}积分</p>
+          <p class="commodity-list-integral">{{ item.integral_exchange }}积分  <span class="commodity-list-num">剩余: {{ item.product_num }}</span></p>
         </router-link>
       </ul>
     </div>
@@ -25,9 +24,8 @@ import Boardcast from "./integralstore/boardcast.vue"
       created(){
         this.$axios.get('/api/h5/Goods/info')
           .then(res => {
-
+              console.log(res)
             this.commodity = res.data
-            console.log(this.commodity)
           })
           .catch(function(error){
               console.log(error)
@@ -57,25 +55,35 @@ import Boardcast from "./integralstore/boardcast.vue"
     color: #333;
   }
   /*积分列表*/
+  .commodity-list{
+    min-height: 35rem;
+    background-color: #fff;
+  }
 .commodity-list ul li{
-  width: calc((100% - 0.5rem)/2);
-  height: 9rem;
-  background-color: #fff;
-  margin-top: 0.5rem;
+  width: calc((100% - 3rem)/2);
+  margin-top: 1rem;
   float: left;
+
 
 }
 .commodity-list ul li:nth-of-type(even){
   margin-left: 0.5rem;
+  margin-right: 1rem;
 }
+  .commodity-list ul li:nth-of-type(odd){
+    margin-right: 0.5rem;
+    margin-left: 1rem;
+  }
   .commodity-list ul li img{
     display: block;
     margin:0 auto;
-    width: 10rem;
-    height: 5rem;
+    width: 100%;
+    height: 9rem;
     border: none;
     outline: none;
     margin-top: .5rem;
+    overflow: hidden;
+    border-radius: 1rem;
   }
   .commodity-list-tit{
     font-size: 1.4rem;
@@ -83,13 +91,16 @@ import Boardcast from "./integralstore/boardcast.vue"
     color: #333;
     height: 2rem;
     line-height: 2rem;
-    text-indent: 1rem;
+    /*text-indent: 1rem;*/
   }
   .commodity-list-integral{
     font-size: 1.2rem;
-    color: #ff6b4f;
-    text-indent: 1rem;
+    color: #666;
+    /*text-indent: 1rem;*/
     height: 1.4rem;
     line-height: 1.4rem;
+  }
+  .commodity-list-num{
+    float: right;
   }
 </style>

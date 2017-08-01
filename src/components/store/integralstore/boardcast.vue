@@ -1,22 +1,25 @@
 <template>
   <div class="broadcast">
     <swiper :options="swiperOption">
-      <swiper-slide>
-        <p class="broadcast-list" v-if=" boardcast.code=== 200" v-for="item in boardcast.data">
-          <span>{{ boardcast.data.user_nicename }}</span>兑换了{{boardcast.data.product_name}}
-        </p>
+      <swiper-slide class="broadcast-list"  v-for="item in boardcast">
+        <!--<p class="broadcast-list"  v-for="item in boardcast">-->
+          <span>{{ item.user_nicename }}</span>兑换了{{item.product_name}}
+        <!--</p>-->
       </swiper-slide>
+
     </swiper>
   </div>
 </template>
 
 <script>
-  import { swiper, swiperSlide } from 'vue-awesome-swiper'
+  import { swiper,swiperSlide } from 'vue-awesome-swiper'
 export default {
 created(){
     this.$axios.get('/api/h5/Goods/broadcast')
       .then(res => {
-        this.boardcast = res
+//          console.log(res)
+        this.boardcast = res.data.data
+        console.log(this.boardcast)
       })
       .catch(function(error){
         console.log(error)
@@ -26,7 +29,7 @@ created(){
     return {
       swiperOption: {
         direction: 'vertical',
-        autoplay:1000,
+        autoplay:2000,
         width:window.innerWidth,
         height: 30,
         autoHeight:true

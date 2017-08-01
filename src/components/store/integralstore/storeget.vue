@@ -88,6 +88,7 @@
               position: 'middle',
               duration: 1000
             })
+
               _this.$router.push({path:'/store/store'})
 
           })

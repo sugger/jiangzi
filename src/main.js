@@ -31,10 +31,15 @@ import integralLog from './components/store/integralLog.vue'
 import integralLuck from './components/store/integralLuck.vue'
 import storeDetial from './components/store/integralstore/storedetial.vue'
 import storeGet from './components/store/integralstore/storeget.vue'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+Vue.use(VueAwesomeSwiper)
 Vue.use(VueResource)
 Vue.use(VueRouter)
+
 Vue.prototype.$axios = Axios
 Vue.http.options.emulateJSON = true
+
+
 let router = new VueRouter({
   mode:'history',
   routes:[

@@ -12,7 +12,7 @@
         <p class="task-name">{{ task.title }} <span>+{{ task.integral }}积分</span></p>
         <p class="task-content">{{ task.content }}</p>
         <input type="button" class="btn task-btn task-get" value="任务未完成" v-if="task.showStatus === 0">
-        <input type="button" class="btn task-btn task-get" value="积分领取" v-if="task.showStatus === 2">
+        <input type="button" class="btn task-btn task-get" value="积分领取" v-if="task.showStatus === 2" @click="getIntegral(task.id)">
         <input type="button" class="btn task-btn task-got" value="积分已领取" v-if="task.showStatus === 1">
       </li>
     </ul>
@@ -22,25 +22,19 @@
         <img :src="task.image" alt="">
         <p class="task-name">{{ task.title }} <span>+{{ task.integral }}积分</span></p>
         <p class="task-content">{{ task.content }}</p>
-        <input type="button" class="btn task-btn task-get" value="任务未完成" v-if="task.showStatus === 0">
-        <input type="button" class="btn task-btn task-get" value="积分领取" v-if="task.showStatus === 2">
-        <input type="button" class="btn task-btn task-got" value="积分已领取" v-if="task.showStatus === 1">
+        <input type="button" class="btn task-btn task-got" value="任务未完成" v-if="task.showStatus === 0" disabled>
+        <input type="button" class="btn task-btn task-get" value="积分领取" v-if="task.showStatus === 2" @click="getIntegral(task.id)">
+        <input type="button" class="btn task-btn task-got" value="积分已领取" v-if="task.showStatus === 1 || task.showStatus === 3" disabled>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+  import { Toast,MessageBox } from 'mint-ui';
 export default {
     created(){
-      this.$axios.get('/api/integral/task?type=1')
-        .then(res => {
-            console.log(res)
-          this.tasks = res.data.data
-        })
-        .catch(function(error){
-          console.log(error)
-        })
+        this.getData();
     },
   data () {
     return {
@@ -52,6 +46,33 @@ export default {
   methods:{
     selectTaskType(status){
       this.active = status
+    },
+    getIntegral(taskId){
+        this.$axios.get('/api/integral/task/receiveRewards?taskid=' + taskId)
+          .then(res => {
+//              console.log(res)
+              if(res.data.code === 1){
+                Toast({
+                  message: '领取成功',
+                  position: 'middle',
+                  duration: 1000
+                })
+                this.getData();
+              }
+
+          })
+          .catch(function(error){
+            console.log(error)
+          })
+    },
+    getData(){
+      this.$axios.get('/api/integral/task')
+        .then(res => {
+          this.tasks = res.data.data
+        })
+        .catch(function(error){
+          console.log(error)
+        })
     }
   }
 }
@@ -132,6 +153,6 @@ export default {
   }
   .task-got{
     border: 0.1rem solid #999;
-    color: #4385f5;
+    color: #999;
   }
 </style>
