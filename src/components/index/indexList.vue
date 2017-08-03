@@ -14,23 +14,7 @@
         <p>专题</p>
       </router-link>
     </ul>
-  <!--  <ul class="index-content-lists">
-      <keep-alive>
-        <p :is="currentList"></p>
-      </keep-alive>
-    </ul>-->
-   <!-- <ul class="index-content-nav clearfix">
-      <li @click="updateList(list.componentName,index)"
-           v-for="(list,index) in indexLists" :class="{listFontActive:active === index}">
-        {{ list.name }}
-        <div class="list-line" :class="{listLineActive:active === index}"></div>
-      </li>
-    </ul>
-    <ul class="index-content-lists">
-      <keep-alive>
-        <p :is="currentList"></p>
-      </keep-alive>
-    </ul>-->
+
   </div>
 </template>
 
@@ -39,6 +23,7 @@
   import Recommond from './indexlist/list-subject.vue'
   import News from './indexlist/list-news.vue'
   import Server from './indexlist/list-new-server.vue'
+  import tools from '../../util/tool.js'
 export default {
   created(){
       this.$http.get('/api/indexlists').then((res) => {
@@ -64,7 +49,49 @@ export default {
       updateList(num,index){
         this.currentList = num
         this.active = index
-      }
+      },
+    clickRouter(path,name){
+      tools.clickNum({
+        url : '/api/h5/index/buttonClick',
+        data : {
+          url : path,
+          name : name,
+          type : '首页导航'
+        },
+      },'router')
+    },
+    clickRouterUrl(val){
+        let data = {
+            path : '',
+            name : '',
+        }
+        if(val.path === "/hot"){
+             console.log(val.path)
+             data.path = val.path
+             data.name = "热门"
+        }
+        if(val.path === "/new-server"){
+            console.log(val.path)
+            data.path = val.path
+            data.name = "新开服"
+        }
+        if(val.path === "/news"){
+            console.log(val.path)
+            data.path = val.path
+            data.name = "资讯"
+        }
+        if(val.path === "/subject"){
+            console.log(val.path)
+            data.path = val.path
+            data.name = "专题"
+        }
+        if (data.path){
+          this.clickRouter(data.path,data.name)
+        }
+    }
+  },
+  watch:{
+    "$route" : "clickRouterUrl"
   }
 }
 </script>

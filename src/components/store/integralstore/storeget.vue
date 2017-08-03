@@ -6,9 +6,9 @@
         <p class="detial-title">{{ goods.product_name }}</p>
         <p class="store-get-select">
           积分:<span>{{ goods.integral_exchange }}</span>
-          <selectNum :goodsintegral="goods.integral_exchange"
-                     :userintegral="user.score" @my-event="getMyEvent"></selectNum>
         </p>
+        <selectNum :goodsintegral="goods.integral_exchange"
+                   :userintegral="user.score" @my-event="getMyEvent"></selectNum>
       </div>
     </div>
     <div class="storeget-integral">

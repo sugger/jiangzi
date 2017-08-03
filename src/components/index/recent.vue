@@ -10,7 +10,7 @@
           <li>
             <img :src="list.img" alt="">
             <p>{{ list.gamename }}</p>
-            <a :href="list.url">开始</a>
+            <a @click="clickBtn(list.gamename,list.url)">开始</a>
           </li>
           </swiper-slide>
         </swiper>
@@ -22,7 +22,7 @@
 <script>
   import Vue from 'vue'
   import { swiper, swiperSlide, swiperPlugins } from 'vue-awesome-swiper'
-
+  import tools from '../../util/tool.js'
 export default {
   created(){
     this.$http.get('/api/h5/game/history').then(function (res) {
@@ -48,6 +48,20 @@ export default {
   components: {
     swiper,
     swiperSlide
+  },
+  methods:{
+    //游戏点击
+    clickBtn(name,url){
+      tools.clickNum({
+        url : '/api/h5/index/buttonClick',
+        data : {
+          name : name,
+          type : '最近在玩',
+          url : url
+        },
+        href : url
+      })
+    }
   }
 }
 </script>

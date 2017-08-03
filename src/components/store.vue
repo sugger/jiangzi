@@ -64,7 +64,7 @@ export default {
   width: 33%;
   height: 6rem;
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   color: #999;
   position: relative;
 }

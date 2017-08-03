@@ -1,24 +1,24 @@
 <template>
   <div class="storedetial">
     <div class="detial clearfix">
-      <img :src="goods.product_info.product_img" alt="" class="detial-img">
+      <img :src="goods.product_img" alt="" class="detial-img">
       <div class="detial-box">
-        <p class="detial-title">{{ goods.product_info.product_name }}</p>
-        <p class="detial-integral">所需积分: <span>{{ goods.product_info.integral_exchange }}</span></p>
-        <p class="detial-number">剩余个数: <span>{{ goods.product_info.product_num }}</span></p>
-        <router-link :to="'/store/store/storedetial/get/'+goods.product_info.id">
+        <p class="detial-title">{{ goods.product_name }}</p>
+        <p class="detial-integral">所需积分: <span>{{ goods.integral_exchange }}</span></p>
+        <p class="detial-number">剩余个数: <span>{{ goods.product_num }}</span></p>
+        <router-link :to="'/store/store/storedetial/get/'+goods.id">
           <!--<input type="button" value="兑换" class="btn detial-enough" v-if="integralEnough()" >-->
-          <input type="button" value="兑换" class="btn detial-enough" >
+          <input type="button" value="兑换" class="btn detial-enough" v-if="integralEnough()">
         </router-link>
 
-        <!--<input type="button" value="积分不足" class="btn detial-not-enough" v-if="!integralEnough()">-->
+        <input type="button" value="积分不足" class="btn detial-not-enough" v-if="!integralEnough()" disabled>
       </div>
     </div>
     <div class="title">
       <p>领取方式</p>
     </div>
     <div class="describe">
-      兑换成功后,请联系客服人员&nbsp;&nbsp;第二天客服人员会统一安排发放
+      兑换成功后,请联系客服人员&nbsp;&nbsp;第二天客服人员会统一安排发放&nbsp;客服QQ：2143548021
     </div>
   </div>
 </template>
@@ -36,7 +36,11 @@ export default {
   },
   methods:{
       integralEnough(){
-          if(this.user.score >= this.goods.product_info.id){
+          let userScore = this.user.score
+          let goodIntegral = this.goods.integral_exchange
+//          console.log(typeof userScore)
+//          console.log(typeof goodIntegral)
+          if(userScore >= goodIntegral){
               return true
           }else{
               return false
@@ -45,15 +49,14 @@ export default {
       getData(){
         this.$axios.get('/api/h5/Goods/detail?goods_id='+this.$route.params.iid)
           .then(res => {
-            this.goods = res.data
-            console.log(res)
+            this.goods = res.data.product_info
           })
           .catch(function(error){
             console.log(error)
           })
         this.$axios.get('/api/h5/user/getUserinfo')
           .then(res => {
-            this.user = res.user
+            this.user = res.data.user
           })
           .catch(function(error){
             console.log(error)

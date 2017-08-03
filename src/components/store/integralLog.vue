@@ -62,6 +62,9 @@ export default {
   methods:{
     selectTaskType(status){
       this.active = status
+    },
+    getTime(time){
+        return time.getFullYear()
     }
   }
 }

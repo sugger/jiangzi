@@ -11,9 +11,9 @@
         <img :src="task.image" alt="">
         <p class="task-name">{{ task.title }} <span>+{{ task.integral }}积分</span></p>
         <p class="task-content">{{ task.content }}</p>
-        <input type="button" class="btn task-btn task-get" value="任务未完成" v-if="task.showStatus === 0">
-        <input type="button" class="btn task-btn task-get" value="积分领取" v-if="task.showStatus === 2" @click="getIntegral(task.id)">
-        <input type="button" class="btn task-btn task-got" value="积分已领取" v-if="task.showStatus === 1">
+        <a class="btn task-btn task-get"  v-if="task.showStatus === 0">任务未完成</a>
+        <a class="btn task-btn task-get" v-if="task.showStatus === 2" @click="getIntegral(task.id)">积分领取</a>
+        <a class="btn task-btn task-got"  v-if="task.showStatus === 1">积分已领取</a>
       </li>
     </ul>
 
@@ -22,9 +22,9 @@
         <img :src="task.image" alt="">
         <p class="task-name">{{ task.title }} <span>+{{ task.integral }}积分</span></p>
         <p class="task-content">{{ task.content }}</p>
-        <input type="button" class="btn task-btn task-got" value="任务未完成" v-if="task.showStatus === 0" disabled>
-        <input type="button" class="btn task-btn task-get" value="积分领取" v-if="task.showStatus === 2" @click="getIntegral(task.id)">
-        <input type="button" class="btn task-btn task-got" value="积分已领取" v-if="task.showStatus === 1 || task.showStatus === 3" disabled>
+        <a class="btn task-btn task-got"  v-if="task.showStatus === 0" disabled>任务未完成</a>
+        <a class="btn task-btn task-get" v-if="task.showStatus === 2" @click="getIntegral(task.id)">积分领取</a>
+        <a class="btn task-btn task-got"  v-if="task.showStatus === 1 || task.showStatus === 3" disabled>积分已领取</a>
       </li>
     </ul>
   </div>
@@ -145,7 +145,9 @@ export default {
     margin-top: -1.5rem;
     right: 1rem;
     border-radius: 0.4rem;
-
+    font-size: 1.4rem;
+    text-align: center;
+    line-height: 3rem;
   }
   .task-get{
     border: 0.1rem solid #4385f5;

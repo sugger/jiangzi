@@ -19,7 +19,6 @@ created(){
       .then(res => {
 //          console.log(res)
         this.boardcast = res.data.data
-        console.log(this.boardcast)
       })
       .catch(function(error){
         console.log(error)

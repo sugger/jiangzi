@@ -15,7 +15,8 @@
               <p class="game-content">{{ game.content }}</p>
             </div>
           </router-link>
-          <a :href="game.url" class="start-game">开始</a>
+          <a class="start-game" @click="clickBtn(game.name,game.url)">开始</a>
+
         </li>
 
     </ul>
@@ -24,6 +25,7 @@
 
 <script>
   import InfiniteLoading from 'vue-infinite-loading';
+  import tools from '../../util/tool.js'
 export default {
   created(){
     this.$http.get('/api/h5/game/hot').then(function (res) {
@@ -57,6 +59,18 @@ export default {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
       }, 1000);
     },*/
+    //游戏点击
+    clickBtn(name,url){
+      tools.clickNum({
+        url : '/api/h5/index/buttonClick',
+        data : {
+          name : name,
+          type : '最近在玩',
+          url : url
+        },
+        href : url
+      })
+    }
   },
   components: {
     InfiniteLoading,

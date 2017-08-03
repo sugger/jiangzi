@@ -2,11 +2,8 @@
   <div class="slide">
     <slider animation="fade" height="18rem">
       <slider-item v-for="(list, index) in lists" :key="index">
-        <!--<div :style="i">-->
-          <!--<p style="line-height: 13rem; font-size: 5rem; text-align: center;">Page{{ index + 1 }}</p>-->
-        <!--</div>-->
-        <a :href="list.slide_url">
-          <img :src="list.slide_pic" :alt="list.slide_name" width="100%" height="100%">
+        <a>
+          <img :src="list.slide_pic" :alt="list.slide_name" width="100%" height="100%" @click="clickPic(list.slide_id,list.slide_url)">
         </a>
       </slider-item>
     </slider>
@@ -15,6 +12,7 @@
 
 <script>
   import { Slider, SliderItem } from 'vue-easy-slider'
+  import tools from '../../util/tool.js'
 export default {
   created(){
     this.$http.get('/api/h5/index/shounav').then(function (res) {
@@ -29,6 +27,17 @@ export default {
 
       ],
     }
+  },
+  methods:{
+    clickPic(id,url){
+        tools.clickNum({
+          url : '/api/h5/index/picClick',
+          data : {
+              slideid : id
+          },
+          href : url
+        })
+    },
   },
   components: {
     Slider,

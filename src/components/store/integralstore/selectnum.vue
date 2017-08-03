@@ -44,7 +44,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .selectnum{
-  float: right;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 6rem;
+  height: 2rem;
   margin-left: 1rem;
 }
   .selectnum input[type="text"]{
