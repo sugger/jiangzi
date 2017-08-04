@@ -4,11 +4,10 @@
       <img :src="goods.product_img" alt="" class="detial-img">
       <div class="detial-box">
         <p class="detial-title">{{ goods.product_name }}</p>
-        <p class="store-get-select">
+        <div class="store-get-select">
           积分:<span>{{ goods.integral_exchange }}</span>
-        </p>
-        <selectNum :goodsintegral="goods.integral_exchange"
-                   :userintegral="user.score" @my-event="getMyEvent"></selectNum>
+        </div>
+        <selectNum :goodsintegral="goods.integral_exchange" :userintegral="user.score" @my-event="getMyEvent"></selectNum>
       </div>
     </div>
     <div class="storeget-integral">
@@ -133,9 +132,10 @@
   }
   .detial-box{
     position: absolute;
-    left: calc(2.5rem + 50%);
+    right: 1rem;
     top: 1rem;
     height: 10rem;
+    width: calc(50% - 2.5rem);
   }
 
 
@@ -201,6 +201,7 @@
     bottom: 0;
     color: #4385f5;
     font-size: 1.4rem;
+    width: 100%;
   }
   .storeget-integral{
     height: 4rem;
@@ -215,9 +216,11 @@
   }
   .my-integral{
     left:1rem;
+    font-size: 1.4rem;
   }
   .goods-integral{
     right: 1rem;
+    font-size: 1.4rem;
   }
   .checkout{
     display: block;

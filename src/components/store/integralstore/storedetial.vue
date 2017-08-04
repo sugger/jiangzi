@@ -18,7 +18,7 @@
       <p>领取方式</p>
     </div>
     <div class="describe">
-      兑换成功后,请联系客服人员&nbsp;&nbsp;第二天客服人员会统一安排发放&nbsp;客服QQ：2143548021
+      兑换成功后,请联系客服人员&nbsp;&nbsp;第二天客服人员会统一安排发放&nbsp;<br/>客服QQ：2143548021
     </div>
   </div>
 </template>

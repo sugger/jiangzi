@@ -38,7 +38,7 @@
 </template>
 
 <script>
-  import WeiXin from 'weixin-js-sdk'
+//  import wx from 'wx-js-sdk'
 export default {
   created(){
     this.$http.get('/api/h5/user/getUserinfo').then(function(res) {
@@ -62,23 +62,53 @@ export default {
 /*    this.$http.get('/api/h5/index/getwechatsdkconf').then(function (res) {
       console.log(this)
       if(config !==''){
-        WeiXin.config(config)
+        wx.config(config)
       }
     }, function (err) {
       console.log(err)
     })*/
+    let _this = this
 
 
-
-    this.$axios.get('/api/h5/index/getwechatsdkconf')
+    this.$axios.get('/api/h5/index/getwechatsdkconf?route='+window.location.pathname)
       .then(res => {
-        this.config = res;
-        WeiXin.config(this.config)
-        console.log(this.config)
+          console.log(res)
+        this.config = res.data;
+        wx.config(this.config)
+
+        /*s*/
+        wx.onMenuShareTimeline({
+          title: '酱紫游戏', // 分享标题
+          link: 'http://h5.wan855.cn', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+          imgUrl: 'http://h5.wan855.cn/logo.png', // 分享图标
+          success: function () {
+            // 用户确认分享后执行的回调函数
+            console.log('分享成功!')
+            _this.$axios.get('/api/Integral/Task/share')
+              .then(res => {
+                if (res.code === '200'){
+                  console.log(res.msg)
+                }
+              })
+              .catch(function(error){
+                console.log(error)
+              })
+          },
+          cancel: function () {
+            console.log('用户取消分享后执行的回调函数!')
+            // 用户取消分享后执行的回调函数
+          },
+          error:function () {
+            console.log('失败')
+          }
+        })
+        /*e*/
+
       })
       .catch(function(error){
           console.log(error)
       })
+
   },
   data(){
       return{
@@ -226,6 +256,10 @@ input[type=button]{
   -webkit-appearance:none;
   outline:none
 }
+  input[type=text]{
+    -webkit-appearance:none;
+    outline:none
+  }
 
 html,body{
   height: 100%;

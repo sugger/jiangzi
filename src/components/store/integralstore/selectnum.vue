@@ -1,9 +1,9 @@
 <template>
-  <div class="selectnum">
-    <input class="btn select-btn" type="button" value="+" @click="add()">
+  <p class="selectnum clearfix">
+    <a class="btn select-btn" @click="add()">+</a>
     <input class="btn" type="text" v-model.number="goodsNum">
-    <input class="btn select-btn" type="button" value="-" @click="minus()">
-  </div>
+    <a class="btn select-btn"  @click="minus()">-</a>
+  </p>
 </template>
 
 <script>
@@ -46,10 +46,11 @@ export default {
 .selectnum{
   position: absolute;
   right: 0;
-  bottom: 0;
-  width: 6rem;
+  float: right;
+  width: 8rem;
   height: 2rem;
-  margin-left: 1rem;
+  text-align: right;
+  bottom: .5rem;
 }
   .selectnum input[type="text"]{
     width: 2rem;
@@ -58,7 +59,11 @@ export default {
     font-size: 1.6rem;
   }
   .select-btn{
+    display: inline-block;
+    line-height: 1.6rem;
+    text-align: center;
     color: #888;
+    font-size: 1.4rem;
     background-color: #ececec;
     width: 1.6rem;
     height: 1.6rem;
