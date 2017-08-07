@@ -11,7 +11,7 @@ export default {
   props:['goodsintegral','userintegral'],
   data () {
     return {
-      goodsNum:0
+      goodsNum:1
     }
   },
   methods:{
@@ -29,7 +29,7 @@ export default {
           this.$emit('my-event',this.goodsNum)
       },
       minus(){
-          if (this.goodsNum>0){
+          if (this.goodsNum>1){
             this.goodsNum--
             this.$emit('my-event',this.goodsNum)
           }else{
@@ -67,5 +67,9 @@ export default {
     background-color: #ececec;
     width: 1.6rem;
     height: 1.6rem;
+  }
+  .select-btn{
+    user-select: none;
+    cursor: pointer;
   }
 </style>

@@ -70,7 +70,7 @@ export default {
     let _this = this
 
 
-    this.$axios.get('/api/h5/index/getwechatsdkconf?route='+window.location.pathname)
+    this.$axios.get('/api/h5/index/getwechatsdkconf?route='+ encodeURIComponent(window.location.pathname+window.location.search))
       .then(res => {
           console.log(res)
         this.config = res.data;
@@ -78,16 +78,17 @@ export default {
 
         /*s*/
         wx.onMenuShareTimeline({
-          title: '酱紫游戏', // 分享标题
+          title: '游戏酱紫', // 分享标题
           link: 'http://h5.wan855.cn', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
           imgUrl: 'http://h5.wan855.cn/logo.png', // 分享图标
           success: function () {
             // 用户确认分享后执行的回调函数
-            console.log('分享成功!')
+            alert('分享成功!')
             _this.$axios.get('/api/Integral/Task/share')
               .then(res => {
                 if (res.code === '200'){
                   console.log(res.msg)
+                  location.reload()
                 }
               })
               .catch(function(error){
@@ -95,11 +96,11 @@ export default {
               })
           },
           cancel: function () {
-            console.log('用户取消分享后执行的回调函数!')
+            alert('用户取消分享后执行的回调函数!')
             // 用户取消分享后执行的回调函数
           },
           error:function () {
-            console.log('失败')
+            alert('失败')
           }
         })
         /*e*/
@@ -265,7 +266,7 @@ html,body{
   height: 100%;
 }
   #guoqianchen{
-    max-width: 85rem;
+    max-width: 750px;
     margin: 0 auto;
     position: relative;
     height: 100%;
@@ -275,11 +276,9 @@ html,body{
     height:5.2rem;
     background-color: #fff;
     border-top: 0.1rem solid #ededed;
-    max-width: 85rem;
+    max-width: 750px;
     position: fixed;
     bottom: 0;
-  }
-  .footer{
     text-align: center;
     width: 100%;
   }

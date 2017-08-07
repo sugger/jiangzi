@@ -52,10 +52,14 @@ export default {
     position: relative;
     z-index: 1;
   }
-  /*@media only screen and (max-width: 37.5em) {*/
-    /*.banner-image{*/
-      /*width: 100%;*/
-      /*height: 20rem!important;*/
-    /*}*/
-  /*}*/
+  @media only screen and (min-width: 600px) {
+    .slider{
+      width: 100%;
+      height: 30rem!important;
+    }
+
+  }
+  .slider{
+    height: 12rem;
+  }
 </style>

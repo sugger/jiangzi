@@ -2,7 +2,7 @@
   <div class="person-header">
       <img :src="user.avatar" alt="" class="person-img">
       <div class="person-box">
-        <p class="person-name">{{ user.user_nicename }}</p>
+        <p class="person-name" v-html="user.user_nicename"></p>
         <p class="person-id">UID: {{ user.id }}</p>
       </div>
   </div>

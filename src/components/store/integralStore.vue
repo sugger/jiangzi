@@ -78,13 +78,13 @@ import Boardcast from "./integralstore/boardcast.vue"
     display: block;
     margin:0 auto;
     width: 100%;
-    height: 9rem;
     border: none;
     outline: none;
     margin-top: .5rem;
     overflow: hidden;
     border-radius: 1rem;
   }
+
   .commodity-list-tit{
     font-size: 1.4rem;
     font-weight: bolder;

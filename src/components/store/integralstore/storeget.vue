@@ -27,14 +27,12 @@
   export default {
     created(){
       this.getData()
-      console.log(this.goods.integral_exchange * this.goodsNum)
-      console.log(this.goods.integral_exchange)
     },
     data () {
       return {
         goods:'',
         user:'',
-        goodsNum:0
+        goodsNum:1
       }
     },
     computed:{
@@ -71,29 +69,36 @@
       },
       checkout(){
           let _this = this
-        /*this.$axios.get('/api/h5/Goods/exchange?goods_id=' +
-              this.goods.id + '&goods_num=' + this.goodsNum + '&expend_integral=' + this.goods.integral_exchange * this.goodsNum
-
-        )*/
           let data = {
             goods_id : this.goods.id,
             goods_num : this.goodsNum,
             expend_integral : this.goods.integral_exchange * this.goodsNum
           }
-          this.$axios.post('/api/h5/Goods/exchange',qs.stringify(data))
-          .then(res => {
+          if (parseInt(this.user.score) >= data.expend_integral){
+            this.$axios.post('/api/h5/Goods/exchange',qs.stringify(data))
+              .then(res => {
+                Toast({
+                  message: '兑换成功',
+                  position: 'middle',
+                  duration: 1000
+                })
+
+                _this.$router.push({path:'/store/store'})
+
+              })
+              .catch(function(error){
+                console.log(error)
+              })
+          }else{
             Toast({
-              message: '兑换成功',
+              message: '积分不足',
               position: 'middle',
               duration: 1000
             })
 
-              _this.$router.push({path:'/store/store'})
+          }
 
-          })
-          .catch(function(error){
-            console.log(error)
-          })
+
 
 
 
